@@ -22,6 +22,7 @@ class CatCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("started")
+        self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         makeApiCall()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -113,30 +114,30 @@ class CatCollectionViewController: UICollectionViewController {
 
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return cats.count
+        return 1
     }
 
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 1
+        return cats.count
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell{
         
    
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! CatViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CatCell", forIndexPath: indexPath) as! CatViewCell
         
       
         cell.catPhoto.image = UIImage(named:"cat")
         
-        /*
+        
         let URL = NSURL(string:cats[indexPath.row].imgUrl)
         if let data = NSData(contentsOfURL: URL!){
             cell.catPhoto.image = UIImage(data:data)
             
         }
-        */
+        
         
       
         return cell

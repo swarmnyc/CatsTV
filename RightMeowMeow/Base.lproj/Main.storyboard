@@ -18,14 +18,14 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="Gz8-tl-DMw" customClass="CatViewCell" customModule="RightMeowMeow" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CatCell" id="Gz8-tl-DMw" customClass="CatViewCell" customModule="RightMeowMeow" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="395" height="305"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="395" height="305"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mbp-iF-DVd">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cat" translatesAutoresizingMaskIntoConstraints="NO" id="Mbp-iF-DVd">
                                             <rect key="frame" x="0.0" y="0.0" width="395" height="305"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="305" id="PVt-m1-SFe"/>
@@ -60,4 +60,7 @@
             <point key="canvasLocation" x="-971" y="142"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="cat" width="1080" height="1080"/>
+    </resources>
 </document>
