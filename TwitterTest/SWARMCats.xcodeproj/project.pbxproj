@@ -1,0 +1,592 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E945C9951BBEE67E0030C32B /* Dictionary+OAuthSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = E945C9851BBEE67E0030C32B /* Dictionary+OAuthSwift.swift */; };
+		E945C9961BBEE67E0030C32B /* HMAC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E945C9861BBEE67E0030C32B /* HMAC.swift */; };
+		E945C9971BBEE67E0030C32B /* Int+OAuthSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = E945C9871BBEE67E0030C32B /* Int+OAuthSwift.swift */; };
+		E945C9981BBEE67E0030C32B /* NSData+OAuthSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = E945C9881BBEE67E0030C32B /* NSData+OAuthSwift.swift */; };
+		E945C9991BBEE67E0030C32B /* NSURL+OAuthSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = E945C9891BBEE67E0030C32B /* NSURL+OAuthSwift.swift */; };
+		E945C99C1BBEE67E0030C32B /* OAuthSwiftClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E945C98D1BBEE67E0030C32B /* OAuthSwiftClient.swift */; };
+		E945C99D1BBEE67E0030C32B /* OAuthSwiftCredential.swift in Sources */ = {isa = PBXBuildFile; fileRef = E945C98E1BBEE67E0030C32B /* OAuthSwiftCredential.swift */; };
+		E945C99E1BBEE67E0030C32B /* OAuthSwiftHTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E945C98F1BBEE67E0030C32B /* OAuthSwiftHTTPRequest.swift */; };
+		E945C99F1BBEE67E0030C32B /* OAuthSwiftURLHandlerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E945C9901BBEE67E0030C32B /* OAuthSwiftURLHandlerType.swift */; };
+		E945C9A11BBEE67E0030C32B /* SHA1.swift in Sources */ = {isa = PBXBuildFile; fileRef = E945C9921BBEE67E0030C32B /* SHA1.swift */; };
+		E945C9A21BBEE67E0030C32B /* String+OAuthSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = E945C9931BBEE67E0030C32B /* String+OAuthSwift.swift */; };
+		E945C9A31BBEE67E0030C32B /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E945C9941BBEE67E0030C32B /* Utils.swift */; };
+		E945C9A81BBF0F220030C32B /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E945C9A71BBF0F220030C32B /* Provider.swift */; };
+		E981AA5F1BBB38D5004F3815 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E981AA5E1BBB38D5004F3815 /* AppDelegate.swift */; };
+		E981AA611BBB38D5004F3815 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E981AA601BBB38D5004F3815 /* MainViewController.swift */; };
+		E981AA641BBB38D5004F3815 /* SWARMCats.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E981AA621BBB38D5004F3815 /* SWARMCats.xcdatamodeld */; };
+		E981AA671BBB38D5004F3815 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E981AA651BBB38D5004F3815 /* Main.storyboard */; };
+		E981AA691BBB38D5004F3815 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E981AA681BBB38D5004F3815 /* Assets.xcassets */; };
+		E981AA741BBB38D5004F3815 /* SWARMCatsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E981AA731BBB38D5004F3815 /* SWARMCatsTests.swift */; };
+		E981AA7F1BBB38D5004F3815 /* SWARMCatsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E981AA7E1BBB38D5004F3815 /* SWARMCatsUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E981AA701BBB38D5004F3815 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E981AA531BBB38D5004F3815 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E981AA5A1BBB38D5004F3815;
+			remoteInfo = SWARMCats;
+		};
+		E981AA7B1BBB38D5004F3815 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E981AA531BBB38D5004F3815 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E981AA5A1BBB38D5004F3815;
+			remoteInfo = SWARMCats;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		E945C9851BBEE67E0030C32B /* Dictionary+OAuthSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+OAuthSwift.swift"; sourceTree = "<group>"; };
+		E945C9861BBEE67E0030C32B /* HMAC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMAC.swift; sourceTree = "<group>"; };
+		E945C9871BBEE67E0030C32B /* Int+OAuthSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+OAuthSwift.swift"; sourceTree = "<group>"; };
+		E945C9881BBEE67E0030C32B /* NSData+OAuthSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSData+OAuthSwift.swift"; sourceTree = "<group>"; };
+		E945C9891BBEE67E0030C32B /* NSURL+OAuthSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURL+OAuthSwift.swift"; sourceTree = "<group>"; };
+		E945C98D1BBEE67E0030C32B /* OAuthSwiftClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthSwiftClient.swift; sourceTree = "<group>"; };
+		E945C98E1BBEE67E0030C32B /* OAuthSwiftCredential.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthSwiftCredential.swift; sourceTree = "<group>"; };
+		E945C98F1BBEE67E0030C32B /* OAuthSwiftHTTPRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthSwiftHTTPRequest.swift; sourceTree = "<group>"; };
+		E945C9901BBEE67E0030C32B /* OAuthSwiftURLHandlerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthSwiftURLHandlerType.swift; sourceTree = "<group>"; };
+		E945C9921BBEE67E0030C32B /* SHA1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SHA1.swift; sourceTree = "<group>"; };
+		E945C9931BBEE67E0030C32B /* String+OAuthSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+OAuthSwift.swift"; sourceTree = "<group>"; };
+		E945C9941BBEE67E0030C32B /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		E945C9A71BBF0F220030C32B /* Provider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
+		E981AA5B1BBB38D5004F3815 /* SWARMCats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SWARMCats.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E981AA5E1BBB38D5004F3815 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E981AA601BBB38D5004F3815 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		E981AA631BBB38D5004F3815 /* SWARMCats.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SWARMCats.xcdatamodel; sourceTree = "<group>"; };
+		E981AA661BBB38D5004F3815 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E981AA681BBB38D5004F3815 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E981AA6A1BBB38D5004F3815 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E981AA6F1BBB38D5004F3815 /* SWARMCatsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SWARMCatsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E981AA731BBB38D5004F3815 /* SWARMCatsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWARMCatsTests.swift; sourceTree = "<group>"; };
+		E981AA751BBB38D5004F3815 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E981AA7A1BBB38D5004F3815 /* SWARMCatsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SWARMCatsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E981AA7E1BBB38D5004F3815 /* SWARMCatsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWARMCatsUITests.swift; sourceTree = "<group>"; };
+		E981AA801BBB38D5004F3815 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E981AA581BBB38D5004F3815 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E981AA6C1BBB38D5004F3815 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E981AA771BBB38D5004F3815 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E945C9841BBEE61A0030C32B /* OAuth */ = {
+			isa = PBXGroup;
+			children = (
+				E945C9851BBEE67E0030C32B /* Dictionary+OAuthSwift.swift */,
+				E945C9861BBEE67E0030C32B /* HMAC.swift */,
+				E945C9871BBEE67E0030C32B /* Int+OAuthSwift.swift */,
+				E945C9881BBEE67E0030C32B /* NSData+OAuthSwift.swift */,
+				E945C9891BBEE67E0030C32B /* NSURL+OAuthSwift.swift */,
+				E945C98D1BBEE67E0030C32B /* OAuthSwiftClient.swift */,
+				E945C98E1BBEE67E0030C32B /* OAuthSwiftCredential.swift */,
+				E945C98F1BBEE67E0030C32B /* OAuthSwiftHTTPRequest.swift */,
+				E945C9901BBEE67E0030C32B /* OAuthSwiftURLHandlerType.swift */,
+				E945C9921BBEE67E0030C32B /* SHA1.swift */,
+				E945C9931BBEE67E0030C32B /* String+OAuthSwift.swift */,
+				E945C9941BBEE67E0030C32B /* Utils.swift */,
+			);
+			name = OAuth;
+			sourceTree = "<group>";
+		};
+		E945C9A41BBF0EDD0030C32B /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				E945C9A71BBF0F220030C32B /* Provider.swift */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		E981AA521BBB38D5004F3815 = {
+			isa = PBXGroup;
+			children = (
+				E981AA5D1BBB38D5004F3815 /* SWARMCats */,
+				E981AA721BBB38D5004F3815 /* SWARMCatsTests */,
+				E981AA7D1BBB38D5004F3815 /* SWARMCatsUITests */,
+				E981AA5C1BBB38D5004F3815 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E981AA5C1BBB38D5004F3815 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E981AA5B1BBB38D5004F3815 /* SWARMCats.app */,
+				E981AA6F1BBB38D5004F3815 /* SWARMCatsTests.xctest */,
+				E981AA7A1BBB38D5004F3815 /* SWARMCatsUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E981AA5D1BBB38D5004F3815 /* SWARMCats */ = {
+			isa = PBXGroup;
+			children = (
+				E945C9A41BBF0EDD0030C32B /* Core */,
+				E945C9841BBEE61A0030C32B /* OAuth */,
+				E981AA5E1BBB38D5004F3815 /* AppDelegate.swift */,
+				E981AA601BBB38D5004F3815 /* MainViewController.swift */,
+				E981AA651BBB38D5004F3815 /* Main.storyboard */,
+				E981AA681BBB38D5004F3815 /* Assets.xcassets */,
+				E981AA6A1BBB38D5004F3815 /* Info.plist */,
+				E981AA621BBB38D5004F3815 /* SWARMCats.xcdatamodeld */,
+			);
+			path = SWARMCats;
+			sourceTree = "<group>";
+		};
+		E981AA721BBB38D5004F3815 /* SWARMCatsTests */ = {
+			isa = PBXGroup;
+			children = (
+				E981AA731BBB38D5004F3815 /* SWARMCatsTests.swift */,
+				E981AA751BBB38D5004F3815 /* Info.plist */,
+			);
+			path = SWARMCatsTests;
+			sourceTree = "<group>";
+		};
+		E981AA7D1BBB38D5004F3815 /* SWARMCatsUITests */ = {
+			isa = PBXGroup;
+			children = (
+				E981AA7E1BBB38D5004F3815 /* SWARMCatsUITests.swift */,
+				E981AA801BBB38D5004F3815 /* Info.plist */,
+			);
+			path = SWARMCatsUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E981AA5A1BBB38D5004F3815 /* SWARMCats */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E981AA831BBB38D5004F3815 /* Build configuration list for PBXNativeTarget "SWARMCats" */;
+			buildPhases = (
+				E981AA571BBB38D5004F3815 /* Sources */,
+				E981AA581BBB38D5004F3815 /* Frameworks */,
+				E981AA591BBB38D5004F3815 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SWARMCats;
+			productName = SWARMCats;
+			productReference = E981AA5B1BBB38D5004F3815 /* SWARMCats.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E981AA6E1BBB38D5004F3815 /* SWARMCatsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E981AA861BBB38D5004F3815 /* Build configuration list for PBXNativeTarget "SWARMCatsTests" */;
+			buildPhases = (
+				E981AA6B1BBB38D5004F3815 /* Sources */,
+				E981AA6C1BBB38D5004F3815 /* Frameworks */,
+				E981AA6D1BBB38D5004F3815 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E981AA711BBB38D5004F3815 /* PBXTargetDependency */,
+			);
+			name = SWARMCatsTests;
+			productName = SWARMCatsTests;
+			productReference = E981AA6F1BBB38D5004F3815 /* SWARMCatsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		E981AA791BBB38D5004F3815 /* SWARMCatsUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E981AA891BBB38D5004F3815 /* Build configuration list for PBXNativeTarget "SWARMCatsUITests" */;
+			buildPhases = (
+				E981AA761BBB38D5004F3815 /* Sources */,
+				E981AA771BBB38D5004F3815 /* Frameworks */,
+				E981AA781BBB38D5004F3815 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E981AA7C1BBB38D5004F3815 /* PBXTargetDependency */,
+			);
+			name = SWARMCatsUITests;
+			productName = SWARMCatsUITests;
+			productReference = E981AA7A1BBB38D5004F3815 /* SWARMCatsUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E981AA531BBB38D5004F3815 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0710;
+				ORGANIZATIONNAME = SWARMNYC;
+				TargetAttributes = {
+					E981AA5A1BBB38D5004F3815 = {
+						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = 2C76V6V2ZE;
+					};
+					E981AA6E1BBB38D5004F3815 = {
+						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = 2C76V6V2ZE;
+						TestTargetID = E981AA5A1BBB38D5004F3815;
+					};
+					E981AA791BBB38D5004F3815 = {
+						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = 2C76V6V2ZE;
+						TestTargetID = E981AA5A1BBB38D5004F3815;
+					};
+				};
+			};
+			buildConfigurationList = E981AA561BBB38D5004F3815 /* Build configuration list for PBXProject "SWARMCats" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E981AA521BBB38D5004F3815;
+			productRefGroup = E981AA5C1BBB38D5004F3815 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E981AA5A1BBB38D5004F3815 /* SWARMCats */,
+				E981AA6E1BBB38D5004F3815 /* SWARMCatsTests */,
+				E981AA791BBB38D5004F3815 /* SWARMCatsUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E981AA591BBB38D5004F3815 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E981AA691BBB38D5004F3815 /* Assets.xcassets in Resources */,
+				E981AA671BBB38D5004F3815 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E981AA6D1BBB38D5004F3815 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E981AA781BBB38D5004F3815 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E981AA571BBB38D5004F3815 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E945C9A21BBEE67E0030C32B /* String+OAuthSwift.swift in Sources */,
+				E945C99E1BBEE67E0030C32B /* OAuthSwiftHTTPRequest.swift in Sources */,
+				E945C9A11BBEE67E0030C32B /* SHA1.swift in Sources */,
+				E981AA641BBB38D5004F3815 /* SWARMCats.xcdatamodeld in Sources */,
+				E945C9A81BBF0F220030C32B /* Provider.swift in Sources */,
+				E945C9961BBEE67E0030C32B /* HMAC.swift in Sources */,
+				E945C9951BBEE67E0030C32B /* Dictionary+OAuthSwift.swift in Sources */,
+				E945C9971BBEE67E0030C32B /* Int+OAuthSwift.swift in Sources */,
+				E981AA611BBB38D5004F3815 /* MainViewController.swift in Sources */,
+				E945C99C1BBEE67E0030C32B /* OAuthSwiftClient.swift in Sources */,
+				E945C9A31BBEE67E0030C32B /* Utils.swift in Sources */,
+				E945C99F1BBEE67E0030C32B /* OAuthSwiftURLHandlerType.swift in Sources */,
+				E945C9981BBEE67E0030C32B /* NSData+OAuthSwift.swift in Sources */,
+				E945C9991BBEE67E0030C32B /* NSURL+OAuthSwift.swift in Sources */,
+				E945C99D1BBEE67E0030C32B /* OAuthSwiftCredential.swift in Sources */,
+				E981AA5F1BBB38D5004F3815 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E981AA6B1BBB38D5004F3815 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E981AA741BBB38D5004F3815 /* SWARMCatsTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E981AA761BBB38D5004F3815 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E981AA7F1BBB38D5004F3815 /* SWARMCatsUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E981AA711BBB38D5004F3815 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E981AA5A1BBB38D5004F3815 /* SWARMCats */;
+			targetProxy = E981AA701BBB38D5004F3815 /* PBXContainerItemProxy */;
+		};
+		E981AA7C1BBB38D5004F3815 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E981AA5A1BBB38D5004F3815 /* SWARMCats */;
+			targetProxy = E981AA7B1BBB38D5004F3815 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E981AA651BBB38D5004F3815 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E981AA661BBB38D5004F3815 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E981AA811BBB38D5004F3815 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = appletvos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		E981AA821BBB38D5004F3815 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E981AA841BBB38D5004F3815 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = SWARMCats/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = SWARMNYC.SWARMCats;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		E981AA851BBB38D5004F3815 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = SWARMCats/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = SWARMNYC.SWARMCats;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+			};
+			name = Release;
+		};
+		E981AA871BBB38D5004F3815 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = SWARMCatsTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = SWARMNYC.SWARMCatsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SWARMCats.app/SWARMCats";
+			};
+			name = Debug;
+		};
+		E981AA881BBB38D5004F3815 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = SWARMCatsTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = SWARMNYC.SWARMCatsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SWARMCats.app/SWARMCats";
+			};
+			name = Release;
+		};
+		E981AA8A1BBB38D5004F3815 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = SWARMCatsUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = SWARMNYC.SWARMCatsUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = SWARMCats;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		E981AA8B1BBB38D5004F3815 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = SWARMCatsUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = SWARMNYC.SWARMCatsUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = SWARMCats;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E981AA561BBB38D5004F3815 /* Build configuration list for PBXProject "SWARMCats" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E981AA811BBB38D5004F3815 /* Debug */,
+				E981AA821BBB38D5004F3815 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E981AA831BBB38D5004F3815 /* Build configuration list for PBXNativeTarget "SWARMCats" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E981AA841BBB38D5004F3815 /* Debug */,
+				E981AA851BBB38D5004F3815 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E981AA861BBB38D5004F3815 /* Build configuration list for PBXNativeTarget "SWARMCatsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E981AA871BBB38D5004F3815 /* Debug */,
+				E981AA881BBB38D5004F3815 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E981AA891BBB38D5004F3815 /* Build configuration list for PBXNativeTarget "SWARMCatsUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E981AA8A1BBB38D5004F3815 /* Debug */,
+				E981AA8B1BBB38D5004F3815 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		E981AA621BBB38D5004F3815 /* SWARMCats.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E981AA631BBB38D5004F3815 /* SWARMCats.xcdatamodel */,
+			);
+			currentVersion = E981AA631BBB38D5004F3815 /* SWARMCats.xcdatamodel */;
+			path = SWARMCats.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = E981AA531BBB38D5004F3815 /* Project object */;
+}
