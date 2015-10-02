@@ -23,12 +23,12 @@ class CatCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
         print("started")
         self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        makeApiCall()
+        //makeApiCall()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Register cell classes
-        self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        //self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         // Do any additional setup after loading the view.
     }
@@ -131,12 +131,13 @@ class CatCollectionViewController: UICollectionViewController {
       
         cell.catPhoto.image = UIImage(named:"cat")
         
-        
+        /*
         let URL = NSURL(string:cats[indexPath.row].imgUrl)
         if let data = NSData(contentsOfURL: URL!){
             cell.catPhoto.image = UIImage(data:data)
             
         }
+        */
         
         
       

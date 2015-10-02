@@ -12,21 +12,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dvF-i7-apx">
-                            <size key="itemSize" width="395" height="305"/>
+                            <size key="itemSize" width="544" height="429"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CatCell" id="Gz8-tl-DMw" customClass="CatViewCell" customModule="RightMeowMeow" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="395" height="305"/>
+                                <rect key="frame" x="0.0" y="0.0" width="544" height="429"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="395" height="305"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="544" height="429"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cat" translatesAutoresizingMaskIntoConstraints="NO" id="Mbp-iF-DVd">
-                                            <rect key="frame" x="0.0" y="0.0" width="395" height="305"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="cat" translatesAutoresizingMaskIntoConstraints="NO" id="Mbp-iF-DVd">
+                                            <rect key="frame" x="0.0" y="0.0" width="800" height="380"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="305" id="PVt-m1-SFe"/>
                                                 <constraint firstAttribute="width" constant="395" id="VOv-YI-hqC"/>
@@ -35,12 +35,6 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="Mbp-iF-DVd" secondAttribute="bottom" id="63y-R1-iBf"/>
-                                    <constraint firstItem="Mbp-iF-DVd" firstAttribute="top" secondItem="Gz8-tl-DMw" secondAttribute="top" id="B4O-6Q-PEW"/>
-                                    <constraint firstAttribute="trailing" secondItem="Mbp-iF-DVd" secondAttribute="trailing" id="D0o-J8-f8L"/>
-                                    <constraint firstItem="Mbp-iF-DVd" firstAttribute="leading" secondItem="Gz8-tl-DMw" secondAttribute="leading" id="WKg-nP-WQU"/>
-                                </constraints>
                                 <connections>
                                     <outlet property="catPhoto" destination="Mbp-iF-DVd" id="IN5-DC-E7o"/>
                                 </connections>

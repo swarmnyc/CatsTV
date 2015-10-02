@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F550CD41BBEE78300614940 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F5AED5C1BBB300D003501B0 /* Main.storyboard */; };
 		8F5AED591BBB300D003501B0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5AED581BBB300D003501B0 /* AppDelegate.swift */; };
 		8F5AED5B1BBB300D003501B0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5AED5A1BBB300D003501B0 /* ViewController.swift */; };
-		8F5AED5E1BBB300D003501B0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F5AED5C1BBB300D003501B0 /* Main.storyboard */; };
 		8F5AED601BBB300D003501B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F5AED5F1BBB300D003501B0 /* Assets.xcassets */; };
 		8F5AED681BBB307B003501B0 /* CatCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5AED671BBB307B003501B0 /* CatCollectionViewController.swift */; };
 		8F5AED6A1BBB30E5003501B0 /* Cat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5AED691BBB30E5003501B0 /* Cat.swift */; };
@@ -31,6 +31,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4975F1FBE54ABF60E63B26EA /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F5AED551BBB300D003501B0 /* RightMeowMeow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RightMeowMeow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F5AED581BBB300D003501B0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8F5AED5A1BBB300D003501B0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -55,11 +56,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		75F698D7C330522F53DB8232 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4975F1FBE54ABF60E63B26EA /* Pods.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8F5AED4C1BBB300D003501B0 = {
 			isa = PBXGroup;
 			children = (
 				8F5AED571BBB300D003501B0 /* RightMeowMeow */,
 				8F5AED561BBB300D003501B0 /* Products */,
+				75F698D7C330522F53DB8232 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -75,15 +85,15 @@
 			isa = PBXGroup;
 			children = (
 				8F5AED581BBB300D003501B0 /* AppDelegate.swift */,
+				8F5AED671BBB307B003501B0 /* CatCollectionViewController.swift */,
+				8F5AED711BBB3D5E003501B0 /* CatViewCell.swift */,
 				8F5AED5A1BBB300D003501B0 /* ViewController.swift */,
 				8F5AED5C1BBB300D003501B0 /* Main.storyboard */,
-				8F5AED671BBB307B003501B0 /* CatCollectionViewController.swift */,
 				8F5AED6B1BBB3152003501B0 /* SwiftyJSON.swift */,
 				8F5AED5F1BBB300D003501B0 /* Assets.xcassets */,
 				8FF04E5A1BBC5EB8004E5AB5 /* cat.jpg */,
 				8F5AED611BBB300D003501B0 /* Info.plist */,
 				8F5AED691BBB30E5003501B0 /* Cat.swift */,
-				8F5AED711BBB3D5E003501B0 /* CatViewCell.swift */,
 			);
 			path = RightMeowMeow;
 			sourceTree = "<group>";
@@ -147,8 +157,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8FF04E5B1BBC5EB8004E5AB5 /* cat.jpg in Resources */,
+				8F550CD41BBEE78300614940 /* Main.storyboard in Resources */,
 				8F5AED601BBB300D003501B0 /* Assets.xcassets in Resources */,
-				8F5AED5E1BBB300D003501B0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
