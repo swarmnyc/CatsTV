@@ -14,6 +14,9 @@
 		8F5AED681BBB307B003501B0 /* CatCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5AED671BBB307B003501B0 /* CatCollectionViewController.swift */; };
 		8F5AED721BBB3D5E003501B0 /* CatViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5AED711BBB3D5E003501B0 /* CatViewCell.swift */; };
 		8FF04E5B1BBC5EB8004E5AB5 /* cat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8FF04E5A1BBC5EB8004E5AB5 /* cat.jpg */; };
+		E99A84761BC46DE000E3480B /* TVServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E99A84751BC46DE000E3480B /* TVServices.framework */; };
+		E99A84791BC46DE000E3480B /* ServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99A84781BC46DE000E3480B /* ServiceProvider.swift */; };
+		E99A847D1BC46DE000E3480B /* RightMeowMeow Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E99A84741BC46DE000E3480B /* RightMeowMeow Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		E9C4AF8F1BC41BDB0093F158 /* Dictionary+OAuthSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4AF811BC41BDB0093F158 /* Dictionary+OAuthSwift.swift */; };
 		E9C4AF901BC41BDB0093F158 /* HMAC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4AF821BC41BDB0093F158 /* HMAC.swift */; };
 		E9C4AF911BC41BDB0093F158 /* Int+OAuthSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4AF831BC41BDB0093F158 /* Int+OAuthSwift.swift */; };
@@ -32,6 +35,16 @@
 		E9C4AFA31BC42AA20093F158 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4AFA21BC42AA20093F158 /* SwiftyJSON.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		E99A847B1BC46DE000E3480B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8F5AED4D1BBB300D003501B0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E99A84731BC46DE000E3480B;
+			remoteInfo = "RightMeowMeow Extension";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		8FF04E581BBB3F4B004E5AB5 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -40,6 +53,17 @@
 			dstSubfolderSpec = 10;
 			files = (
 			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E99A84811BC46DE000E3480B /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				E99A847D1BC46DE000E3480B /* RightMeowMeow Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -55,6 +79,10 @@
 		8F5AED671BBB307B003501B0 /* CatCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatCollectionViewController.swift; sourceTree = "<group>"; };
 		8F5AED711BBB3D5E003501B0 /* CatViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatViewCell.swift; sourceTree = "<group>"; };
 		8FF04E5A1BBC5EB8004E5AB5 /* cat.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cat.jpg; sourceTree = "<group>"; };
+		E99A84741BC46DE000E3480B /* RightMeowMeow Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "RightMeowMeow Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E99A84751BC46DE000E3480B /* TVServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TVServices.framework; path = System/Library/Frameworks/TVServices.framework; sourceTree = SDKROOT; };
+		E99A84781BC46DE000E3480B /* ServiceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProvider.swift; sourceTree = "<group>"; };
+		E99A847A1BC46DE000E3480B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9C4AF811BC41BDB0093F158 /* Dictionary+OAuthSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Dictionary+OAuthSwift.swift"; path = "Libs/OAuth/Dictionary+OAuthSwift.swift"; sourceTree = "<group>"; };
 		E9C4AF821BC41BDB0093F158 /* HMAC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HMAC.swift; path = Libs/OAuth/HMAC.swift; sourceTree = "<group>"; };
 		E9C4AF831BC41BDB0093F158 /* Int+OAuthSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Int+OAuthSwift.swift"; path = "Libs/OAuth/Int+OAuthSwift.swift"; sourceTree = "<group>"; };
@@ -81,6 +109,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E99A84711BC46DE000E3480B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E99A84761BC46DE000E3480B /* TVServices.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -88,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				4975F1FBE54ABF60E63B26EA /* Pods.framework */,
+				E99A84751BC46DE000E3480B /* TVServices.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -96,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				8F5AED571BBB300D003501B0 /* RightMeowMeow */,
+				E99A84771BC46DE000E3480B /* RightMeowMeow Extension */,
 				8F5AED561BBB300D003501B0 /* Products */,
 				75F698D7C330522F53DB8232 /* Frameworks */,
 			);
@@ -105,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				8F5AED551BBB300D003501B0 /* RightMeowMeow.app */,
+				E99A84741BC46DE000E3480B /* RightMeowMeow Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -124,6 +163,15 @@
 				8F5AED611BBB300D003501B0 /* Info.plist */,
 			);
 			path = RightMeowMeow;
+			sourceTree = "<group>";
+		};
+		E99A84771BC46DE000E3480B /* RightMeowMeow Extension */ = {
+			isa = PBXGroup;
+			children = (
+				E99A84781BC46DE000E3480B /* ServiceProvider.swift */,
+				E99A847A1BC46DE000E3480B /* Info.plist */,
+			);
+			path = "RightMeowMeow Extension";
 			sourceTree = "<group>";
 		};
 		E9C4AF7F1BC41A9E0093F158 /* Libs */ = {
@@ -175,15 +223,34 @@
 				8F5AED521BBB300D003501B0 /* Frameworks */,
 				8F5AED531BBB300D003501B0 /* Resources */,
 				8FF04E581BBB3F4B004E5AB5 /* CopyFiles */,
+				E99A84811BC46DE000E3480B /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				E99A847C1BC46DE000E3480B /* PBXTargetDependency */,
 			);
 			name = RightMeowMeow;
 			productName = RightMeowMeow;
 			productReference = 8F5AED551BBB300D003501B0 /* RightMeowMeow.app */;
 			productType = "com.apple.product-type.application";
+		};
+		E99A84731BC46DE000E3480B /* RightMeowMeow Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E99A84801BC46DE000E3480B /* Build configuration list for PBXNativeTarget "RightMeowMeow Extension" */;
+			buildPhases = (
+				E99A84701BC46DE000E3480B /* Sources */,
+				E99A84711BC46DE000E3480B /* Frameworks */,
+				E99A84721BC46DE000E3480B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "RightMeowMeow Extension";
+			productName = "RightMeowMeow Extension";
+			productReference = E99A84741BC46DE000E3480B /* RightMeowMeow Extension.appex */;
+			productType = "com.apple.product-type.tv-app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -195,6 +262,9 @@
 				ORGANIZATIONNAME = "Johann Kerr";
 				TargetAttributes = {
 					8F5AED541BBB300D003501B0 = {
+						CreatedOnToolsVersion = 7.1;
+					};
+					E99A84731BC46DE000E3480B = {
 						CreatedOnToolsVersion = 7.1;
 					};
 				};
@@ -213,6 +283,7 @@
 			projectRoot = "";
 			targets = (
 				8F5AED541BBB300D003501B0 /* RightMeowMeow */,
+				E99A84731BC46DE000E3480B /* RightMeowMeow Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -225,6 +296,13 @@
 				8FF04E5B1BBC5EB8004E5AB5 /* cat.jpg in Resources */,
 				8F550CD41BBEE78300614940 /* Main.storyboard in Resources */,
 				8F5AED601BBB300D003501B0 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E99A84721BC46DE000E3480B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,7 +336,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E99A84701BC46DE000E3480B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E99A84791BC46DE000E3480B /* ServiceProvider.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E99A847C1BC46DE000E3480B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E99A84731BC46DE000E3480B /* RightMeowMeow Extension */;
+			targetProxy = E99A847B1BC46DE000E3480B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		8F5AED5C1BBB300D003501B0 /* Main.storyboard */ = {
@@ -358,6 +452,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = RightMeowMeow/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.johannkerr.RightMeowMeow;
@@ -370,10 +465,33 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = RightMeowMeow/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.johannkerr.RightMeowMeow;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		E99A847E1BC46DE000E3480B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "RightMeowMeow Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.johannkerr.RightMeowMeow.RightMeowMeow-Extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		E99A847F1BC46DE000E3480B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "RightMeowMeow Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.johannkerr.RightMeowMeow.RightMeowMeow-Extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
@@ -397,6 +515,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		E99A84801BC46DE000E3480B /* Build configuration list for PBXNativeTarget "RightMeowMeow Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E99A847E1BC46DE000E3480B /* Debug */,
+				E99A847F1BC46DE000E3480B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

@@ -29,7 +29,7 @@ typealias EntryServiceFetchSuccessHandler = () -> Void
 class EntryService {
     private static var Providers: [Provider] = [
         RedditProvider(),
-        // TwitterFavoriateProvider()
+        //TwitterFavoriateProvider()
     ];
     
     private static var Entries: [Entry] = [];
@@ -67,7 +67,7 @@ class EntryService {
     }
     
     private static func CheckFinish(counter:Int, callback:EntryServiceFetchSuccessHandler?){
-        if counter == Providers.count{
+        if counter == Providers.count {
             callback!()
         }
     }
