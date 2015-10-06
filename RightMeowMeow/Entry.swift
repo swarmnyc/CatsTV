@@ -2,7 +2,7 @@
 //  Entry.swift
 //  RightMeowMeow
 //
-//  Created by SWARMMAC01 on 10/6/15.
+//  Created by Wade on 10/6/15.
 //  Copyright © 2015 Johann Kerr. All rights reserved.
 //
 
@@ -27,11 +27,11 @@ class Entry {
 typealias EntryServiceFetchSuccessHandler = () -> Void
 
 class EntryService {
-    private static var Providers: [Provider] = [TwitterFavoriateProvider()];
+    private static var Providers: [Provider] = [RedditFavoriateProvider(), TwitterFavoriateProvider()];
     private static var Entries: [Entry] = [];
     
     static func FetchAsnyc(callback:EntryServiceFetchSuccessHandler?){
-        var temp = callback;
+        var counter = 0;
         for provider in Providers {
             provider.FetchAsnyc {
                 data in
@@ -39,11 +39,12 @@ class EntryService {
                     EntryService.Entries.append(entry)
                 }
                 
-                if temp != nil {
-                    temp!()
-                    temp=nil
+                counter++;
+                
+                if counter == Providers.count{
+                    callback!()
                 }
-            }
+            }            
         }
     }
     
@@ -52,6 +53,7 @@ class EntryService {
     }
     
     static func GetEntries() -> [Entry]{
+        // todo: mix
         return Entries;
     }
 }
