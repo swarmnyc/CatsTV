@@ -50,7 +50,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         self.view.addSubview(collectionView)
         //makeApiCall()
         
-        EntryService.StartFetch{
+        EntryService.FetchAsnyc{
             self.cats = EntryService.GetEntries()
             self.collectionView.reloadData()
         }

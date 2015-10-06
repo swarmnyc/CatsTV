@@ -30,10 +30,10 @@ class EntryService {
     private static var Providers: [Provider] = [TwitterFavoriateProvider()];
     private static var Entries: [Entry] = [];
     
-    static func StartFetch(callback:EntryServiceFetchSuccessHandler?){
+    static func FetchAsnyc(callback:EntryServiceFetchSuccessHandler?){
         var temp = callback;
         for provider in Providers {
-            provider.Fetch {
+            provider.FetchAsnyc {
                 data in
                 for entry: Entry in data {
                     EntryService.Entries.append(entry)
