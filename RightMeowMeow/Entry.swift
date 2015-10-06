@@ -30,23 +30,28 @@ class EntryService {
     private static var Providers: [Provider] = [RedditFavoriateProvider(), TwitterFavoriateProvider()];
     private static var Entries: [Entry] = [];
     
-    static func FetchAsnyc(callback:EntryServiceFetchSuccessHandler?){
+    static func FetchAsnyc(force: Bool, callback:EntryServiceFetchSuccessHandler?){
         var counter = 0;
         for provider in Providers {
-            provider.FetchAsnyc {
-                data in
-                for entry: Entry in data {
-                    EntryService.Entries.append(entry)
+            if !provider.IsLoaded || force {
+                provider.FetchAsnyc { data in
+                    for entry: Entry in data {
+                        EntryService.Entries.append(entry)
+                    }
+                    
+                   CheckFinish(++counter, callback: callback)
                 }
-                
-                counter++;
-                
-                if counter == Providers.count{
-                    callback!()
-                }
-            }            
+            }else{
+                CheckFinish(++counter, callback: callback)
+            }
         }
     }
+
+    
+    static func FetchAsnyc(callback:EntryServiceFetchSuccessHandler?){
+        FetchAsnyc(false, callback: callback)
+    }
+    
     
     static func StartFetchMore(){
         //todo
@@ -55,5 +60,11 @@ class EntryService {
     static func GetEntries() -> [Entry]{
         // todo: mix
         return Entries;
+    }
+    
+    private static func CheckFinish(counter:Int, callback:EntryServiceFetchSuccessHandler?){
+        if counter == Providers.count{
+            callback!()
+        }
     }
 }
