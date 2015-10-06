@@ -68,7 +68,7 @@ class TwitterFavoriateProvider: Provider {
     }
 }
 
-class RedditFavoriateProvider: Provider {
+class RedditProvider: Provider {
     var Name = "Reddit"
     var IsLoaded = false
     

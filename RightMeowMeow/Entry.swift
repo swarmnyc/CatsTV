@@ -27,7 +27,11 @@ class Entry {
 typealias EntryServiceFetchSuccessHandler = () -> Void
 
 class EntryService {
-    private static var Providers: [Provider] = [RedditFavoriateProvider(), TwitterFavoriateProvider()];
+    private static var Providers: [Provider] = [
+        RedditProvider(),
+        // TwitterFavoriateProvider()
+    ];
+    
     private static var Entries: [Entry] = [];
     
     static func FetchAsnyc(force: Bool, callback:EntryServiceFetchSuccessHandler?){
@@ -58,7 +62,7 @@ class EntryService {
     }
     
     static func GetEntries() -> [Entry]{
-        // todo: mix
+        // todo: mix and sort
         return Entries;
     }
     
