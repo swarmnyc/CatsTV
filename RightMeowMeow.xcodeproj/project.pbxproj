@@ -12,10 +12,24 @@
 		8F5AED5B1BBB300D003501B0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5AED5A1BBB300D003501B0 /* ViewController.swift */; };
 		8F5AED601BBB300D003501B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F5AED5F1BBB300D003501B0 /* Assets.xcassets */; };
 		8F5AED681BBB307B003501B0 /* CatCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5AED671BBB307B003501B0 /* CatCollectionViewController.swift */; };
-		8F5AED6A1BBB30E5003501B0 /* Cat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5AED691BBB30E5003501B0 /* Cat.swift */; };
-		8F5AED6C1BBB3152003501B0 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5AED6B1BBB3152003501B0 /* SwiftyJSON.swift */; };
 		8F5AED721BBB3D5E003501B0 /* CatViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5AED711BBB3D5E003501B0 /* CatViewCell.swift */; };
 		8FF04E5B1BBC5EB8004E5AB5 /* cat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8FF04E5A1BBC5EB8004E5AB5 /* cat.jpg */; };
+		E9C4AF8F1BC41BDB0093F158 /* Dictionary+OAuthSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4AF811BC41BDB0093F158 /* Dictionary+OAuthSwift.swift */; };
+		E9C4AF901BC41BDB0093F158 /* HMAC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4AF821BC41BDB0093F158 /* HMAC.swift */; };
+		E9C4AF911BC41BDB0093F158 /* Int+OAuthSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4AF831BC41BDB0093F158 /* Int+OAuthSwift.swift */; };
+		E9C4AF921BC41BDB0093F158 /* NSData+OAuthSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4AF841BC41BDB0093F158 /* NSData+OAuthSwift.swift */; };
+		E9C4AF931BC41BDB0093F158 /* NSURL+OAuthSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4AF851BC41BDB0093F158 /* NSURL+OAuthSwift.swift */; };
+		E9C4AF941BC41BDB0093F158 /* OAuth1Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4AF861BC41BDB0093F158 /* OAuth1Swift.swift */; };
+		E9C4AF951BC41BDB0093F158 /* OAuthSwiftClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4AF871BC41BDB0093F158 /* OAuthSwiftClient.swift */; };
+		E9C4AF961BC41BDB0093F158 /* OAuthSwiftCredential.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4AF881BC41BDB0093F158 /* OAuthSwiftCredential.swift */; };
+		E9C4AF971BC41BDB0093F158 /* OAuthSwiftHTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4AF891BC41BDB0093F158 /* OAuthSwiftHTTPRequest.swift */; };
+		E9C4AF981BC41BDB0093F158 /* OAuthSwiftURLHandlerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4AF8A1BC41BDB0093F158 /* OAuthSwiftURLHandlerType.swift */; };
+		E9C4AF9A1BC41BDB0093F158 /* SHA1.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4AF8C1BC41BDB0093F158 /* SHA1.swift */; };
+		E9C4AF9B1BC41BDB0093F158 /* String+OAuthSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4AF8D1BC41BDB0093F158 /* String+OAuthSwift.swift */; };
+		E9C4AF9C1BC41BDB0093F158 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4AF8E1BC41BDB0093F158 /* Utils.swift */; };
+		E9C4AF9F1BC41D110093F158 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4AF9E1BC41D110093F158 /* Provider.swift */; };
+		E9C4AFA11BC41EA70093F158 /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4AFA01BC41EA70093F158 /* Entry.swift */; };
+		E9C4AFA31BC42AA20093F158 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4AFA21BC42AA20093F158 /* SwiftyJSON.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -39,10 +53,24 @@
 		8F5AED5F1BBB300D003501B0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8F5AED611BBB300D003501B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8F5AED671BBB307B003501B0 /* CatCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatCollectionViewController.swift; sourceTree = "<group>"; };
-		8F5AED691BBB30E5003501B0 /* Cat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cat.swift; sourceTree = "<group>"; };
-		8F5AED6B1BBB3152003501B0 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		8F5AED711BBB3D5E003501B0 /* CatViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatViewCell.swift; sourceTree = "<group>"; };
 		8FF04E5A1BBC5EB8004E5AB5 /* cat.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cat.jpg; sourceTree = "<group>"; };
+		E9C4AF811BC41BDB0093F158 /* Dictionary+OAuthSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Dictionary+OAuthSwift.swift"; path = "Libs/OAuth/Dictionary+OAuthSwift.swift"; sourceTree = "<group>"; };
+		E9C4AF821BC41BDB0093F158 /* HMAC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HMAC.swift; path = Libs/OAuth/HMAC.swift; sourceTree = "<group>"; };
+		E9C4AF831BC41BDB0093F158 /* Int+OAuthSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Int+OAuthSwift.swift"; path = "Libs/OAuth/Int+OAuthSwift.swift"; sourceTree = "<group>"; };
+		E9C4AF841BC41BDB0093F158 /* NSData+OAuthSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSData+OAuthSwift.swift"; path = "Libs/OAuth/NSData+OAuthSwift.swift"; sourceTree = "<group>"; };
+		E9C4AF851BC41BDB0093F158 /* NSURL+OAuthSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSURL+OAuthSwift.swift"; path = "Libs/OAuth/NSURL+OAuthSwift.swift"; sourceTree = "<group>"; };
+		E9C4AF861BC41BDB0093F158 /* OAuth1Swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OAuth1Swift.swift; path = Libs/OAuth/OAuth1Swift.swift; sourceTree = "<group>"; };
+		E9C4AF871BC41BDB0093F158 /* OAuthSwiftClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OAuthSwiftClient.swift; path = Libs/OAuth/OAuthSwiftClient.swift; sourceTree = "<group>"; };
+		E9C4AF881BC41BDB0093F158 /* OAuthSwiftCredential.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OAuthSwiftCredential.swift; path = Libs/OAuth/OAuthSwiftCredential.swift; sourceTree = "<group>"; };
+		E9C4AF891BC41BDB0093F158 /* OAuthSwiftHTTPRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OAuthSwiftHTTPRequest.swift; path = Libs/OAuth/OAuthSwiftHTTPRequest.swift; sourceTree = "<group>"; };
+		E9C4AF8A1BC41BDB0093F158 /* OAuthSwiftURLHandlerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OAuthSwiftURLHandlerType.swift; path = Libs/OAuth/OAuthSwiftURLHandlerType.swift; sourceTree = "<group>"; };
+		E9C4AF8C1BC41BDB0093F158 /* SHA1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHA1.swift; path = Libs/OAuth/SHA1.swift; sourceTree = "<group>"; };
+		E9C4AF8D1BC41BDB0093F158 /* String+OAuthSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+OAuthSwift.swift"; path = "Libs/OAuth/String+OAuthSwift.swift"; sourceTree = "<group>"; };
+		E9C4AF8E1BC41BDB0093F158 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = Libs/OAuth/Utils.swift; sourceTree = "<group>"; };
+		E9C4AF9E1BC41D110093F158 /* Provider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Provider.swift; path = Core/Provider.swift; sourceTree = "<group>"; };
+		E9C4AFA01BC41EA70093F158 /* Entry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
+		E9C4AFA21BC42AA20093F158 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = Libs/SwiftyJSON.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,18 +112,56 @@
 		8F5AED571BBB300D003501B0 /* RightMeowMeow */ = {
 			isa = PBXGroup;
 			children = (
+				E9C4AF9D1BC41CA90093F158 /* Core */,
+				E9C4AF7F1BC41A9E0093F158 /* Libs */,
 				8F5AED581BBB300D003501B0 /* AppDelegate.swift */,
 				8F5AED671BBB307B003501B0 /* CatCollectionViewController.swift */,
 				8F5AED711BBB3D5E003501B0 /* CatViewCell.swift */,
 				8F5AED5A1BBB300D003501B0 /* ViewController.swift */,
 				8F5AED5C1BBB300D003501B0 /* Main.storyboard */,
-				8F5AED6B1BBB3152003501B0 /* SwiftyJSON.swift */,
 				8F5AED5F1BBB300D003501B0 /* Assets.xcassets */,
 				8FF04E5A1BBC5EB8004E5AB5 /* cat.jpg */,
 				8F5AED611BBB300D003501B0 /* Info.plist */,
-				8F5AED691BBB30E5003501B0 /* Cat.swift */,
 			);
 			path = RightMeowMeow;
+			sourceTree = "<group>";
+		};
+		E9C4AF7F1BC41A9E0093F158 /* Libs */ = {
+			isa = PBXGroup;
+			children = (
+				E9C4AFA21BC42AA20093F158 /* SwiftyJSON.swift */,
+				E9C4AF801BC41BAD0093F158 /* OAuth */,
+			);
+			name = Libs;
+			sourceTree = "<group>";
+		};
+		E9C4AF801BC41BAD0093F158 /* OAuth */ = {
+			isa = PBXGroup;
+			children = (
+				E9C4AF811BC41BDB0093F158 /* Dictionary+OAuthSwift.swift */,
+				E9C4AF821BC41BDB0093F158 /* HMAC.swift */,
+				E9C4AF831BC41BDB0093F158 /* Int+OAuthSwift.swift */,
+				E9C4AF841BC41BDB0093F158 /* NSData+OAuthSwift.swift */,
+				E9C4AF851BC41BDB0093F158 /* NSURL+OAuthSwift.swift */,
+				E9C4AF861BC41BDB0093F158 /* OAuth1Swift.swift */,
+				E9C4AF871BC41BDB0093F158 /* OAuthSwiftClient.swift */,
+				E9C4AF881BC41BDB0093F158 /* OAuthSwiftCredential.swift */,
+				E9C4AF891BC41BDB0093F158 /* OAuthSwiftHTTPRequest.swift */,
+				E9C4AF8A1BC41BDB0093F158 /* OAuthSwiftURLHandlerType.swift */,
+				E9C4AF8C1BC41BDB0093F158 /* SHA1.swift */,
+				E9C4AF8D1BC41BDB0093F158 /* String+OAuthSwift.swift */,
+				E9C4AF8E1BC41BDB0093F158 /* Utils.swift */,
+			);
+			name = OAuth;
+			sourceTree = "<group>";
+		};
+		E9C4AF9D1BC41CA90093F158 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				E9C4AF9E1BC41D110093F158 /* Provider.swift */,
+				E9C4AFA01BC41EA70093F158 /* Entry.swift */,
+			);
+			name = Core;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -169,11 +235,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8F5AED6A1BBB30E5003501B0 /* Cat.swift in Sources */,
+				E9C4AFA11BC41EA70093F158 /* Entry.swift in Sources */,
+				E9C4AF921BC41BDB0093F158 /* NSData+OAuthSwift.swift in Sources */,
+				E9C4AF911BC41BDB0093F158 /* Int+OAuthSwift.swift in Sources */,
+				E9C4AFA31BC42AA20093F158 /* SwiftyJSON.swift in Sources */,
 				8F5AED721BBB3D5E003501B0 /* CatViewCell.swift in Sources */,
+				E9C4AF961BC41BDB0093F158 /* OAuthSwiftCredential.swift in Sources */,
 				8F5AED681BBB307B003501B0 /* CatCollectionViewController.swift in Sources */,
+				E9C4AF971BC41BDB0093F158 /* OAuthSwiftHTTPRequest.swift in Sources */,
+				E9C4AF951BC41BDB0093F158 /* OAuthSwiftClient.swift in Sources */,
+				E9C4AF9F1BC41D110093F158 /* Provider.swift in Sources */,
 				8F5AED5B1BBB300D003501B0 /* ViewController.swift in Sources */,
-				8F5AED6C1BBB3152003501B0 /* SwiftyJSON.swift in Sources */,
+				E9C4AF981BC41BDB0093F158 /* OAuthSwiftURLHandlerType.swift in Sources */,
+				E9C4AF941BC41BDB0093F158 /* OAuth1Swift.swift in Sources */,
+				E9C4AF8F1BC41BDB0093F158 /* Dictionary+OAuthSwift.swift in Sources */,
+				E9C4AF9B1BC41BDB0093F158 /* String+OAuthSwift.swift in Sources */,
+				E9C4AF9C1BC41BDB0093F158 /* Utils.swift in Sources */,
+				E9C4AF9A1BC41BDB0093F158 /* SHA1.swift in Sources */,
+				E9C4AF931BC41BDB0093F158 /* NSURL+OAuthSwift.swift in Sources */,
+				E9C4AF901BC41BDB0093F158 /* HMAC.swift in Sources */,
 				8F5AED591BBB300D003501B0 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -11,7 +11,7 @@ import UIKit
 class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     var collectionView: UICollectionView!
-    var cats = [Cat]()
+    var cats = [Entry]()
     let catApiURL = "https://www.reddit.com/r/cats/hot.json?limit=100"
     
     
@@ -48,10 +48,12 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         collectionView.backgroundView?.addSubview(blurEffectView)
         */
         self.view.addSubview(collectionView)
-        makeApiCall()
+        //makeApiCall()
         
-        
-        
+        EntryService.StartFetch{
+            self.cats = EntryService.GetEntries()
+            self.collectionView.reloadData()
+        }
         
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -119,19 +121,19 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
             
             
             
-            let cat = Cat()
-            
-            //cat.imgUrl =
-            print(json["data"]["children"][i]["data"]["preview"]["images"][i]["source"]["url"].stringValue)
-            let urlattempt = (json["data"]["children"][i]["data"]["preview"]["images"][0]["source"]["url"]).stringValue
-            if urlattempt != "null"{
-                cat.imgUrl = urlattempt
-            }
-            //cat.imgUrl=json["data"]["children"][i]["data"]["preview"]["images"][0]["source"]["url"].stringValue
-            
-            
-            
-            self.cats.append(cat)
+//            let cat = Entry()
+//            
+//            //cat.imgUrl =
+//            print(json["data"]["children"][i]["data"]["preview"]["images"][i]["source"]["url"].stringValue)
+//            let urlattempt = (json["data"]["children"][i]["data"]["preview"]["images"][0]["source"]["url"]).stringValue
+//            if urlattempt != "null"{
+//                cat.imgUrl = urlattempt
+//            }
+//            //cat.imgUrl=json["data"]["children"][i]["data"]["preview"]["images"][0]["source"]["url"].stringValue
+//            
+//            
+//            
+//            self.cats.append(cat)
             
             
             
@@ -160,7 +162,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! CatViewCell
         cell.imageCat.image = UIImage(named:"cat")
-        if let URL = NSURL(string:cats[indexPath.row].imgUrl){
+        if let URL = NSURL(string:cats[indexPath.row].ImgUrl){
             if let data = NSData(contentsOfURL: URL){
                 cell.imageCat.image = UIImage(data:data)
                 

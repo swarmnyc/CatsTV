@@ -17,7 +17,7 @@ class CatCollectionViewController: UICollectionViewController {
     
     @IBOutlet var collection: UICollectionView!
     
-    var cats = [Cat]()
+    var cats = [Entry]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,14 +68,14 @@ class CatCollectionViewController: UICollectionViewController {
             
             
             
-            let cat = Cat()
-            
-            //cat.imgUrl =
-            //print(json["data"]["children"][i]["data"]["preview"]["images"][i]["source"]["url"].stringValue)
-            print(json["data"]["children"][i]["data"]["preview"]["images"][0]["source"]["url"])
-            cat.imgUrl=json["data"]["children"][i]["data"]["preview"]["images"][0]["source"]["url"].stringValue
-            
-            self.cats.append(cat)
+//                    let cat = Entry()
+//            
+//            //cat.imgUrl =
+//            //print(json["data"]["children"][i]["data"]["preview"]["images"][i]["source"]["url"].stringValue)
+//            print(json["data"]["children"][i]["data"]["preview"]["images"][0]["source"]["url"])
+//            cat.ImgUrl=json["data"]["children"][i]["data"]["preview"]["images"][0]["source"]["url"].stringValue
+//            
+//            self.cats.append(cat)
             
             
             
