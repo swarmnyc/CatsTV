@@ -12,10 +12,10 @@ class Entry {
     var Id: String
     var ImgUrl: String
     var Text: String
-    var UpdatedAt: Int
+    var UpdatedAt: Double
     var Source: String
     
-    init(id:String, imgUrl : String , text:String, updatedAt:Int, source:String){
+    init(id:String, imgUrl : String , text:String, updatedAt:Double, source:String){
         Id=id
         ImgUrl=imgUrl
         Text=text
@@ -29,7 +29,7 @@ typealias EntryServiceFetchSuccessHandler = () -> Void
 class EntryService {
     private static var Providers: [Provider] = [
         RedditProvider(),
-        //TwitterFavoriateProvider()
+        TwitterFavoriateProvider()
     ];
     
     private static var Entries: [Entry] = [];
