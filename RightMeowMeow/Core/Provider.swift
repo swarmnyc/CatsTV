@@ -24,7 +24,7 @@ class TwitterFavoriateProvider: Provider {
     
     init(){
         dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "E MMM dd HH:mm:ss Z yyyy" // Tue Oct 06 22:11:48 +0000 2015
+        dateFormatter.dateFormat = "E MMM dd HH:mm:ss Z yyyy" //Tue Oct 06 22:11:48 +0000 2015
     }
     func FetchAsnyc(success: ProviderFetchSuccessHandler?) {
         FetchTask(provider:self, success: success).Run()
@@ -34,11 +34,9 @@ class TwitterFavoriateProvider: Provider {
         private var successFetch: ProviderFetchSuccessHandler?;
         private var provider: TwitterFavoriateProvider;
         
-        
         init(provider: TwitterFavoriateProvider, success: ProviderFetchSuccessHandler?){
             self.provider = provider;
             self.successFetch = success;
-            
             
         }
         
@@ -70,6 +68,7 @@ class TwitterFavoriateProvider: Provider {
                         imgUrl: media["media_url"] as! String,
                         text: tweet["text"] as! String,
                         updatedAt: provider.dateFormatter.dateFromString(tweet["created_at"] as! String)!.timeIntervalSince1970,
+                        score: 0,
                         source: provider.Name))
                 }
             }
@@ -105,14 +104,15 @@ class RedditProvider: Provider {
                 
                 var items = json["data"]["children"];
                 for var i = 0; i < items.count; ++i {
-                    var item = items[i]
+                    var item = items[i]["data"]
                     
                     // todo add fill whole data
                     entries.append(Entry(
-                        id: "",
-                        imgUrl: item["data"]["preview"]["images"][0]["source"]["url"].stringValue,
-                        text: "",
-                        updatedAt: 0,
+                        id: item["id"].stringValue,
+                        imgUrl: item["preview"]["images"][0]["source"]["url"].stringValue,
+                        text: item["title"].stringValue,
+                        updatedAt: item["created_utc"].doubleValue,
+                        score: i,
                         source: self.Name))
                 }
                 

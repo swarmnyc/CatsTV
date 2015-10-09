@@ -13,13 +13,15 @@ class Entry {
     var ImgUrl: String
     var Text: String
     var UpdatedAt: Double
+    var Score: Int
     var Source: String
     
-    init(id:String, imgUrl : String , text:String, updatedAt:Double, source:String){
+    init(id:String, imgUrl : String , text:String, updatedAt:Double, score: Int, source:String){
         Id=id
         ImgUrl=imgUrl
         Text=text
         UpdatedAt=updatedAt
+        Score = score
         Source = source
     }
 }
@@ -62,8 +64,16 @@ class EntryService {
     }
     
     static func GetEntries() -> [Entry]{
-        // todo: mix and sort
-        return Entries;
+        //Sort
+        let result = Entries.sort({ (x, y) -> Bool in
+            if(x.Source == "Reddit" && y.Source == "Reddit"){
+                return x.Score < y.Score;
+            } else {
+                return x.UpdatedAt > y.UpdatedAt
+            }
+        })
+
+        return result;
     }
     
     private static func CheckFinish(counter:Int, callback:EntryServiceFetchSuccessHandler?){
