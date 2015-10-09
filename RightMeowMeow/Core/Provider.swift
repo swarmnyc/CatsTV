@@ -102,3 +102,54 @@ class RedditFavoriateProvider: Provider {
         task.resume()
     }
 }
+
+
+class RedditGifsFavoriteProvider: Provider{
+    var Name = "RedditGifs"
+    var IsLoaded = false
+    
+    
+    
+
+    
+    func FetchAsnyc(callback: ProviderFetchSuccessHandler?) {
+        let catApiURL = "https://www.reddit.com/r/catgifs/hot.json?limit=100"
+        let request = NSURLRequest(URL: NSURL(string: catApiURL)!)
+        let urlSession = NSURLSession.sharedSession()
+        let task = urlSession.dataTaskWithRequest(request, completionHandler: {
+            (data, response, error) -> Void in
+            if error != nil {
+                print(error!.localizedDescription)
+                callback!(data: [Entry]())
+            } else {
+                self.IsLoaded = true;
+                
+                var json = JSON(data: data!)
+                
+                var entries = [Entry]();
+                
+                var items = json["data"]["children"];
+                for var i = 0; i < items.count; ++i {
+                    var item = items[i]
+                    var terminatingChar = ".gif"
+                    var stringCheck = item["data"]["url"].stringValue
+                    
+                    
+                  
+                        let checkUrl = NSURL(string: stringCheck)!
+                        if checkUrl.pathExtension!.lowercaseString == "gif"{
+                            
+                            entries.append(Entry(id: "", imgUrl: item["data"]["url"].stringValue, text: "", updatedAt: 0, source: self.Name))
+                        }
+                   
+                    
+                    // todo add fill whole data
+                    
+                }
+                
+                callback!(data: entries)
+            }
+        })
+        task.resume()
+    }
+}

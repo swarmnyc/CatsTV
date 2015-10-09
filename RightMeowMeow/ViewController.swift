@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource  {
     
     var collectionView: UICollectionView!
     var cats = [Entry]()
@@ -16,6 +16,11 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     
     
     var afterKey = ""
+   
+    
+    
+    
+    
     
 
     override func viewDidLoad() {
@@ -49,6 +54,17 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         */
         self.view.addSubview(collectionView)
         //makeApiCall()
+        
+        
+       
+        
+       
+        
+        
+        
+        
+        
+        
         
         EntryService.FetchAsnyc{
             self.cats = EntryService.GetEntries()
@@ -161,10 +177,15 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! CatViewCell
-        cell.imageCat.image = UIImage(named:"cat")
+        //cell.imageCat.image = UIImage(named:"cat")
         if let URL = NSURL(string:cats[indexPath.row].ImgUrl){
             if let data = NSData(contentsOfURL: URL){
-                cell.imageCat.image = UIImage(data:data)
+                //cell.imageCat.image = UIImage(data:data)
+                print("hitting call")
+                //let catImage = UIImage.animatedImageWithData(data)
+                cell.imageCat.image = UIImage.animatedImageWithData(data)
+
+                
                 
             }
             
@@ -176,11 +197,9 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         cell.backgroundColor = UIColor.orangeColor()
         return cell
     }
-    func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.item == (cats.count-1) {
-            //loadMoreCats()
-        }
-    }
+        
+
+
 
 }
 

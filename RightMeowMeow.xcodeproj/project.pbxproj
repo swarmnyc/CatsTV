@@ -8,11 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		8F550CD41BBEE78300614940 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F5AED5C1BBB300D003501B0 /* Main.storyboard */; };
+		8F572F0C1BC8108600B3D5C0 /* UIImage+Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F572F0B1BC8108600B3D5C0 /* UIImage+Gif.swift */; };
 		8F5AED591BBB300D003501B0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5AED581BBB300D003501B0 /* AppDelegate.swift */; };
 		8F5AED5B1BBB300D003501B0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5AED5A1BBB300D003501B0 /* ViewController.swift */; };
 		8F5AED601BBB300D003501B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F5AED5F1BBB300D003501B0 /* Assets.xcassets */; };
 		8F5AED681BBB307B003501B0 /* CatCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5AED671BBB307B003501B0 /* CatCollectionViewController.swift */; };
 		8F5AED721BBB3D5E003501B0 /* CatViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5AED711BBB3D5E003501B0 /* CatViewCell.swift */; };
+		8FD0B54D1BC4593E00F9F8A1 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FD0B54C1BC4593E00F9F8A1 /* iCarousel.m */; };
+		8FD0B54F1BC4605300F9F8A1 /* CarouselViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD0B54E1BC4605300F9F8A1 /* CarouselViewController.swift */; };
 		8FF04E5B1BBC5EB8004E5AB5 /* cat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8FF04E5A1BBC5EB8004E5AB5 /* cat.jpg */; };
 		E9C4AF8F1BC41BDB0093F158 /* Dictionary+OAuthSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4AF811BC41BDB0093F158 /* Dictionary+OAuthSwift.swift */; };
 		E9C4AF901BC41BDB0093F158 /* HMAC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4AF821BC41BDB0093F158 /* HMAC.swift */; };
@@ -46,6 +49,7 @@
 
 /* Begin PBXFileReference section */
 		4975F1FBE54ABF60E63B26EA /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F572F0B1BC8108600B3D5C0 /* UIImage+Gif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Gif.swift"; sourceTree = "<group>"; };
 		8F5AED551BBB300D003501B0 /* RightMeowMeow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RightMeowMeow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F5AED581BBB300D003501B0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8F5AED5A1BBB300D003501B0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -54,6 +58,10 @@
 		8F5AED611BBB300D003501B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8F5AED671BBB307B003501B0 /* CatCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatCollectionViewController.swift; sourceTree = "<group>"; };
 		8F5AED711BBB3D5E003501B0 /* CatViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatViewCell.swift; sourceTree = "<group>"; };
+		8FD0B54A1BC4593B00F9F8A1 /* RightMeowMeow-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RightMeowMeow-Bridging-Header.h"; sourceTree = "<group>"; };
+		8FD0B54B1BC4593E00F9F8A1 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
+		8FD0B54C1BC4593E00F9F8A1 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
+		8FD0B54E1BC4605300F9F8A1 /* CarouselViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarouselViewController.swift; sourceTree = "<group>"; };
 		8FF04E5A1BBC5EB8004E5AB5 /* cat.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cat.jpg; sourceTree = "<group>"; };
 		E9C4AF811BC41BDB0093F158 /* Dictionary+OAuthSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Dictionary+OAuthSwift.swift"; path = "Libs/OAuth/Dictionary+OAuthSwift.swift"; sourceTree = "<group>"; };
 		E9C4AF821BC41BDB0093F158 /* HMAC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HMAC.swift; path = Libs/OAuth/HMAC.swift; sourceTree = "<group>"; };
@@ -112,16 +120,21 @@
 		8F5AED571BBB300D003501B0 /* RightMeowMeow */ = {
 			isa = PBXGroup;
 			children = (
+				8FD0B54B1BC4593E00F9F8A1 /* iCarousel.h */,
+				8FD0B54C1BC4593E00F9F8A1 /* iCarousel.m */,
 				E9C4AF9D1BC41CA90093F158 /* Core */,
 				E9C4AF7F1BC41A9E0093F158 /* Libs */,
 				8F5AED581BBB300D003501B0 /* AppDelegate.swift */,
+				8FD0B54E1BC4605300F9F8A1 /* CarouselViewController.swift */,
+				8F5AED5A1BBB300D003501B0 /* ViewController.swift */,
 				8F5AED671BBB307B003501B0 /* CatCollectionViewController.swift */,
 				8F5AED711BBB3D5E003501B0 /* CatViewCell.swift */,
-				8F5AED5A1BBB300D003501B0 /* ViewController.swift */,
 				8F5AED5C1BBB300D003501B0 /* Main.storyboard */,
 				8F5AED5F1BBB300D003501B0 /* Assets.xcassets */,
 				8FF04E5A1BBC5EB8004E5AB5 /* cat.jpg */,
 				8F5AED611BBB300D003501B0 /* Info.plist */,
+				8FD0B54A1BC4593B00F9F8A1 /* RightMeowMeow-Bridging-Header.h */,
+				8F572F0B1BC8108600B3D5C0 /* UIImage+Gif.swift */,
 			);
 			path = RightMeowMeow;
 			sourceTree = "<group>";
@@ -235,9 +248,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8FD0B54F1BC4605300F9F8A1 /* CarouselViewController.swift in Sources */,
 				E9C4AFA11BC41EA70093F158 /* Entry.swift in Sources */,
 				E9C4AF921BC41BDB0093F158 /* NSData+OAuthSwift.swift in Sources */,
 				E9C4AF911BC41BDB0093F158 /* Int+OAuthSwift.swift in Sources */,
+				8F572F0C1BC8108600B3D5C0 /* UIImage+Gif.swift in Sources */,
 				E9C4AFA31BC42AA20093F158 /* SwiftyJSON.swift in Sources */,
 				8F5AED721BBB3D5E003501B0 /* CatViewCell.swift in Sources */,
 				E9C4AF961BC41BDB0093F158 /* OAuthSwiftCredential.swift in Sources */,
@@ -247,6 +262,7 @@
 				E9C4AF9F1BC41D110093F158 /* Provider.swift in Sources */,
 				8F5AED5B1BBB300D003501B0 /* ViewController.swift in Sources */,
 				E9C4AF981BC41BDB0093F158 /* OAuthSwiftURLHandlerType.swift in Sources */,
+				8FD0B54D1BC4593E00F9F8A1 /* iCarousel.m in Sources */,
 				E9C4AF941BC41BDB0093F158 /* OAuth1Swift.swift in Sources */,
 				E9C4AF8F1BC41BDB0093F158 /* Dictionary+OAuthSwift.swift in Sources */,
 				E9C4AF9B1BC41BDB0093F158 /* String+OAuthSwift.swift in Sources */,
@@ -358,10 +374,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = RightMeowMeow/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.johannkerr.RightMeowMeow;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RightMeowMeow/RightMeowMeow-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -370,10 +389,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = RightMeowMeow/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.johannkerr.RightMeowMeow;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RightMeowMeow/RightMeowMeow-Bridging-Header.h";
 			};
 			name = Release;
 		};
