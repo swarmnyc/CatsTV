@@ -66,8 +66,11 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         
         
         
-        EntryService.FetchAsnyc{
-            self.cats = EntryService.GetEntries()
+        EntryService.FetchAsnyc{ entries in
+            for entry in entries{
+                self.cats.append(entry)
+            }
+            
             self.collectionView.reloadData()
         }
         

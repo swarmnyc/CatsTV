@@ -20,10 +20,23 @@ class CarouselViewController: UIViewController, iCarouselDataSource, iCarouselDe
         
         //self.view.backgroundColor = UIColor.whiteColor()
         
-        EntryService.FetchAsnyc{
-            self.cats = EntryService.GetEntries()
+        EntryService.FetchAsnyc{ entries in
+            for entry in entries{
+                self.cats.append(entry)
+            }
+            
             self.carousel.reloadData()
-        }
+            
+            //testing
+            EntryService.FetchMoreAsnyc{entries in
+                 for entry in entries{
+                     self.cats.append(entry)
+                 }
+            
+                 self.carousel.reloadData()
+            }
+        }       
+
         
         //let catRect:CGRect = CGRectMake(100, 100, self.view.frame.width/2, self.view.frame.height/2)
         
