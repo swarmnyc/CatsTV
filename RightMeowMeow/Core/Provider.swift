@@ -18,25 +18,38 @@ protocol Provider {
 
 class TwitterFavoriateProvider: Provider {
     private let dateFormatter: NSDateFormatter
+    private var noMoreData = false
+    private var lastId: Int?;
+    
     let Name = "Twitter"
-
+    
     init() {
         dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "E MMM dd HH:mm:ss Z yyyy" //Tue Oct 06 22:11:48 +0000 2015
     }
 
     func FetchAsnyc(continueLoad:Bool,success: ProviderFetchSuccessHandler?) {
+        if (!continueLoad){
+            noMoreData = false
+        }
+        
+        if noMoreData {
+            success!(data:[Entry]())
+            return
+        }
+        
         FetchTask(provider: self, continueLoad:continueLoad, success: success).Run()
     }
 
     private class FetchTask {
         private var successFetch: ProviderFetchSuccessHandler?;
         private var provider: TwitterFavoriateProvider;
+        private var continueLoad : Bool;
 
         init(provider: TwitterFavoriateProvider, continueLoad:Bool, success: ProviderFetchSuccessHandler?) {
             self.provider = provider;
             self.successFetch = success;
-
+            self.continueLoad = continueLoad;
         }
 
         func Run() {
@@ -47,27 +60,36 @@ class TwitterFavoriateProvider: Provider {
 
             var parameters = Dictionary<String, AnyObject>();
             parameters["count"] = pageSzie;
+            
+            if continueLoad {
+                parameters["max_id"] = provider.lastId
+            }
+            
             client.get("https://api.twitter.com/1.1/favorites/list.json", parameters: parameters, success: successCallback, failure: errorCallback)
         }
 
         func successCallback(data: NSData, response: NSHTTPURLResponse) -> Void {
             let jsonDict = try? NSJSONSerialization.JSONObjectWithData(data, options: []) as! [AnyObject]
 
+            provider.noMoreData = jsonDict?.count == 0;
+            
             var entries = [Entry]();
             for tweet in jsonDict! {
                 let medias = tweet["entities"]!!["media"]!;
                 if medias != nil {
                     let media = medias![0];
 
-                    // todo add fill whole data
-                    entries.append(Entry(
-                            id: String(media["id"] as! Int),
-                            imgUrl: media["media_url"] as! String,
-                            text: tweet["text"] as! String,
-                            updatedAt: provider.dateFormatter.dateFromString(tweet["created_at"] as! String)!.timeIntervalSince1970,
-                            score: 0,
-                            source: provider.Name))
+                    let entry = Entry(
+                        id: String(tweet["id"] as! Int),
+                        imgUrl: media["media_url"] as! String,
+                        text: tweet["text"] as! String,
+                        updatedAt: provider.dateFormatter.dateFromString(tweet["created_at"] as! String)!.timeIntervalSince1970,
+                        score: 0,
+                        source: provider.Name)
+                    entries.append(entry)
                 }
+                
+                provider.lastId = (tweet["id"] as? Int)! - 1;
             }
 
             successFetch!(data: entries)
@@ -75,6 +97,7 @@ class TwitterFavoriateProvider: Provider {
 
         func errorCallback(error: NSError) -> Void {
             print(error)
+            successFetch!(data: [Entry]())
         }
     }
 
@@ -82,10 +105,20 @@ class TwitterFavoriateProvider: Provider {
 
 class RedditProvider: Provider {
     private var afterKey = ""
+    private var noMoreData = false
     let Name = "Reddit"
    
     func FetchAsnyc(continueLoad:Bool, success: ProviderFetchSuccessHandler?) {
-        let catApiURL = "https://www.reddit.com/r/cats/hot.json?limit=\(pageSzie)" + (continueLoad.boolValue ? "&afterKey=" + afterKey : "")
+        if (!continueLoad){
+            noMoreData = false
+        }
+        
+        if noMoreData {
+            success!(data:[Entry]())
+            return
+        }
+        
+        let catApiURL = "https://www.reddit.com/r/cats/hot.json?limit=\(pageSzie)" + (continueLoad.boolValue ? "&after=" + afterKey : "")
         let request = NSURLRequest(URL: NSURL(string: catApiURL)!)
         let urlSession = NSURLSession.sharedSession()
         let task = urlSession.dataTaskWithRequest(request, completionHandler: {
@@ -99,6 +132,8 @@ class RedditProvider: Provider {
                 var entries = [Entry]();
 
                 var items = json["data"]["children"];
+                self.noMoreData = items.count == 0;
+                
                 for var i = 0; i < items.count; ++i {
                     var item = items[i]["data"]
 
@@ -122,10 +157,20 @@ class RedditProvider: Provider {
 
 class RedditGifsFavoriteProvider: Provider {
     private var afterKey = ""
+    private var noMoreData = false
     let Name = "RedditGifs"
 
     func FetchAsnyc(continueLoad:Bool, success: ProviderFetchSuccessHandler?) {
-        let catApiURL = "https://www.reddit.com/r/cats/hot.json?limit=\(pageSzie)" + (continueLoad.boolValue ? "&afterKey=" + afterKey : "")
+        if (!continueLoad){
+            noMoreData = false
+        }
+        
+        if noMoreData {
+            success!(data:[Entry]())
+            return
+        }
+        
+        let catApiURL = "https://www.reddit.com/r/catgifs/hot.json?limit=\(pageSzie)" + (continueLoad.boolValue ? "&after=" + afterKey : "")
         let request = NSURLRequest(URL: NSURL(string: catApiURL)!)
         let urlSession = NSURLSession.sharedSession()
         let task = urlSession.dataTaskWithRequest(request, completionHandler: {
@@ -140,6 +185,8 @@ class RedditGifsFavoriteProvider: Provider {
                 var entries = [Entry]();
 
                 var items = json["data"]["children"];
+                self.noMoreData = items.count == 0;
+                
                 for var i = 0; i < items.count; ++i {
                     var item = items[i]
 

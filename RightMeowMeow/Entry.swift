@@ -43,7 +43,6 @@ class Entry {
 }
 
 typealias EntryServiceFetchSuccessHandler = (data:[Entry]) -> Void
-//RedditFavoriateProvider(), TwitterFavoriateProvider(),
 
 class EntryService {
 

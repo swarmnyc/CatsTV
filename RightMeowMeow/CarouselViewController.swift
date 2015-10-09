@@ -28,14 +28,22 @@ class CarouselViewController: UIViewController, iCarouselDataSource, iCarouselDe
             self.carousel.reloadData()
             
             //testing
-            EntryService.FetchMoreAsnyc{entries in
-                 for entry in entries{
-                     self.cats.append(entry)
-                 }
-            
-                 self.carousel.reloadData()
-            }
-        }       
+//            EntryService.FetchMoreAsnyc{entries in
+//                for entry in entries{
+//                    self.cats.append(entry)
+//                }
+//                
+//                self.carousel.reloadData()
+//
+//                EntryService.FetchMoreAsnyc{entries in
+//                    for entry in entries{
+//                        self.cats.append(entry)
+//                    }
+//                    
+//                    self.carousel.reloadData()                    
+//                }
+//            }
+        }
 
         
         //let catRect:CGRect = CGRectMake(100, 100, self.view.frame.width/2, self.view.frame.height/2)
