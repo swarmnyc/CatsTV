@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  CustomViewController.swift
 //  RightMeowMeow
 //
 //  Created by Johann Kerr on 9/29/15.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource  {
+class CustomViewController: UIViewController{
     
     var collectionView: UICollectionView!
     var cats = [Entry]()
@@ -16,62 +16,75 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     
     
     var afterKey = ""
-   
     
     
     
     
     
-
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
-        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        layout.itemSize = CGSize(width: 1400, height: 1000)
-        //layout.minimumLineSpacing = 40
-        layout.minimumLineSpacing = 100.0;
-        layout.minimumInteritemSpacing = 100.0;
-        
-        
-        collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
-        
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        
-       
-        
-        //collectionView.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
-        collectionView.registerClass(CatViewCell.self, forCellWithReuseIdentifier: "Cell")
-        
-        collectionView.backgroundColor = UIColor(patternImage: UIImage(named:"background")!)
-        /*
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = view.bounds
-        collectionView.backgroundView?.addSubview(blurEffectView)
-        */
-        self.view.addSubview(collectionView)
-        //makeApiCall()
-        
-        
-       
-        
-       
-        
-        
-        
-        
-        
-        
+        let firstImageView = UIImageView(image:UIImage(named:"background"))
+        firstImageView.frame = CGRectMake(582, 162, 756, 756)
+        self.view.addSubview(firstImageView)
         
         EntryService.FetchAsnyc{
             self.cats = EntryService.GetEntries()
-            self.collectionView.reloadData()
+            print(self.cats)
+            self.imageFadeIn(firstImageView, image: UIImage(named:"cat")!)
+            for cat in self.cats{
+                
+               
+                
+            }
+            
+            
         }
+       
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        //collectionView.backgroundColor = UIColor(patternImage: UIImage(named:"background")!)
+        
+        
+        
         
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    func imageFadeIn(imageView: UIImageView, image: UIImage){
+        print("called")
+        let secondImageView = UIImageView(image: image)
+        secondImageView.frame = CGRectMake(582, 162, 756, 756)
+        
+        secondImageView.alpha = 0.0
+        self.view.insertSubview(secondImageView, aboveSubview: imageView)
+        
+        
+        
+        UIView.animateWithDuration(1.0, delay: 1.0, options: .CurveEaseOut, animations: {
+            print("called")
+            //imageView.frame = CGRectMake(448 , 28, 1024, 1024)
+            
+            secondImageView.alpha = 1.0
+            }, completion: {_ in
+                
+                imageView.image = secondImageView.image
+                secondImageView.removeFromSuperview()
+                
+        })
+        
+        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -142,19 +155,19 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
             
             
             
-//            let cat = Entry()
-//            
-//            //cat.imgUrl =
-//            print(json["data"]["children"][i]["data"]["preview"]["images"][i]["source"]["url"].stringValue)
-//            let urlattempt = (json["data"]["children"][i]["data"]["preview"]["images"][0]["source"]["url"]).stringValue
-//            if urlattempt != "null"{
-//                cat.imgUrl = urlattempt
-//            }
-//            //cat.imgUrl=json["data"]["children"][i]["data"]["preview"]["images"][0]["source"]["url"].stringValue
-//            
-//            
-//            
-//            self.cats.append(cat)
+            //            let cat = Entry()
+            //
+            //            //cat.imgUrl =
+            //            print(json["data"]["children"][i]["data"]["preview"]["images"][i]["source"]["url"].stringValue)
+            //            let urlattempt = (json["data"]["children"][i]["data"]["preview"]["images"][0]["source"]["url"]).stringValue
+            //            if urlattempt != "null"{
+            //                cat.imgUrl = urlattempt
+            //            }
+            //            //cat.imgUrl=json["data"]["children"][i]["data"]["preview"]["images"][0]["source"]["url"].stringValue
+            //
+            //
+            //
+            //            self.cats.append(cat)
             
             
             
@@ -168,7 +181,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -193,22 +206,22 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
                 }
                 //let catImage = UIImage.animatedImageWithData(data)
                 //cell.imageCat.image = UIImage.animatedImageWithData(data)
-
+                
                 
                 
             }
             
-        
+            
         }
-
-    
+        
+        
         
         cell.backgroundColor = UIColor.orangeColor()
         return cell
     }
-        
-
-
-
+    
+    
+    
+    
 }
 

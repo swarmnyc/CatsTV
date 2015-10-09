@@ -32,7 +32,6 @@ class EntryService {
 
     private static var Providers: [Provider] = [
         RedditProvider(),
-        TwitterFavoriateProvider(),
         RedditGifsFavoriteProvider()
     ];
     

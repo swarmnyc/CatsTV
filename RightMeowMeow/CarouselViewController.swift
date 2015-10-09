@@ -28,7 +28,7 @@ class CarouselViewController: UIViewController, iCarouselDataSource, iCarouselDe
         //let catRect:CGRect = CGRectMake(100, 100, self.view.frame.width/2, self.view.frame.height/2)
         
         self.carousel.frame = self.view.frame
-        self.carousel.type = .CoverFlow2
+        self.carousel.type = .InvertedTimeMachine
         self.carousel.delegate = self
         self.carousel.dataSource = self
         
@@ -36,6 +36,7 @@ class CarouselViewController: UIViewController, iCarouselDataSource, iCarouselDe
         print("carousel added")
         
         var timer = NSTimer.scheduledTimerWithTimeInterval(3.0, target: self, selector: "update", userInfo: nil, repeats: true)
+        //self.carousel.scrollToItemAtIndex(20, animated: true)
         
         
         

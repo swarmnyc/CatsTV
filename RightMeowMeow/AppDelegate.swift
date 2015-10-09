@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         window!.backgroundColor = UIColor.blackColor()
-        window!.rootViewController = CarouselViewController()
+        window!.rootViewController = CustomViewController()
         window!.makeKeyAndVisible()
         return true
     }
