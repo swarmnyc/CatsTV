@@ -12,14 +12,16 @@ class Entry {
     var Id: String
     var ImgUrl: String
     var Text: String
-    var UpdatedAt: Int
+    var UpdatedAt: Double
+    var Score: Int
     var Source: String
     
-    init(id:String, imgUrl : String , text:String, updatedAt:Int, source:String){
+    init(id:String, imgUrl : String , text:String, updatedAt:Double, score: Int, source:String){
         Id=id
         ImgUrl=imgUrl
         Text=text
         UpdatedAt=updatedAt
+        Score = score
         Source = source
     }
 }
@@ -27,7 +29,14 @@ class Entry {
 typealias EntryServiceFetchSuccessHandler = () -> Void
 //RedditFavoriateProvider(), TwitterFavoriateProvider(),
 class EntryService {
-    private static var Providers: [Provider] = [RedditFavoriateProvider(), TwitterFavoriateProvider(),RedditGifsFavoriteProvider()];
+
+    private static var Providers: [Provider] = [
+        RedditProvider(),
+        TwitterFavoriateProvider(),
+        RedditGifsFavoriteProvider()
+    ];
+    
+
     private static var Entries: [Entry] = [];
     
     static func FetchAsnyc(force: Bool, callback:EntryServiceFetchSuccessHandler?){
@@ -58,12 +67,20 @@ class EntryService {
     }
     
     static func GetEntries() -> [Entry]{
-        // todo: mix
-        return Entries;
+        //Sort
+        let result = Entries.sort({ (x, y) -> Bool in
+            if(x.Source == "Reddit" && y.Source == "Reddit"){
+                return x.Score < y.Score;
+            } else {
+                return x.UpdatedAt > y.UpdatedAt
+            }
+        })
+
+        return result;
     }
     
     private static func CheckFinish(counter:Int, callback:EntryServiceFetchSuccessHandler?){
-        if counter == Providers.count{
+        if counter == Providers.count {
             callback!()
         }
     }

@@ -17,9 +17,15 @@ protocol Provider {
 }
 
 class TwitterFavoriateProvider: Provider {
+    private var dateFormatter : NSDateFormatter
+    
     var Name = "Twitter"
     var IsLoaded = false
     
+    init(){
+        dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "E MMM dd HH:mm:ss Z yyyy" //Tue Oct 06 22:11:48 +0000 2015
+    }
     func FetchAsnyc(success: ProviderFetchSuccessHandler?) {
         FetchTask(provider:self, success: success).Run()
     }
@@ -27,9 +33,11 @@ class TwitterFavoriateProvider: Provider {
     private class FetchTask {
         private var successFetch: ProviderFetchSuccessHandler?;
         private var provider: TwitterFavoriateProvider;
+        
         init(provider: TwitterFavoriateProvider, success: ProviderFetchSuccessHandler?){
             self.provider = provider;
             self.successFetch = success;
+            
         }
         
         func Run() {
@@ -55,7 +63,13 @@ class TwitterFavoriateProvider: Provider {
                     let media = medias![0];
                     
                     // todo add fill whole data
-                    entries.append(Entry(id: String(media["id"] as! Int), imgUrl: media["media_url"] as! String, text: "", updatedAt: 0, source: provider.Name))
+                    entries.append(Entry(
+                        id: String(media["id"] as! Int),
+                        imgUrl: media["media_url"] as! String,
+                        text: tweet["text"] as! String,
+                        updatedAt: provider.dateFormatter.dateFromString(tweet["created_at"] as! String)!.timeIntervalSince1970,
+                        score: 0,
+                        source: provider.Name))
                 }
             }
             
@@ -68,7 +82,7 @@ class TwitterFavoriateProvider: Provider {
     }
 }
 
-class RedditFavoriateProvider: Provider {
+class RedditProvider: Provider {
     var Name = "Reddit"
     var IsLoaded = false
     
@@ -90,10 +104,16 @@ class RedditFavoriateProvider: Provider {
                 
                 var items = json["data"]["children"];
                 for var i = 0; i < items.count; ++i {
-                    var item = items[i]
+                    var item = items[i]["data"]
                     
                     // todo add fill whole data
-                    entries.append(Entry(id: "", imgUrl: item["data"]["preview"]["images"][0]["source"]["url"].stringValue, text: "", updatedAt: 0, source: self.Name))
+                    entries.append(Entry(
+                        id: item["id"].stringValue,
+                        imgUrl: item["preview"]["images"][0]["source"]["url"].stringValue,
+                        text: item["title"].stringValue,
+                        updatedAt: item["created_utc"].doubleValue,
+                        score: i,
+                        source: self.Name))
                 }
                 
                 callback!(data: entries)
@@ -139,7 +159,7 @@ class RedditGifsFavoriteProvider: Provider{
                         let checkUrl = NSURL(string: stringCheck)!
                         if checkUrl.pathExtension!.lowercaseString == "gif"{
                             
-                            entries.append(Entry(id: "", imgUrl: item["data"]["url"].stringValue, text: "", updatedAt: 0, source: self.Name))
+                            entries.append(Entry(id: "", imgUrl: item["data"]["url"].stringValue, text: "", updatedAt: 0,score: i, source: self.Name))
                         }
                    
                     
