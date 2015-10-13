@@ -77,6 +77,11 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         // Do any additional setup after loading the view, typically from a nib.
     }
     
+    override func viewDidAppear(animated: Bool) {
+        
+        
+    }
+    
     func makeApiCall(){
         print("started")
         
@@ -184,9 +189,13 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         if let URL = NSURL(string:cats[indexPath.row].ImgUrl){
             if let data = NSData(contentsOfURL: URL){
                 //cell.imageCat.image = UIImage(data:data)
-                print("hitting call")
+                if URL.pathExtension!.lowercaseString == "gif"{
+                    cell.imageCat.image = UIImage.animatedImageWithData(data)
+                }else{
+                    cell.imageCat.image = UIImage(data:data)
+                }
                 //let catImage = UIImage.animatedImageWithData(data)
-                cell.imageCat.image = UIImage.animatedImageWithData(data)
+                //cell.imageCat.image = UIImage.animatedImageWithData(data)
 
                 
                 
