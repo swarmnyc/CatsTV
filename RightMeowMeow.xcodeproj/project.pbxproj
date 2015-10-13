@@ -181,8 +181,8 @@
 			children = (
 				8FD0B54B1BC4593E00F9F8A1 /* iCarousel.h */,
 				8FD0B54C1BC4593E00F9F8A1 /* iCarousel.m */,
-				E9C4AF9D1BC41CA90093F158 /* Core */,
 				E9C4AF7F1BC41A9E0093F158 /* Libs */,
+				E9C4AF9D1BC41CA90093F158 /* Core */,
 				8F5AED581BBB300D003501B0 /* AppDelegate.swift */,
 				8FD0B54E1BC4605300F9F8A1 /* CarouselViewController.swift */,
 				8F5AED5A1BBB300D003501B0 /* ViewController.swift */,
@@ -313,6 +313,7 @@
 					};
 					E99A84731BC46DE000E3480B = {
 						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = WNAGBXF4G9;
 					};
 				};
 			};
@@ -543,10 +544,13 @@
 		E99A847E1BC46DE000E3480B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "RightMeowMeow Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.johannkerr.RightMeowMeow.RightMeowMeow-Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -554,10 +558,13 @@
 		E99A847F1BC46DE000E3480B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "RightMeowMeow Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.johannkerr.RightMeowMeow.RightMeowMeow-Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;

@@ -14,44 +14,113 @@ class CustomViewController: UIViewController{
     var cats = [Entry]()
     let catApiURL = "https://www.reddit.com/r/cats/hot.json?limit=100"
     
-    
+    var index = 0
     var afterKey = ""
+    var firstImageView : UIImageView?
     
     
     
     
     
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        
-        let firstImageView = UIImageView(image:UIImage(named:"background"))
-        firstImageView.frame = CGRectMake(582, 162, 756, 756)
-        self.view.addSubview(firstImageView)
-        
-        EntryService.FetchAsnyc{
-            self.cats = EntryService.GetEntries()
-            print(self.cats)
-            self.imageFadeIn(firstImageView, image: UIImage(named:"cat")!)
-            for cat in self.cats{
+    func test(){
+        print("called")
+        if let URL = NSURL(string:self.cats[index++].ImgUrl){
+            if let data = NSData(contentsOfURL: URL){
+                print("called2")
+                self.imageFadeIn(self.firstImageView!, image: UIImage(data: data)!)
                 
-               
                 
             }
             
             
         }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        /*
+        let firstImageView = UIImageView(image:UIImage(named:"cat"))
+        firstImageView.frame = CGRectMake(582, 162, 756, 756)
+        self.view.addSubview(firstImageView)
+        
+        self.imageFadeIn(firstImageView, image: UIImage(named:"cat2")!)
+        */
+        EntryService.FetchAsnyc{
+            
+            self.cats = EntryService.GetEntries()
+            //print(self.cats)
+            
+            dispatch_async(dispatch_get_main_queue()) {
+                self.firstImageView = UIImageView(image:UIImage(named:"cat"))
+                self.firstImageView!.frame = CGRectMake(582, 162, 756, 756)
+                self.view.addSubview(self.firstImageView!)
+                
+                /*let alert = UIAlertController(title: "Alert", message: "Message", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+                */
+                // update some UI
+                
+                self.test()
+      
+//                    if let URL = NSURL(string:self.cats[index].ImgUrl){
+//                        if let data = NSData(contentsOfURL: URL){
+//                            self.imageFadeIn(firstImageView, image: UIImage(data:data)!)
+//                            
+//                        }
+//                    }
+        
+                
+                
+            
+                
+                
+                
+               /* for index in 0...5{
+                    
+                    
+                    if let URL = NSURL(string:self.cats[index].ImgUrl){
+                        if let data = NSData(contentsOfURL: URL){
+                            //cell.imageCat.image = UIImage(data:data)
+                            if URL.pathExtension!.lowercaseString == "gif"{
+                                self.imageFadeIn(firstImageView, image: UIImage.animatedImageWithData(data)!)
+                                print("gif image")
+                            }else{
+                                self.imageFadeIn(firstImageView, image: UIImage(data:data)!)
+                                print("regular image")
+                                
+                            }
+                            
+                        }
+                        
+                        
+                        
+                        
+                        
+                    }
+                    
+                    
+                    
+                    
+                }*/
+                
+                
+            }
+           
+
+
+            
+            
+            
+        
+           
+            
+            
+        }
+        
        
-        
-        
-        
-        
-        
-        
-        
-        
+
         
         
         //collectionView.backgroundColor = UIColor(patternImage: UIImage(named:"background")!)
@@ -63,27 +132,38 @@ class CustomViewController: UIViewController{
     }
     
     func imageFadeIn(imageView: UIImageView, image: UIImage){
-        print("called")
+        imageView.alpha = 1.0
         let secondImageView = UIImageView(image: image)
         secondImageView.frame = CGRectMake(582, 162, 756, 756)
-        
+        //imageView.frame = CGRectMake(448 , 28, 1024, 1024)
         secondImageView.alpha = 0.0
+        
         self.view.insertSubview(secondImageView, aboveSubview: imageView)
         
-        
-        
-        UIView.animateWithDuration(1.0, delay: 1.0, options: .CurveEaseOut, animations: {
-            print("called")
-            //imageView.frame = CGRectMake(448 , 28, 1024, 1024)
+        UIView.animateWithDuration(2.0, delay: 0.0, options: .CurveEaseOut, animations: {
+            imageView.frame = CGRectMake(448, 28, 1024, 1024)
             
-            secondImageView.alpha = 1.0
+            
             }, completion: {_ in
                 
-                imageView.image = secondImageView.image
-                secondImageView.removeFromSuperview()
+
+                UIView.animateWithDuration(2.0, delay: 0.0, options: .CurveEaseOut, animations: {
+                    imageView.alpha = 0.0
+                    secondImageView.frame = CGRectMake(448,28,1024,1024)
+                    secondImageView.alpha = 1.0
+                    
+                    
+                    }, completion: {_ in
+                        //imageView.frame = CGRectMake(582, 162, 756, 756)
+                        print(secondImageView.alpha)
+                        print(imageView.alpha)
+                        imageView.image = secondImageView.image
+                        self.test()
+                        secondImageView.removeFromSuperview()
+                        //self.view.addSubview(imageView)
+                })
                 
         })
-        
         
     }
     
@@ -153,21 +233,7 @@ class CustomViewController: UIViewController{
         
         for var i = 0; i<json["data"]["children"].count ; ++i{
             
-            
-            
-            //            let cat = Entry()
-            //
-            //            //cat.imgUrl =
-            //            print(json["data"]["children"][i]["data"]["preview"]["images"][i]["source"]["url"].stringValue)
-            //            let urlattempt = (json["data"]["children"][i]["data"]["preview"]["images"][0]["source"]["url"]).stringValue
-            //            if urlattempt != "null"{
-            //                cat.imgUrl = urlattempt
-            //            }
-            //            //cat.imgUrl=json["data"]["children"][i]["data"]["preview"]["images"][0]["source"]["url"].stringValue
-            //
-            //
-            //
-            //            self.cats.append(cat)
+
             
             
             
@@ -186,42 +252,4 @@ class CustomViewController: UIViewController{
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
-    
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return cats.count
-    }
-    
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! CatViewCell
-        //cell.imageCat.image = UIImage(named:"cat")
-        if let URL = NSURL(string:cats[indexPath.row].ImgUrl){
-            if let data = NSData(contentsOfURL: URL){
-                //cell.imageCat.image = UIImage(data:data)
-                if URL.pathExtension!.lowercaseString == "gif"{
-                    cell.imageCat.image = UIImage.animatedImageWithData(data)
-                }else{
-                    cell.imageCat.image = UIImage(data:data)
-                }
-                //let catImage = UIImage.animatedImageWithData(data)
-                //cell.imageCat.image = UIImage.animatedImageWithData(data)
-                
-                
-                
-            }
-            
-            
-        }
-        
-        
-        
-        cell.backgroundColor = UIColor.orangeColor()
-        return cell
-    }
-    
-    
-    
-    
 }
-

@@ -17,7 +17,7 @@ class CatViewCell: UICollectionViewCell {
         super.init(frame: frame)
         
         imageCat = UIImageView(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height))
-        imageCat.contentMode = UIViewContentMode.ScaleAspectFill
+        imageCat.contentMode = UIViewContentMode.ScaleAspectFit
         imageCat.clipsToBounds = true
         contentView.addSubview(imageCat)
     }
