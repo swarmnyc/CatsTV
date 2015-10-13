@@ -32,7 +32,7 @@ class EntryService {
 
     private static var Providers: [Provider] = [
         
-         RedditProvider()
+         RedditGifsFavoriteProvider()
     ];
     
 
