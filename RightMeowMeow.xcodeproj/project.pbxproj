@@ -23,6 +23,8 @@
 		E99A84761BC46DE000E3480B /* TVServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E99A84751BC46DE000E3480B /* TVServices.framework */; };
 		E99A84791BC46DE000E3480B /* ServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99A84781BC46DE000E3480B /* ServiceProvider.swift */; };
 		E99A847D1BC46DE000E3480B /* RightMeowMeow Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E99A84741BC46DE000E3480B /* RightMeowMeow Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		E9B1D5B91BD1999100AA30D1 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B1D5B71BD1999100AA30D1 /* TestViewController.swift */; };
+		E9B1D5BA1BD1999100AA30D1 /* TopMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B1D5B81BD1999100AA30D1 /* TopMenuView.swift */; };
 		E9C4AF8F1BC41BDB0093F158 /* Dictionary+OAuthSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4AF811BC41BDB0093F158 /* Dictionary+OAuthSwift.swift */; };
 		E9C4AF901BC41BDB0093F158 /* HMAC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4AF821BC41BDB0093F158 /* HMAC.swift */; };
 		E9C4AF911BC41BDB0093F158 /* Int+OAuthSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4AF831BC41BDB0093F158 /* Int+OAuthSwift.swift */; };
@@ -107,6 +109,8 @@
 		E99A84751BC46DE000E3480B /* TVServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TVServices.framework; path = System/Library/Frameworks/TVServices.framework; sourceTree = SDKROOT; };
 		E99A84781BC46DE000E3480B /* ServiceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProvider.swift; sourceTree = "<group>"; };
 		E99A847A1BC46DE000E3480B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E9B1D5B71BD1999100AA30D1 /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		E9B1D5B81BD1999100AA30D1 /* TopMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopMenuView.swift; sourceTree = "<group>"; };
 		E9C4AF811BC41BDB0093F158 /* Dictionary+OAuthSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Dictionary+OAuthSwift.swift"; path = "Libs/OAuth/Dictionary+OAuthSwift.swift"; sourceTree = "<group>"; };
 		E9C4AF821BC41BDB0093F158 /* HMAC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HMAC.swift; path = Libs/OAuth/HMAC.swift; sourceTree = "<group>"; };
 		E9C4AF831BC41BDB0093F158 /* Int+OAuthSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Int+OAuthSwift.swift"; path = "Libs/OAuth/Int+OAuthSwift.swift"; sourceTree = "<group>"; };
@@ -181,6 +185,8 @@
 		8F5AED571BBB300D003501B0 /* RightMeowMeow */ = {
 			isa = PBXGroup;
 			children = (
+				E9B1D5B71BD1999100AA30D1 /* TestViewController.swift */,
+				E9B1D5B81BD1999100AA30D1 /* TopMenuView.swift */,
 				8FD0B54B1BC4593E00F9F8A1 /* iCarousel.h */,
 				8FD0B54C1BC4593E00F9F8A1 /* iCarousel.m */,
 				E9C4AF7F1BC41A9E0093F158 /* Libs */,
@@ -401,6 +407,8 @@
 				8F74AFF91BC8435100C18B10 /* CustomViewController.swift in Sources */,
 				E9C4AF941BC41BDB0093F158 /* OAuth1Swift.swift in Sources */,
 				E9C4AF8F1BC41BDB0093F158 /* Dictionary+OAuthSwift.swift in Sources */,
+				E9B1D5BA1BD1999100AA30D1 /* TopMenuView.swift in Sources */,
+				E9B1D5B91BD1999100AA30D1 /* TestViewController.swift in Sources */,
 				E9C4AF9B1BC41BDB0093F158 /* String+OAuthSwift.swift in Sources */,
 				8FB921401BCD9705002E1A6A /* CatTrayViewCell.swift in Sources */,
 				E9C4AF9C1BC41BDB0093F158 /* Utils.swift in Sources */,
