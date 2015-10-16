@@ -108,6 +108,14 @@ class CustomViewController: UIViewController, UICollectionViewDelegateFlowLayout
         
         collectionView.dataSource = self
         collectionView.delegate = self
+        collectionView.scrollEnabled = false
+        
+        
+        
+        
+    
+
+
         
         
         
@@ -116,6 +124,12 @@ class CustomViewController: UIViewController, UICollectionViewDelegateFlowLayout
         
         collectionView.registerClass(CatTrayViewCell.self, forCellWithReuseIdentifier:"Cell")
         self.view.addSubview(collectionView)
+        let leftswipeRecognizer = UISwipeGestureRecognizer(target: self, action: "leftSwipe")
+        leftswipeRecognizer.direction = .Left
+        self.view.addGestureRecognizer(leftswipeRecognizer)
+        let rightswipeRecognizer = UISwipeGestureRecognizer(target: self, action: "rightSwipe")
+        rightswipeRecognizer.direction = .Right
+        self.view.addGestureRecognizer(rightswipeRecognizer)
         
         
         
@@ -188,7 +202,7 @@ class CustomViewController: UIViewController, UICollectionViewDelegateFlowLayout
     func imageSwitchAgain(imageView: UIImageView, image:UIImage){
         
         imageView.image = image
-        scrollView()
+        scrollView(UICollectionViewScrollPosition.Left)
         
         
     }
@@ -202,7 +216,8 @@ class CustomViewController: UIViewController, UICollectionViewDelegateFlowLayout
         //duration used to be 4.0
         */
         self.firstImageView?.image = image
-        self.scrollView()
+        self.scrollView(UICollectionViewScrollPosition.Left)
+        
         //secondImageView.removeFromSuperview()
         
         var timer = NSTimer.scheduledTimerWithTimeInterval(duration, target: self, selector: "test", userInfo: nil, repeats: false)
@@ -255,8 +270,18 @@ class CustomViewController: UIViewController, UICollectionViewDelegateFlowLayout
         
         
     }
-    
-    func scrollView(){
+    func rightSwipe(){
+        scrollView(UICollectionViewScrollPosition.Right)
+        print("called")
+        scrollView(.Right)
+    }
+    func leftSwipe(){
+        print("called")
+        scrollView(UICollectionViewScrollPosition.Left)
+        scrollView(.Left)
+        
+    }
+    func scrollView(var direction: UICollectionViewScrollPosition){
         //print(self.collectionView.indexPathsForVisibleItems())
         
         var visibleItems =  []
@@ -269,7 +294,16 @@ class CustomViewController: UIViewController, UICollectionViewDelegateFlowLayout
                         print("now visible -> \(self.cats[nextItem.row].ImgUrl)")
             
                         //self.collectionView.scrollToItemAtIndexPath(visibleItems.objectAtIndex(1) as! NSIndexPath, atScrollPosition: UICollectionViewScrollPosition.Left, animated: true)
-                    self.collectionView.scrollToItemAtIndexPath(nextItem, atScrollPosition: UICollectionViewScrollPosition.Left, animated: true)
+            if direction == UICollectionViewScrollPosition.Left{
+                self.collectionView.scrollToItemAtIndexPath(nextItem, atScrollPosition: UICollectionViewScrollPosition.Left, animated: true)
+                print("called left")
+                
+            }else if direction == UICollectionViewScrollPosition.Right{
+                self.collectionView.scrollToItemAtIndexPath(nextItem, atScrollPosition: UICollectionViewScrollPosition.Right, animated: true)
+                print("called right")
+                
+            }
+            
             
             
 //            if (self.cats.count > (index+1) )
