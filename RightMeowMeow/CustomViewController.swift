@@ -11,6 +11,8 @@ import UIKit
 class CustomViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UICollectionViewDelegate{
     
     var collectionView: UICollectionView!
+    
+    
     var cats = [Entry]()
     let catApiURL = "https://www.reddit.com/r/cats/hot.json?limit=100"
     
@@ -25,17 +27,68 @@ class CustomViewController: UIViewController, UICollectionViewDelegateFlowLayout
     
     
     func test(){
-        print("called")
+        print("called -> \(index)")
+        
+        
         if let URL = NSURL(string:self.cats[index++].ImgUrl){
+            
             if let data = NSData(contentsOfURL: URL){
-                print("called2")
-                self.imageFadeIn(self.firstImageView!, image: UIImage.animatedImageWithData(data)!)
+//                if index > self.cats.count-10{
+//                    EntryService.FetchMoreAsnyc({
+//                        
+//                        entries in
+//                        for entry in entries{
+//                            self.cats.append(entry)
+//                            print(entry.ImgUrl)
+//                            print("fetching more")
+//                        }
+//                        
+//                        
+//                        
+//                    })
+//                    
+                
+//                }
+                var timeDuration = (UIImage.animatedImageWithData(data)?.duration)!
+                self.imageSwitch(self.firstImageView!, image: UIImage.animatedImageWithData(data)!, duration: timeDuration)
+                
                 
                 
             }
-            
-            
         }
+        
+        
+        /*
+        if let URL = NSURL(string:self.cats[index++].ImgUrl){
+        
+        if let data = NSData(contentsOfURL: URL){
+        print("called2")
+        
+        //let timeDuration = UIImage.animatedImageWithData(data)?.duration
+        
+        
+        
+        
+        
+        //UIImage.duration(data)
+        
+        
+        
+        //self.imageFadeIn(self.firstImageView!, image: UIImage(data:data)!)
+        //var timer = NSTimer.scheduledTimerWithTimeInterval((UIImage.animatedImageWithData(data)?.duration)!, target: self, selector: "scrollView", userInfo: nil, repeats: true)
+        
+        
+        
+        
+        }
+        
+        
+        }
+        
+        
+        */
+        
+        
     }
     
     override func viewDidLoad() {
@@ -51,12 +104,14 @@ class CustomViewController: UIViewController, UICollectionViewDelegateFlowLayout
         layout.scrollDirection = UICollectionViewScrollDirection.Horizontal
         
         
-       
-        
         collectionView = UICollectionView(frame:CGRectMake(0,825,1920,230), collectionViewLayout: layout)
-                
+        
         collectionView.dataSource = self
         collectionView.delegate = self
+        
+        
+        
+        
         
         
         collectionView.registerClass(CatTrayViewCell.self, forCellWithReuseIdentifier:"Cell")
@@ -77,9 +132,12 @@ class CustomViewController: UIViewController, UICollectionViewDelegateFlowLayout
         */
         EntryService.FetchAsnyc{
             
-            self.cats = EntryService.GetEntries()
+            entries in
+            for entry in entries{
+                self.cats.append(entry)
+                print(entry.ImgUrl)
+            }
             
-            self.collectionView.reloadData()
             
             
             dispatch_async(dispatch_get_main_queue()) {
@@ -88,65 +146,36 @@ class CustomViewController: UIViewController, UICollectionViewDelegateFlowLayout
                 self.firstImageView!.contentMode = UIViewContentMode.ScaleAspectFit
                 self.firstImageView!.clipsToBounds = true
                 
-            
+                
                 
                 self.view.addSubview(self.firstImageView!)
-             
+                
                 // update some UI
                 self.collectionView.reloadData()
-                var timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "scrollView", userInfo: nil, repeats: true)
+                
                 self.test()
-
                 
-                
-            
-                
-                
-                
-               /* for index in 0...5{
-                    
-                    
-                    if let URL = NSURL(string:self.cats[index].ImgUrl){
-                        if let data = NSData(contentsOfURL: URL){
-                            //cell.imageCat.image = UIImage(data:data)
-                            if URL.pathExtension!.lowercaseString == "gif"{
-                                self.imageFadeIn(firstImageView, image: UIImage.animatedImageWithData(data)!)
-                                print("gif image")
-                            }else{
-                                self.imageFadeIn(firstImageView, image: UIImage(data:data)!)
-                                print("regular image")
-                                
-                            }
-                            
-                        }
-                        
-                        
-                        
-                        
-                        
-                    }
-                    
-                    
-                    
-                    
-                }*/
                 
                 
             }
-           
-
-
             
             
             
-        
-           
+            
+            
+            
+            
+            
+            
+            
+            
+            
             
             
         }
         
-       
-
+        
+        
         
         
         //collectionView.backgroundColor = UIColor(patternImage: UIImage(named:"background")!)
@@ -156,16 +185,38 @@ class CustomViewController: UIViewController, UICollectionViewDelegateFlowLayout
         
         // Do any additional setup after loading the view, typically from a nib.
     }
+    func imageSwitchAgain(imageView: UIImageView, image:UIImage){
+        
+        imageView.image = image
+        scrollView()
+        
+        
+    }
+    
+    func imageSwitch(imageView: UIImageView, image: UIImage, duration: NSTimeInterval){
+        /*let secondImageView = UIImageView(image: image)
+        secondImageView.frame = CGRectMake(0,0,1920,800)
+        secondImageView.contentMode = UIViewContentMode.ScaleAspectFit
+        secondImageView.clipsToBounds = true
+        self.view.insertSubview(secondImageView, aboveSubview: imageView)
+        //duration used to be 4.0
+        */
+        self.firstImageView?.image = image
+        self.scrollView()
+        //secondImageView.removeFromSuperview()
+        
+        var timer = NSTimer.scheduledTimerWithTimeInterval(duration, target: self, selector: "test", userInfo: nil, repeats: false)
+    }
     
     func imageFadeIn(imageView: UIImageView, image: UIImage){
         imageView.alpha = 1.0
         let secondImageView = UIImageView(image: image)
         secondImageView.frame = CGRectMake(0, 0, 1920, 800)
         //imageView.frame = CGRectMake(448 , 28, 1024, 1024)
-        secondImageView.alpha = 0.0
+        secondImageView.alpha = 1.0
         secondImageView.contentMode = UIViewContentMode.ScaleAspectFit
         secondImageView.clipsToBounds = true
-
+        
         
         self.view.insertSubview(secondImageView, aboveSubview: imageView)
         
@@ -175,20 +226,23 @@ class CustomViewController: UIViewController, UICollectionViewDelegateFlowLayout
             
             }, completion: {_ in
                 
-
+                
                 UIView.animateWithDuration(2.0, delay: 0.0, options: .CurveEaseOut, animations: {
-                    imageView.alpha = 0.0
-                    //secondImageView.frame = CGRectMake(448,28,1024,1024)
-                    secondImageView.alpha = 1.0
+                    imageView.frame = CGRectMake(0, 0, 1920, 800)
+                    
+                    secondImageView.frame = CGRectMake(0,0,1920,800)
+                    
                     
                     
                     }, completion: {_ in
                         //imageView.frame = CGRectMake(582, 162, 756, 756)
-                        print(secondImageView.alpha)
-                        print(imageView.alpha)
-                        imageView.image = secondImageView.image
-                        self.test()
+                        //print(secondImageView.alpha)
+                        //print(imageView.alpha)
+                        
+                        
                         secondImageView.removeFromSuperview()
+                        self.test()
+                        
                         //self.view.addSubview(imageView)
                 })
                 
@@ -199,18 +253,31 @@ class CustomViewController: UIViewController, UICollectionViewDelegateFlowLayout
     override func viewDidAppear(animated: Bool) {
         
         
+        
     }
     
     func scrollView(){
         //print(self.collectionView.indexPathsForVisibleItems())
         
         var visibleItems =  []
-        visibleItems = self.collectionView.indexPathsForVisibleItems()
         
-        var currentItem : NSIndexPath = visibleItems.objectAtIndex(0) as! NSIndexPath
-        var nextItem = NSIndexPath(forItem: currentItem.item + 1, inSection: 0)
-        self.collectionView.scrollToItemAtIndexPath(nextItem, atScrollPosition: UICollectionViewScrollPosition.Top, animated: false)
-    
+        if visibleItems.count != 0{
+                        print("called3 for index \(index) ")
+                        var currentItem : NSIndexPath = visibleItems.objectAtIndex(0) as! NSIndexPath
+                        print("was visible -> \(self.cats[currentItem.row].ImgUrl)")
+                        var nextItem = NSIndexPath(forItem: currentItem.item + 1, inSection: 0)
+                        print("now visible -> \(self.cats[nextItem.row].ImgUrl)")
+            
+                        //self.collectionView.scrollToItemAtIndexPath(visibleItems.objectAtIndex(1) as! NSIndexPath, atScrollPosition: UICollectionViewScrollPosition.Left, animated: true)
+                    self.collectionView.scrollToItemAtIndexPath(nextItem, atScrollPosition: UICollectionViewScrollPosition.Left, animated: true)
+            
+            
+//            if (self.cats.count > (index+1) )
+//            {
+//                self.collectionView.scrollToItemAtIndexPath(NSIndexPath( index: index+1),atScrollPosition: UICollectionViewScrollPosition.Left, animated: false);
+//            }
+            
+        }
         
     }
     
@@ -221,10 +288,12 @@ class CustomViewController: UIViewController, UICollectionViewDelegateFlowLayout
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! CatTrayViewCell
         //cell.imageCat.image = UIImage(named:"cat")
-        if let URL = NSURL(string:cats[indexPath.row].ImgUrl){
+        if let URL = NSURL(string:cats[indexPath.row+1].ImgUrl){
             if let data = NSData(contentsOfURL: URL){
                 //cell.imageCat.image = UIImage(data:data)
                 if URL.pathExtension!.lowercaseString == "gif"{
+                    //cell.imageCat.image = UIImage.animatedImageWithData(data)
+                    
                     cell.imageCat.image = UIImage.animatedImageWithData(data)
                 }else{
                     cell.imageCat.image = UIImage(data:data)

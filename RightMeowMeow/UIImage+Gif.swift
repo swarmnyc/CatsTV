@@ -97,6 +97,15 @@ extension UIImage {
         return gcd
     }
     
+    class func duration(data: NSData) -> NSTimeInterval? {
+        let source = CGImageSourceCreateWithData(data, nil)
+        let image = UIImage.animatedImageWithSource(source!)
+        image?.duration
+        
+        return image?.duration
+    }
+
+    
     class func animatedImageWithSource(source: CGImageSource) -> UIImage? {
         let count = CGImageSourceGetCount(source)
         var images = [CGImageRef]()
