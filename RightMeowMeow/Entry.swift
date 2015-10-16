@@ -47,8 +47,8 @@ typealias EntryServiceFetchSuccessHandler = (data:[Entry]) -> Void
 class EntryService {
 
     private static var Providers: [Provider] = [
-            RedditProvider(),
-            TwitterFavoriateProvider(),
+            //RedditProvider(),
+            //TwitterFavoriateProvider(),
             RedditGifsFavoriteProvider()
     ];
 
