@@ -8,123 +8,38 @@
 
 import UIKit
 
-class CarouselViewController: UIViewController, iCarouselDataSource, iCarouselDelegate {
-    let carousel = iCarousel()
-    var i = 0
+class TestViewController: UIViewController {
+    var cats = ["AAA","BBBB","CCC"]
     
-    var cats = [Entry]()
+    var currentIndex = 0;
+    var topMenuView : TopMenuView?;
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.addSubview(TopMenuView())
+        topMenuView = TopMenuView();
+        topMenuView!.ReportHandler = self.HandleReport
+        
+        self.view.addSubview(topMenuView!)
         
         
-        //self.view.backgroundColor = UIColor.whiteColor()
+        let screenSize: CGRect = UIScreen.mainScreen().bounds
+        let menuHeight = screenSize.height*0.1;
+        let buttonWidth : CGFloat = 200;
         
-//        EntryService.FetchAsnyc{ entries in
-//            for entry in entries{
-//                self.cats.append(entry)
-//            }
-//            
-//            self.carousel.reloadData()
-//            
-//            //testing
-////            EntryService.FetchMoreAsnyc{entries in
-////                for entry in entries{
-////                    self.cats.append(entry)
-////                }
-////                
-////                self.carousel.reloadData()
-////
-////                EntryService.FetchMoreAsnyc{entries in
-////                    for entry in entries{
-////                        self.cats.append(entry)
-////                    }
-////                    
-////                    self.carousel.reloadData()                    
-////                }
-////            }
-//        }
-
+        let button = UIButton(type: UIButtonType.System) as UIButton
+        button.frame = CGRect(x: screenSize.width - buttonWidth - 32 , y: 300, width: buttonWidth, height: menuHeight)
         
-        //let catRect:CGRect = CGRectMake(100, 100, self.view.frame.width/2, self.view.frame.height/2)
+        button.backgroundColor = UIColor.blueColor()
+        button.setTitle("Test", forState: UIControlState.Normal)
         
-        self.carousel.frame = self.view.frame
-        self.carousel.type = .CoverFlow2
-        self.carousel.delegate = self
-        self.carousel.dataSource = self
-        
-        self.view.addSubview(carousel)
-        print("carousel added")
-        
-        var timer = NSTimer.scheduledTimerWithTimeInterval(3.0, target: self, selector: "update", userInfo: nil, repeats: true)
-        
-        
-        
-
-        // Do any additional setup after loading the view.
+        self.view.addSubview(button)
     }
     
-    func numberOfItemsInCarousel(carousel: iCarousel) -> Int
-    {
-        return cats.count
-    }
-    
-    func carousel(carousel: iCarousel, viewForItemAtIndex index: Int, reusingView view: UIView?) -> UIView
-    {
-        
-        var catView : UIImageView
-        
-        catView = UIImageView(frame: self.view.frame)
-        catView.contentMode = UIViewContentMode.ScaleAspectFit
-        catView.clipsToBounds = true
-        if let URL = NSURL(string:cats[index].ImgUrl){
-            if let data = NSData(contentsOfURL: URL){
-                //catView.image = UIImage(data:data)
-                
-                
-                
-                if URL.pathExtension!.lowercaseString == "gif"{
-                    catView.image = UIImage.animatedImageWithData(data)
-                }else{
-                    catView.image = UIImage(data:data)
-                }
-                
-                 //cell.imageCat.image = UIImage.animatedImageWithData(data)
-                
-            }
-            
+    func HandleReport(){
+        if(currentIndex>=0 && currentIndex < cats.count){
+            self.cats.removeAtIndex(currentIndex);
+            // UI Update
         }
-        
-        
-        return catView
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    func update(){
-        
-        //self.carousel.scrollByNumberOfItems(0, duration:3.0 )
-        self.carousel.scrollToItemAtIndex(self.i, animated: true)
-        
-        
-        self.i++
-        
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
