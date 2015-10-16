@@ -273,9 +273,11 @@ class CustomViewController: UIViewController, UICollectionViewDelegateFlowLayout
 
     func HandleReport() {
         if (imageIndex >= 0 && imageIndex < cats.count) {
+            //Todo stop timer if forcus
             self.cats.removeAtIndex(imageIndex);
-            // UI Update
-            self.collectionView.reloadData()
+            self.collectionView.deleteItemsAtIndexPaths([NSIndexPath(forRow: imageIndex, inSection: 0)])
+            imageIndex--;
+            loadImage()
         }
     }
 }
