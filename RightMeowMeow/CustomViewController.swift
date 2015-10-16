@@ -22,21 +22,31 @@ class CustomViewController: UIViewController, UICollectionViewDelegateFlowLayout
         print("loadCatImage -> \(imageIndex)")
         if let URL = NSURL(string: self.cats[imageIndex++].ImgUrl) {
             if let data = NSData(contentsOfURL: URL) {
-//                if index > self.cats.count-10{
-//                    EntryService.FetchMoreAsnyc({
-//                        entries in
-//                        for entry in entries{
-//                            self.cats.append(entry)
-//                            print(entry.ImgUrl)
-//                            print("fetching more")
-//                        }
-//                    })
-//                }
+                if imageIndex > self.cats.count-10{
+                    print("fatch more")
+                    EntryService.FetchMoreAsnyc({
+                        entries in
+                        for entry in entries{
+                            self.cats.append(entry)
+                            print(entry.ImgUrl)
+                            print("fetching more")
+                        }
+                    })
+                }
                 
                 var timeDuration = (UIImage.animatedImageWithData(data)?.duration)!
                 self.imageSwitch(self.firstImageView!, image: UIImage.animatedImageWithData(data)!, duration: timeDuration)
             }
         }
+        EntryService.FetchMoreAsnyc({
+            entries in
+            for entry in entries{
+                self.cats.append(entry)
+                print(entry.ImgUrl)
+                print("fetching more")
+            }
+        })
+        
 
         /*
             if let URL = NSURL(string:self.cats[index++].ImgUrl){
@@ -118,7 +128,7 @@ class CustomViewController: UIViewController, UICollectionViewDelegateFlowLayout
 
     func imageSwitchAgain(imageView: UIImageView, image: UIImage) {
         imageView.image = image
-        scrollView(UICollectionViewScrollPosition.Left)
+       // scrollView(UICollectionViewScrollPosition.Left)
     }
 
     func imageSwitch(imageView: UIImageView, image: UIImage, duration: NSTimeInterval) {
@@ -130,7 +140,7 @@ class CustomViewController: UIViewController, UICollectionViewDelegateFlowLayout
         //duration used to be 4.0
         */
         self.firstImageView?.image = image
-        self.scrollView(UICollectionViewScrollPosition.Left)
+        //self.scrollView()
 
         //secondImageView.removeFromSuperview()
 
@@ -185,23 +195,23 @@ class CustomViewController: UIViewController, UICollectionViewDelegateFlowLayout
     }
 
     func rightSwipe() {
-        scrollView(UICollectionViewScrollPosition.Right)
+        //scrollView()
         print("called")
-        scrollView(.Right)
+       scrollView(.Right)
     }
 
     func leftSwipe() {
         print("called")
-        scrollView(UICollectionViewScrollPosition.Left)
+        //scrollView(UICollectionViewScrollPosition.Left)
         scrollView(.Left)
 
     }
 
-    func scrollView(var direction: UICollectionViewScrollPosition) {
+    func scrollView(direction:UICollectionViewScrollPosition) {
         //print(self.collectionView.indexPathsForVisibleItems())
 
         var visibleItems = []
-
+        visibleItems = self.collectionView.indexPathsForVisibleItems()
         if visibleItems.count != 0 {
             print("called3 for index \(imageIndex) ")
             var currentItem: NSIndexPath = visibleItems.objectAtIndex(0) as! NSIndexPath
@@ -209,6 +219,8 @@ class CustomViewController: UIViewController, UICollectionViewDelegateFlowLayout
             var nextItem = NSIndexPath(forItem: currentItem.item + 1, inSection: 0)
             print("now visible -> \(self.cats[nextItem.row].ImgUrl)")
 
+            
+            self.collectionView.scrollToItemAtIndexPath(nextItem, atScrollPosition: UICollectionViewScrollPosition.Left, animated: true)
             //self.collectionView.scrollToItemAtIndexPath(visibleItems.objectAtIndex(1) as! NSIndexPath, atScrollPosition: UICollectionViewScrollPosition.Left, animated: true)
             if direction == UICollectionViewScrollPosition.Left {
                 self.collectionView.scrollToItemAtIndexPath(nextItem, atScrollPosition: UICollectionViewScrollPosition.Left, animated: true)
@@ -219,6 +231,7 @@ class CustomViewController: UIViewController, UICollectionViewDelegateFlowLayout
                 print("called right")
 
             }
+        
 //            if (self.cats.count > (index+1) )
 //            {
 //                self.collectionView.scrollToItemAtIndexPath(NSIndexPath( index: index+1),atScrollPosition: UICollectionViewScrollPosition.Left, animated: false);

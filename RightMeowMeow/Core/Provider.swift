@@ -200,7 +200,25 @@ class RedditGifsFavoriteProvider: Provider {
                                     updatedAt: item["created_utc"].doubleValue,
                                     score: item["score"].intValue,
                                     source: self.Name))
+                    }else if checkUrl.pathExtension!.lowercaseString == "gifv"{
+                        var originalUrl = item["data"]["url"].stringValue
+                        print(originalUrl)
+                        var formattedUrl = originalUrl.substringToIndex(originalUrl.endIndex.predecessor())
+                        /*
+                        
+                        entries.append(Entry(
+                            id: item["id"].stringValue,
+                            imgUrl: formattedUrl,
+                            text: item["title"].stringValue,
+                            updatedAt: item["created_utc"].doubleValue,
+                            score: item["score"].intValue,
+                            source: self.Name))
+                        */
+                        
+                        
+                        
                     }
+                    
                 }
 
                 success!(data: entries)
