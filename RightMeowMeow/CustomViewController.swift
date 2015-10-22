@@ -20,34 +20,37 @@ class CustomViewController: UIViewController, UICollectionViewDelegateFlowLayout
 
     func loadImage() {
         print("loadCatImage -> \(imageIndex)")
-        if let URL = NSURL(string: self.cats[imageIndex++].ImgUrl) {
+        
+        if imageIndex >= self.cats.count {
+            imageIndex = 0;
+        }
+        
+        var cat = self.cats[imageIndex++];
+        if let URL = NSURL(string: cat.ImgUrl) {
             if let data = NSData(contentsOfURL: URL) {
-                if imageIndex > self.cats.count-10{
-                    print("fatch more")
-                    EntryService.FetchMoreAsnyc({
-                        entries in
-                        for entry in entries{
-                            self.cats.append(entry)
-                            print(entry.ImgUrl)
-                            print("fetching more")
-                        }
-                    })
+                topMenuView!.setTitle(cat.Text)
+                if cat.Type == .Image {
+                    self.imageFadeIn(self.firstImageView!, image: UIImage(data: data)!)
+                } else {
+                    var timeDuration = (UIImage.animatedImageWithData(data)?.duration)!
+                    self.imageSwitch(self.firstImageView!, image: UIImage.animatedImageWithData(data)!, duration: timeDuration)
                 }
-                
-                var timeDuration = (UIImage.animatedImageWithData(data)?.duration)!
-                self.imageSwitch(self.firstImageView!, image: UIImage.animatedImageWithData(data)!, duration: timeDuration)
             }
         }
-        EntryService.FetchMoreAsnyc({
-            entries in
-            for entry in entries{
-                self.cats.append(entry)
-                print(entry.ImgUrl)
-                print("fetching more")
-            }
-        })
         
-
+        if imageIndex > self.cats.count-10 {
+            EntryService.FetchMoreAsnyc({
+                entries in
+                print("fetching more")
+                for entry in entries{
+                    self.cats.append(entry)
+                    //print(entry.ImgUrl)
+                }
+                
+                self.collectionView.reloadData() // TODO: do not update all
+            })
+        }
+    
         /*
             if let URL = NSURL(string:self.cats[index++].ImgUrl){
 
@@ -86,7 +89,7 @@ class CustomViewController: UIViewController, UICollectionViewDelegateFlowLayout
         collectionView.scrollEnabled = false
         collectionView.registerClass(CatTrayViewCell.self, forCellWithReuseIdentifier: "Cell")
         self.view.addSubview(collectionView)
-
+        
         let leftswipeRecognizer = UISwipeGestureRecognizer(target: self, action: "leftSwipe")
         leftswipeRecognizer.direction = .Left
         self.view.addGestureRecognizer(leftswipeRecognizer)
@@ -114,7 +117,8 @@ class CustomViewController: UIViewController, UICollectionViewDelegateFlowLayout
                 self.firstImageView!.contentMode = UIViewContentMode.ScaleAspectFit
                 self.firstImageView!.clipsToBounds = true
                 self.view.addSubview(self.firstImageView!)
-
+                
+                
                 // update some UI
                 self.collectionView.reloadData()
 
@@ -160,7 +164,7 @@ class CustomViewController: UIViewController, UICollectionViewDelegateFlowLayout
         self.view.insertSubview(secondImageView, aboveSubview: imageView)
 
         UIView.animateWithDuration(2.0, delay: 0.0, options: .CurveEaseOut, animations: {
-            //imageView.frame = CGRectMake(448, 28, 1024, 1024)
+            imageView.frame = CGRectMake(448, 28, 1024, 1024)
 
 
         }, completion: {
@@ -246,7 +250,10 @@ class CustomViewController: UIViewController, UICollectionViewDelegateFlowLayout
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! CatTrayViewCell
         //cell.imageCat.image = UIImage(named:"cat")
-        if let URL = NSURL(string: cats[indexPath.row + 1].ImgUrl) {
+        let cat = cats[indexPath.row];
+        cat.Tag = cell;
+        
+        if let URL = NSURL(string: cat.ImgUrl) {
             if let data = NSData(contentsOfURL: URL) {
                 //cell.imageCat.image = UIImage(data:data)
                 if URL.pathExtension!.lowercaseString == "gif" {
@@ -272,12 +279,17 @@ class CustomViewController: UIViewController, UICollectionViewDelegateFlowLayout
     }
 
     func HandleReport() {
-        if (imageIndex >= 0 && imageIndex < cats.count) {
-            //Todo stop timer if forcus
-            self.cats.removeAtIndex(imageIndex);
-            self.collectionView.deleteItemsAtIndexPaths([NSIndexPath(forRow: imageIndex, inSection: 0)])
-            imageIndex--;
-            loadImage()
+        if (imageIndex > 0 && imageIndex < cats.count) {
+            //Todo stop timer if forcus and intergrate with CollectionView
+            let cat = self.cats.removeAtIndex(--imageIndex);
+
+            //CollectionView
+            if let cell = cat.Tag as? UICollectionViewCell {
+            if let path = self.collectionView.indexPathForCell(cell){
+                self.collectionView.deleteItemsAtIndexPaths([path])
+            }}
+
+            //loadImage()
         }
     }
 }

@@ -15,8 +15,10 @@ class TopMenuView: UIView {
     var ReportHandler: Action?
     var timer: NSTimer?
     var reportButton: UIButton?;
+    var titleText: UITextView?;
     var originY: CGFloat?
     var newY: CGFloat?
+    
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -32,9 +34,13 @@ class TopMenuView: UIView {
         self.layer.zPosition = 1000
         self.backgroundColor = UIColor(red: 0.82, green: 0.82, blue: 0.81, alpha: 1)
 
+        
+        titleText = UITextView(frame: CGRect(x: 16, y: 16, width: screenSize.width - buttonWidth - 16, height: menuHeight - 32))
+        
+        self.addSubview(titleText!)
 
         reportButton = UIButton(type: UIButtonType.System) as UIButton
-        reportButton!.frame = CGRect(x: screenSize.width - buttonWidth - 32, y: 16, width: buttonWidth, height: menuHeight - 30)
+        reportButton!.frame = CGRect(x: screenSize.width - buttonWidth - 32, y: 16, width: buttonWidth, height: menuHeight - 32)
 
         reportButton!.setTitle("Report", forState: UIControlState.Normal)
         reportButton!.addTarget(self, action: "report:", forControlEvents: .AllEvents)
@@ -49,24 +55,38 @@ class TopMenuView: UIView {
                                           withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {
         //hide and show
         if originY == nil {
+            //first
             self.originY = self.layer.position.y;
             self.newY = -self.frame.height + self.layer.position.y + 20
-        }
-
-        if (reportButton!.state == UIControlState.Focused && self.layer.position.y == self.newY) {
-            UIView.animateWithDuration(0.5, animations: {
-                self.layer.position.y = self.originY!
-                self.alpha = 1
-            }, completion: nil)
-        } else if (reportButton!.state != UIControlState.Focused && self.layer.position.y == self.originY) {
-            UIView.animateWithDuration(0.5, animations: {
+            
+            UIView.animateWithDuration(0.5, delay: 1.0, options: UIViewAnimationOptions.TransitionNone ,animations: {
                 self.layer.position.y = self.newY!
                 self.alpha = 0.1
-            }, completion: nil)
+                }, completion: nil)
+            
+            //TODO: try to lose focus 
+        } else {
+            if (reportButton!.state == UIControlState.Focused && self.layer.position.y == self.newY) {
+                UIView.animateWithDuration(0.5, animations: {
+                    self.layer.position.y = self.originY!
+                    self.alpha = 1
+                    }, completion: nil)
+            } else if (reportButton!.state != UIControlState.Focused && self.layer.position.y == self.originY) {
+                UIView.animateWithDuration(0.5, animations: {
+                    self.layer.position.y = self.newY!
+                    self.alpha = 0.1
+                    }, completion: nil)
+            }
         }
+
+        
     }
 
     func report(sender: UIButton) {
         ReportHandler!()
+    }
+    
+    func setTitle(title: String) {
+        titleText!.text = title;
     }
 }

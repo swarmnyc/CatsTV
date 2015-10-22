@@ -22,6 +22,7 @@ class Entry {
     var Score: Int
     var Type: EntryType
     var Source: String
+    var Tag: AnyObject?
 
     init(id: String, imgUrl: String, text: String, updatedAt: Double, score: Int, source: String) {
         Id = id
@@ -45,7 +46,8 @@ class Entry {
 typealias EntryServiceFetchSuccessHandler = (data:[Entry]) -> Void
 
 class EntryService {
-
+    private static var isRunning = false;
+    
     private static var Providers: [Provider] = [
             //RedditProvider(),
             //TwitterFavoriateProvider(),
@@ -63,6 +65,13 @@ class EntryService {
     }
     
     private static func IntenalFetchMoreAsnyc(continueLoad:Bool, callback: EntryServiceFetchSuccessHandler?){
+        if isRunning {
+            return
+        }
+        
+        
+        isRunning = true;
+        
         var counter = 0;
         
         var result = [Entry]()
@@ -76,6 +85,7 @@ class EntryService {
                 
                 counter++;
                 if counter == Providers.count {
+                    isRunning = false
                     callback!(data: result)
                 }
             })

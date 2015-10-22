@@ -9,7 +9,7 @@
 import Foundation
 
 typealias ProviderFetchSuccessHandler = (data:[Entry]) -> Void
-let pageSzie = 100;
+let pageSize = 100;
 
 protocol Provider {
     var Name: String { get }
@@ -20,8 +20,14 @@ class TwitterFavoriateProvider: Provider {
     private let dateFormatter: NSDateFormatter
     private var noMoreData = false
     private var lastId: Int?;
+    private var size = pageSize;
     
     let Name = "Twitter"
+    
+    convenience init(_ size:Int) {
+        self.init()
+        self.size = size;
+    }
     
     init() {
         dateFormatter = NSDateFormatter()
@@ -59,7 +65,7 @@ class TwitterFavoriateProvider: Provider {
                     accessTokenSecret: "FLFS5RK0I3NXUA94s9OHHiSp9IxC7bFpFVaoXGRvnXtla")
 
             var parameters = Dictionary<String, AnyObject>();
-            parameters["count"] = pageSzie;
+            parameters["count"] = self.provider.size;
             
             if continueLoad {
                 parameters["max_id"] = provider.lastId
@@ -118,7 +124,7 @@ class RedditProvider: Provider {
             return
         }
         
-        let catApiURL = "https://www.reddit.com/r/cats/hot.json?limit=\(pageSzie)" + (continueLoad.boolValue ? "&after=" + afterKey : "")
+        let catApiURL = "https://www.reddit.com/r/cats/hot.json?limit=\(pageSize)" + (continueLoad.boolValue ? "&after=" + afterKey : "")
         let request = NSURLRequest(URL: NSURL(string: catApiURL)!)
         let urlSession = NSURLSession.sharedSession()
         let task = urlSession.dataTaskWithRequest(request, completionHandler: {
@@ -170,7 +176,7 @@ class RedditGifsFavoriteProvider: Provider {
             return
         }
         
-        let catApiURL = "https://www.reddit.com/r/catgifs/hot.json?limit=\(pageSzie)" + (continueLoad.boolValue ? "&after=" + afterKey : "")
+        let catApiURL = "https://www.reddit.com/r/catgifs/hot.json?limit=\(pageSize)" + (continueLoad.boolValue ? "&after=" + afterKey : "")
         let request = NSURLRequest(URL: NSURL(string: catApiURL)!)
         let urlSession = NSURLSession.sharedSession()
         let task = urlSession.dataTaskWithRequest(request, completionHandler: {
