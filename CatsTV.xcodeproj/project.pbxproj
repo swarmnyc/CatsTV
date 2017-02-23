@@ -1,0 +1,485 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C4B3CF7B1E5509BD00D401E9 /* TopCatVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B3CF7A1E5509BD00D401E9 /* TopCatVideoView.swift */; };
+		C4B3CF7E1E551DFE00D401E9 /* Shadows.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B3CF7D1E551DFE00D401E9 /* Shadows.swift */; };
+		C4B61A8F1E53699A00DBEAD1 /* CatsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B61A8E1E53699A00DBEAD1 /* CatsCollectionView.swift */; };
+		C4B61A911E5369D500DBEAD1 /* CatCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B61A901E5369D500DBEAD1 /* CatCollectionViewCell.swift */; };
+		C4B61A941E53715700DBEAD1 /* Reddit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B61A931E53715700DBEAD1 /* Reddit.swift */; };
+		C4B61A971E537A0400DBEAD1 /* Cat.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B61A961E537A0400DBEAD1 /* Cat.swift */; };
+		C4C859E01E5691300033CA97 /* CatsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C859DF1E5691300033CA97 /* CatsPresenter.swift */; };
+		C4DE95901E53611400CA80B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DE958F1E53611400CA80B2 /* AppDelegate.swift */; };
+		C4DE95971E53611400CA80B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4DE95961E53611400CA80B2 /* Assets.xcassets */; };
+		C4DE959D1E53620E00CA80B2 /* CatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DE959C1E53620E00CA80B2 /* CatsViewController.swift */; };
+		C4DE95A21E53624D00CA80B2 /* CatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DE95A11E53624D00CA80B2 /* CatsView.swift */; };
+		E170086A4E010CEB32383AA6 /* Pods_CatsTV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2906A4EBDA0DC4885D0AEEF4 /* Pods_CatsTV.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2906A4EBDA0DC4885D0AEEF4 /* Pods_CatsTV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CatsTV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C022DEC322908946365CDCB /* Pods-CatsTV.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CatsTV.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CatsTV/Pods-CatsTV.debug.xcconfig"; sourceTree = "<group>"; };
+		6689ED6D1BFE0AF708EF0062 /* Pods-CatsTV.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CatsTV.release.xcconfig"; path = "Pods/Target Support Files/Pods-CatsTV/Pods-CatsTV.release.xcconfig"; sourceTree = "<group>"; };
+		C4B3CF7A1E5509BD00D401E9 /* TopCatVideoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopCatVideoView.swift; sourceTree = "<group>"; };
+		C4B3CF7D1E551DFE00D401E9 /* Shadows.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shadows.swift; sourceTree = "<group>"; };
+		C4B61A8E1E53699A00DBEAD1 /* CatsCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatsCollectionView.swift; sourceTree = "<group>"; };
+		C4B61A901E5369D500DBEAD1 /* CatCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatCollectionViewCell.swift; sourceTree = "<group>"; };
+		C4B61A931E53715700DBEAD1 /* Reddit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reddit.swift; sourceTree = "<group>"; };
+		C4B61A961E537A0400DBEAD1 /* Cat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cat.swift; sourceTree = "<group>"; };
+		C4C859DF1E5691300033CA97 /* CatsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatsPresenter.swift; sourceTree = "<group>"; };
+		C4DE958C1E53611400CA80B2 /* CatsTV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatsTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4DE958F1E53611400CA80B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C4DE95961E53611400CA80B2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C4DE95981E53611400CA80B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C4DE959C1E53620E00CA80B2 /* CatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatsViewController.swift; sourceTree = "<group>"; };
+		C4DE95A11E53624D00CA80B2 /* CatsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatsView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C4DE95891E53611400CA80B2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E170086A4E010CEB32383AA6 /* Pods_CatsTV.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		63A8E0771595888D9D0C5DBE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2906A4EBDA0DC4885D0AEEF4 /* Pods_CatsTV.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C4B3CF7C1E551DC500D401E9 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				C4B3CF7D1E551DFE00D401E9 /* Shadows.swift */,
+			);
+			name = Other;
+			sourceTree = "<group>";
+		};
+		C4B61A921E53712B00DBEAD1 /* Data Managers */ = {
+			isa = PBXGroup;
+			children = (
+				C4B61A931E53715700DBEAD1 /* Reddit.swift */,
+			);
+			name = "Data Managers";
+			sourceTree = "<group>";
+		};
+		C4B61A951E5379D900DBEAD1 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				C4B61A961E537A0400DBEAD1 /* Cat.swift */,
+			);
+			name = Entities;
+			sourceTree = "<group>";
+		};
+		C4C859DE1E5690F90033CA97 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				C4C859DF1E5691300033CA97 /* CatsPresenter.swift */,
+			);
+			name = Presenter;
+			sourceTree = "<group>";
+		};
+		C4DE95811E5360D800CA80B2 = {
+			isa = PBXGroup;
+			children = (
+				C4DE958E1E53611400CA80B2 /* CatsTV */,
+				C4DE958D1E53611400CA80B2 /* Products */,
+				D3FBAFEAC34C911D50D8C14D /* Pods */,
+				63A8E0771595888D9D0C5DBE /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		C4DE958D1E53611400CA80B2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C4DE958C1E53611400CA80B2 /* CatsTV.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C4DE958E1E53611400CA80B2 /* CatsTV */ = {
+			isa = PBXGroup;
+			children = (
+				C4DE958F1E53611400CA80B2 /* AppDelegate.swift */,
+				C4DE959F1E53622600CA80B2 /* Launch Module */,
+				C4DE959E1E53621E00CA80B2 /* Cats Module */,
+				C4B61A921E53712B00DBEAD1 /* Data Managers */,
+				C4B61A951E5379D900DBEAD1 /* Entities */,
+				C4B3CF7C1E551DC500D401E9 /* Other */,
+				C4DE95961E53611400CA80B2 /* Assets.xcassets */,
+				C4DE95981E53611400CA80B2 /* Info.plist */,
+			);
+			path = CatsTV;
+			sourceTree = "<group>";
+		};
+		C4DE959E1E53621E00CA80B2 /* Cats Module */ = {
+			isa = PBXGroup;
+			children = (
+				C4DE95A01E53623600CA80B2 /* View */,
+				C4C859DE1E5690F90033CA97 /* Presenter */,
+			);
+			name = "Cats Module";
+			sourceTree = "<group>";
+		};
+		C4DE959F1E53622600CA80B2 /* Launch Module */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Launch Module";
+			sourceTree = "<group>";
+		};
+		C4DE95A01E53623600CA80B2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C4DE959C1E53620E00CA80B2 /* CatsViewController.swift */,
+				C4DE95A11E53624D00CA80B2 /* CatsView.swift */,
+				C4B3CF7A1E5509BD00D401E9 /* TopCatVideoView.swift */,
+				C4B61A8E1E53699A00DBEAD1 /* CatsCollectionView.swift */,
+				C4B61A901E5369D500DBEAD1 /* CatCollectionViewCell.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		D3FBAFEAC34C911D50D8C14D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2C022DEC322908946365CDCB /* Pods-CatsTV.debug.xcconfig */,
+				6689ED6D1BFE0AF708EF0062 /* Pods-CatsTV.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C4DE958B1E53611400CA80B2 /* CatsTV */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C4DE95991E53611400CA80B2 /* Build configuration list for PBXNativeTarget "CatsTV" */;
+			buildPhases = (
+				0C73F768F72F724A10165949 /* [CP] Check Pods Manifest.lock */,
+				C4DE95881E53611400CA80B2 /* Sources */,
+				C4DE95891E53611400CA80B2 /* Frameworks */,
+				C4DE958A1E53611400CA80B2 /* Resources */,
+				5D9A819BFBF88B1150FDC17D /* [CP] Embed Pods Frameworks */,
+				15A5E115B0A36885A8BFD881 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CatsTV;
+			productName = CatsTV;
+			productReference = C4DE958C1E53611400CA80B2 /* CatsTV.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C4DE95821E5360D800CA80B2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				TargetAttributes = {
+					C4DE958B1E53611400CA80B2 = {
+						CreatedOnToolsVersion = 8.3;
+						DevelopmentTeam = TWPE6ND5AF;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = C4DE95851E5360D800CA80B2 /* Build configuration list for PBXProject "CatsTV" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C4DE95811E5360D800CA80B2;
+			productRefGroup = C4DE958D1E53611400CA80B2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C4DE958B1E53611400CA80B2 /* CatsTV */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C4DE958A1E53611400CA80B2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4DE95971E53611400CA80B2 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0C73F768F72F724A10165949 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		15A5E115B0A36885A8BFD881 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CatsTV/Pods-CatsTV-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5D9A819BFBF88B1150FDC17D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CatsTV/Pods-CatsTV-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C4DE95881E53611400CA80B2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4B61A911E5369D500DBEAD1 /* CatCollectionViewCell.swift in Sources */,
+				C4B3CF7E1E551DFE00D401E9 /* Shadows.swift in Sources */,
+				C4B61A971E537A0400DBEAD1 /* Cat.swift in Sources */,
+				C4C859E01E5691300033CA97 /* CatsPresenter.swift in Sources */,
+				C4B61A941E53715700DBEAD1 /* Reddit.swift in Sources */,
+				C4DE95A21E53624D00CA80B2 /* CatsView.swift in Sources */,
+				C4B61A8F1E53699A00DBEAD1 /* CatsCollectionView.swift in Sources */,
+				C4B3CF7B1E5509BD00D401E9 /* TopCatVideoView.swift in Sources */,
+				C4DE95901E53611400CA80B2 /* AppDelegate.swift in Sources */,
+				C4DE959D1E53620E00CA80B2 /* CatsViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		C4DE95861E5360D800CA80B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+			};
+			name = Debug;
+		};
+		C4DE95871E5360D800CA80B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+			};
+			name = Release;
+		};
+		C4DE959A1E53611400CA80B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2C022DEC322908946365CDCB /* Pods-CatsTV.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = TWPE6ND5AF;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = CatsTV/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.WilliamRobinson.CatsTV;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 10.1;
+			};
+			name = Debug;
+		};
+		C4DE959B1E53611400CA80B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6689ED6D1BFE0AF708EF0062 /* Pods-CatsTV.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = TWPE6ND5AF;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = CatsTV/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.WilliamRobinson.CatsTV;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 10.1;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C4DE95851E5360D800CA80B2 /* Build configuration list for PBXProject "CatsTV" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C4DE95861E5360D800CA80B2 /* Debug */,
+				C4DE95871E5360D800CA80B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C4DE95991E53611400CA80B2 /* Build configuration list for PBXNativeTarget "CatsTV" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C4DE959A1E53611400CA80B2 /* Debug */,
+				C4DE959B1E53611400CA80B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C4DE95821E5360D800CA80B2 /* Project object */;
+}

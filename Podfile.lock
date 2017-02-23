@@ -1,13 +1,12 @@
 PODS:
-  - Alamofire (3.0.0)
-  - HanekeSwift (0.10.0)
+  - SnapKit (3.1.2)
 
 DEPENDENCIES:
-  - Alamofire (~> 3.0)
-  - HanekeSwift
+  - SnapKit
 
 SPEC CHECKSUMS:
-  Alamofire: b61782387f81bcc538a0284cf2bb5d7995cd0a80
-  HanekeSwift: d6f5bdf9dbdbbc09d59623b2c1d533e46463dd4d
+  SnapKit: 12b24f569cb7c143acc9c22b9d91b23e7b1c84a2
 
-COCOAPODS: 0.39.0.beta.4
+PODFILE CHECKSUM: e6469d0da607621e2f7145451481d52c91b26c70
+
+COCOAPODS: 1.2.0
