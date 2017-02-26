@@ -20,8 +20,8 @@ class CatsCollectionView: UICollectionView {
   
   // Constants
   let reuseIdentifier = "CatCollectionViewCell"
-  var itemSize: CGSize!
-  var spacing: CGFloat!
+  let itemSize = CGSize(width: 230, height: 150)
+  let spacing: CGFloat = 100
   
   // Initialization
   required init?(coder aDecoder: NSCoder) {
@@ -66,19 +66,13 @@ class CatsCollectionView: UICollectionView {
   
   // Initial configuration
   func configure() {
-    
-    // Initialize constants
-    let dimension = UIScreen.main.bounds.height / 7
-    itemSize = CGSize(width: dimension * 1.5, height: dimension)
-    spacing = dimension / 2
-    
-    // General configuration
     let layout = collectionViewLayout as! UICollectionViewFlowLayout
     layout.itemSize = itemSize
-    layout.minimumInteritemSpacing = spacing
+    layout.minimumInteritemSpacing = 0
     layout.minimumLineSpacing = spacing
     layout.scrollDirection = .horizontal
     clipsToBounds = false
+    decelerationRate = UIScrollViewDecelerationRateFast
     register(CatCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
   }
 }

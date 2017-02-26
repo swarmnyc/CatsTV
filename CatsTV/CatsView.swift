@@ -18,34 +18,42 @@ class CatsView: UIView {
     imageView.contentMode = .scaleAspectFill
     return imageView
   }()
+  lazy var musicCatButton: UIButton = {
+    let button = UIButton()
+    button.setImage(#imageLiteral(resourceName: "MusicCat"), for: .normal)
+    return button
+  }()
+  lazy var blurView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
+  lazy var blackView: UIView = {
+    let view = UIView()
+    view.backgroundColor = UIColor.black
+    view.alpha = 0
+    view.isHidden = true
+    return view
+  }()
   lazy var topCatVideoView = TopCatVideoView()
   lazy var upNextLabel: UILabel = {
     let label = UILabel()
     label.text = "Up next..."
     label.font = UIFont.systemFont(ofSize: 36, weight: UIFontWeightBlack)
     label.textColor = UIColor.white
-    label.alpha = 0
     return label
   }()
   lazy var catsCollectionView: CatsCollectionView = {
     let collectionView = CatsCollectionView()
-    collectionView.alpha = 0
-    collectionView.decelerationRate = UIScrollViewDecelerationRateFast
+    
     return collectionView
   }()
-  lazy var blurView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
+  
   lazy var launchTransitionImageView: UIImageView? = UIImageView(image: #imageLiteral(resourceName: "LaunchSplash"))
-  let padding: CGFloat = 100
-  lazy var musicCatButton: UIButton = {
-    let button = UIButton()
-    button.setImage(#imageLiteral(resourceName: "MusicCat"), for: .normal)
-    return button
-  }()
   
   // Constraints
   var topCatVideoViewCenterX: Constraint!
   var musicCatButtonRight: Constraint!
   var launchTransitionImageViewCenterY: Constraint!
+  
+  // Constants
+  let padding: CGFloat = 100
   
   // Properties
   var isFullScreen = false
@@ -65,10 +73,29 @@ class CatsView: UIView {
     configure()
   }
   
+  // Presses
+  override func pressesBegan(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
+    if presses.first?.type == UIPressType.menu, isFullScreen {
+      toggleFullScreen()
+    } else {
+      super.pressesBegan(presses, with: event)
+    }
+  }
+  
+  override func shouldUpdateFocus(in context: UIFocusUpdateContext) -> Bool {
+    return !isFullScreen
+  }
+  
   override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
     super.didUpdateFocus(in: context, with: coordinator)
+    
+    print("updated focus")
+    if isFocused { print("rootview") }
+    print(catsCollectionView.canBecomeFocused)
+    if topCatVideoView.isFocused { print("topcatfocused") }
+    if catsCollectionView.isFocused { print("collectionviewfocused") }
+    
     coordinator.addCoordinatedAnimations({
-      self.topCatVideoView.transform = self.topCatVideoView.isFocused ? CGAffineTransform(scaleX: 1.05, y: 1.05) : CGAffineTransform.identity
       self.topCatVideoView.layer.shadowOpacity = self.topCatVideoView.isFocused ? 1 : 0.7
       UIView.animate(
         withDuration: 0.8,
@@ -77,7 +104,9 @@ class CatsView: UIView {
         initialSpringVelocity: 1,
         options: [.overrideInheritedDuration, .allowUserInteraction],
         animations: {
-          self.musicCatButtonRight.update(offset: (self.musicCatButton.isFocused ? 50 : #imageLiteral(resourceName: "MusicCat").size.width - 195))
+          self.musicCatButtonRight.update(offset: (self.musicCatButton.isFocused ? 50 : self.musicCatButton.frame.width - 195))
+          self.topCatVideoViewCenterX.update(offset: self.musicCatButton.isFocused ? -self.musicCatButton.frame.width / 4 : 0)
+          self.topCatVideoView.transform = self.topCatVideoView.isFocused ? CGAffineTransform(scaleX: 1.05, y: 1.05) : (self.musicCatButton.isFocused ? CGAffineTransform(scaleX: 0.9, y: 0.9) : CGAffineTransform.identity)
           self.layoutIfNeeded()
       })
     })
@@ -86,43 +115,44 @@ class CatsView: UIView {
   // Initial configuration
   func configure() {
     
-    // Setup
-    
-    
     // Add subviews
     addSubview(backgroundImageView)
+    addSubview(musicCatButton)
     addSubview(upNextLabel)
     addSubview(catsCollectionView)
-    addSubview(topCatVideoView)
-    addSubview(musicCatButton)
     addSubview(blurView)
+    addSubview(blackView)
+    addSubview(topCatVideoView)
     addSubview(launchTransitionImageView!)
     
     // Constrain subviews
     backgroundImageView.snp.makeConstraints {
       $0.edges.equalToSuperview()
     }
+    musicCatButton.snp.makeConstraints {
+      musicCatButtonRight = $0.right.equalToSuperview().offset(#imageLiteral(resourceName: "MusicCat").size.width - 195).constraint
+      $0.centerY.equalToSuperview()
+    }
     catsCollectionView.snp.makeConstraints {
-      $0.bottom.equalToSuperview()
+      $0.bottom.equalToSuperview().offset(-60)
       $0.centerX.equalToSuperview()
       $0.width.equalToSuperview().offset(-padding * 2)
-      $0.height.equalTo(catsCollectionView.itemSize.height + catsCollectionView.spacing * 2)
+      $0.height.equalTo(catsCollectionView.itemSize.height)
     }
     upNextLabel.snp.makeConstraints {
       $0.left.equalTo(catsCollectionView)
-      $0.bottom.equalTo(catsCollectionView.snp.top).offset(30)
+      $0.bottom.equalTo(catsCollectionView.snp.top).offset(-30)
+    }
+    blurView.snp.makeConstraints {
+      $0.edges.equalToSuperview()
+    }
+    blackView.snp.makeConstraints {
+      $0.edges.equalToSuperview()
     }
     topCatVideoView.snp.makeConstraints {
       topCatVideoViewCenterX = $0.centerX.equalToSuperview().constraint
       $0.centerY.equalToSuperview().dividedBy(1.25)
       $0.width.height.equalToSuperview().dividedBy(1.65)
-    }
-    musicCatButton.snp.makeConstraints {
-      musicCatButtonRight = $0.right.equalToSuperview().offset(#imageLiteral(resourceName: "MusicCat").size.width - 195).constraint
-      $0.centerY.equalToSuperview()
-    }
-    blurView.snp.makeConstraints {
-      $0.edges.equalToSuperview()
     }
     launchTransitionImageView?.snp.makeConstraints {
       $0.centerX.width.height.equalToSuperview()
@@ -137,18 +167,20 @@ class CatsView: UIView {
   
   func animateFromLaunch() {
     UIView.animate(
-      withDuration: 1,
+      withDuration: 1.5,
       delay: 0,
       options: .curveEaseInOut,
       animations: {
         self.launchTransitionImageViewCenterY.update(offset: self.launchTransitionImageView!.frame.height)
         self.launchTransitionImageView!.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+        self.launchTransitionImageView!.alpha = 0.3
         self.blurView.effect = nil
         self.layoutIfNeeded()
     }) { _ in
       self.launchTransitionImageView!.snp.removeConstraints()
       self.launchTransitionImageView!.removeFromSuperview()
       self.launchTransitionImageView = nil
+      self.blurView.isHidden = true
     }
   }
   
@@ -201,17 +233,41 @@ class CatsView: UIView {
   
   @objc func toggleFullScreen() {
     isFullScreen = !isFullScreen
-    let fullFrame = CGRect(
-      x: -topCatVideoView.frame.minX,
-      y: -topCatVideoView.frame.minY,
-      width: UIScreen.main.bounds.width,
-      height: UIScreen.main.bounds.height)
-    UIView.animate(
-      withDuration: 0.5,
+    let fullFrame = CGRect(x: -topCatVideoView.frame.minX,
+                           y: -topCatVideoView.frame.minY,
+                           width: UIScreen.main.bounds.width,
+                           height: UIScreen.main.bounds.height)
+    blurView.isHidden = false
+    blackView.isHidden = false
+    topCatVideoView.layer.shadowOpacity = 0
+    UIView.animateKeyframes(
+      withDuration: isFullScreen ? 0.8 : 0.6,
+      delay: 0,
+      options: [],
       animations: {
-        self.topCatVideoView.topCatPlayerLayer.frame = self.isFullScreen ? fullFrame : self.topCatVideoView.bounds
-        self.layoutIfNeeded()
-    })
+        UIView.addKeyframe(
+          withRelativeStartTime: 0,
+          relativeDuration: self.isFullScreen ? 0.3 : 0.8,
+          animations: {
+            self.musicCatButtonRight.update(offset: self.isFullScreen ? self.musicCatButton.frame.width : self.musicCatButton.frame.width - 195)
+            self.blurView.effect = self.isFullScreen ? UIBlurEffect(style: .dark) : nil
+            self.blackView.alpha = self.isFullScreen ? 1 : 0
+            self.layoutIfNeeded()
+        })
+        UIView.addKeyframe(
+          withRelativeStartTime: 0,
+          relativeDuration: 1,
+          animations: {
+            self.topCatVideoView.topCatPlayerLayer.frame = self.isFullScreen ? fullFrame : self.topCatVideoView.bounds
+            self.layoutIfNeeded()
+        })
+    }) { _ in
+      if !self.isFullScreen {
+        self.blurView.isHidden = true
+        self.blackView.isHidden = true
+        self.topCatVideoView.layer.shadowOpacity = 1
+      }
+    }
   }
   
   @objc func appleMusicButtonTouched() {

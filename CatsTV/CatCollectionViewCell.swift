@@ -13,7 +13,15 @@ import AVKit
 class CatCollectionViewCell: UICollectionViewCell {
   
   // Layers
-  lazy var blurView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
+  lazy var blurView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
+  lazy var loadingCatImageView = UIImageView(image: #imageLiteral(resourceName: "LoadingCat"))
+  lazy var loadingGlassesImageView = UIImageView(image: #imageLiteral(resourceName: "LoadingGlasses"))
+  lazy var catThumbnailImageView: UIImageView = {
+    let imageView = UIImageView()
+    imageView.contentMode = .scaleAspectFill
+    imageView.adjustsImageWhenAncestorFocused = true
+    return imageView
+  }()
   lazy var catPlayerLayer: AVPlayerLayer = {
     let playerLayer = AVPlayerLayer(player: AVPlayer())
     playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
@@ -21,6 +29,9 @@ class CatCollectionViewCell: UICollectionViewCell {
     playerLayer.player!.isMuted = true
     playerLayer.isHidden = true
     return playerLayer
+  }()
+  let newview: UIView = {
+    return UIView()
   }()
   lazy var gradientView: UIView = {
     let view = UIView()
@@ -32,6 +43,7 @@ class CatCollectionViewCell: UICollectionViewCell {
   
   // Properties
   var catPlayerItem: AVPlayerItem?
+  var isLoadingCatBig = false
   
   // Initialization
   required init?(coder aDecoder: NSCoder) {
@@ -41,18 +53,17 @@ class CatCollectionViewCell: UICollectionViewCell {
     super.init(frame: frame)
     configure()
   }
- 
+  
   // Observe player item status
   override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
     guard keyPath == #keyPath(AVPlayerItem.status) else {
       super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
       return
     }
+    
     if AVPlayerItemStatus(rawValue: change![.newKey] as! Int)! == .readyToPlay {
       
-      print("ready")
-      
-      catPlayerLayer.isHidden = false
+      // TODO: show when playable
       
     }
   }
@@ -61,19 +72,46 @@ class CatCollectionViewCell: UICollectionViewCell {
   override func prepareForReuse() {
     super.prepareForReuse()
     resetCatPlayer()
-    print("prepare for reuse")
+    setLoading()
+  }
+  
+  // Loading new video
+  func setLoading() {
+    isLoadingCatBig = !isLoadingCatBig
+    UIView.animate(
+      withDuration: 0.4,
+      delay: 0,
+      options: [.curveEaseIn, .repeat, .autoreverse, .beginFromCurrentState],
+      animations: {
+        if self.isLoadingCatBig {
+          self.loadingCatImageView.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+          self.loadingGlassesImageView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+        } else {
+          self.loadingCatImageView.transform = CGAffineTransform.identity
+          self.loadingGlassesImageView.transform = CGAffineTransform.identity
+        }
+    })
   }
   
   // Set new video
   func setVideo(with cat: Cat) {
+    let catThumbnailImage = UIImage(cgImage: try! AVAssetImageGenerator(asset: AVAsset(url: cat.url)).copyCGImage(at: kCMTimeZero, actualTime: nil))
+    catThumbnailImageView.image = catThumbnailImage
+    
     let catPlayerItem = AVPlayerItem(url: cat.url)
     catPlayerItem.addObserver(self, forKeyPath: #keyPath(AVPlayerItem.status), options: [.new], context: nil)
     catPlayerLayer.player!.replaceCurrentItem(with: catPlayerItem)
   }
   
   func resetCatPlayer() {
+    
+    // TODO: fix loading animation removal
+    //loadingCatImageView.layer.removeAllAnimations()
+    //loadingGlassesImageView.layer.removeAllAnimations()
+    
     guard catPlayerLayer.player!.currentItem != nil else { return }
-    catPlayerLayer.isHidden = true
+    //catPlayerLayer.isHidden = true
+    catPlayerLayer.player!.cancelPendingPrerolls()
     catPlayerLayer.player!.rate = 0
     catPlayerLayer.player!.currentItem!.removeObserver(self, forKeyPath: #keyPath(AVPlayerItem.status))
     catPlayerLayer.player!.replaceCurrentItem(with: nil)
@@ -90,16 +128,27 @@ class CatCollectionViewCell: UICollectionViewCell {
     gradientMask.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
     gradientView.layer.mask = gradientMask
     catPlayerLayer.frame = contentView.frame
-    contentView.layer.cornerRadius = 4
-    contentView.clipsToBounds = true
+    catThumbnailImageView.layer.cornerRadius = 6
     
     // Add layers
     contentView.addSubview(blurView)
+    contentView.addSubview(loadingCatImageView)
+    contentView.addSubview(loadingGlassesImageView)
+    contentView.addSubview(catThumbnailImageView)
     contentView.addSubview(gradientView)
     contentView.layer.addSublayer(catPlayerLayer)
     
     // Constrain
     blurView.snp.makeConstraints {
+      $0.edges.equalToSuperview()
+    }
+    loadingCatImageView.snp.makeConstraints {
+      $0.edges.equalToSuperview()
+    }
+    loadingGlassesImageView.snp.makeConstraints {
+      $0.edges.equalToSuperview()
+    }
+    catThumbnailImageView.snp.makeConstraints {
       $0.edges.equalToSuperview()
     }
     gradientView.snp.makeConstraints {

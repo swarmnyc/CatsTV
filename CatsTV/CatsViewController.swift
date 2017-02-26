@@ -21,25 +21,17 @@ class CatsViewController: UIViewController {
   // Presenter
   var presenter: CatsPresenterProtocol!
   
-  // Properties
-  var isLaunch = true
-  
   // Subviews
   var rootView: CatsView {
-    get {
-      return view as! CatsView
-    }
-    set {
-      view = newValue
-    }
+    return view as! CatsView
   }
   
   // Properties
-  
+  var isLaunch = true
   
   // Life cycle
   override func loadView() {
-    rootView = CatsView()
+    view = CatsView()
   }
   
   override func viewDidLoad() {
@@ -50,7 +42,6 @@ class CatsViewController: UIViewController {
   
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
-    // TODO what does this do?
     rootView.makeAdjustmentsAfterInitialLayout()
   }
   
@@ -61,27 +52,13 @@ class CatsViewController: UIViewController {
       isLaunch = false
     }
   }
-  
-  // Focus
-  override var preferredFocusEnvironments: [UIFocusEnvironment] {
-    return [rootView]
-  }
-  
-  // Presses
-  override func pressesBegan(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
-    if presses.first?.type == UIPressType.menu, rootView.isFullScreen {
-      rootView.toggleFullScreen()
-    } else {
-      super.pressesBegan(presses, with: event)
-    }
-  }
 }
 
 // Cats view protocol
 extension CatsViewController: CatsViewProtocol {
   func store(cats: [Cat]) {
     print("🐈 got \(cats.count) cat urls from reddit 🐈")
-    self.rootView.catsCollectionView.cats = cats
+    rootView.catsCollectionView.cats.append(contentsOf: cats)
   }
   
   // TODO: Loop video twice then continue
@@ -99,35 +76,27 @@ extension CatsViewController: UICollectionViewDelegate {
   }
   
   func collectionView(_ collectionView: UICollectionView, didUpdateFocusIn context: UICollectionViewFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
-    //    var nextIndexPath: IndexPath?
-    //    var prevIndexPath: IndexPath?
+    var nextIndexPath: IndexPath?
+    var prevIndexPath: IndexPath?
+    
     print("did update focus")
     
     if let indexPath = context.nextFocusedIndexPath,
       let cell = collectionView.cellForItem(at: indexPath) as? CatCollectionViewCell,
       cell.isFocused {
-      //      nextIndexPath = indexPath
-      coordinator.addCoordinatedAnimations ({
-        cell.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
-        cell.layer.shadowOpacity = 1
-      }) {
-        if cell.catPlayerLayer.player!.status == .readyToPlay {
-          cell.catPlayerLayer.player!.play()
-        }
+      nextIndexPath = indexPath
+      if cell.catPlayerLayer.player!.status == .readyToPlay {
+        cell.catPlayerLayer.player!.play()
       }
     }
     
     if let indexPath = context.previouslyFocusedIndexPath,
       let cell = collectionView.cellForItem(at: indexPath) as? CatCollectionViewCell {
-      //      prevIndexPath = indexPath
+      prevIndexPath = indexPath
       if cell.catPlayerLayer.player!.status == .readyToPlay {
-        cell.catPlayerLayer.player!.pause()
         cell.catPlayerLayer.player!.seek(to: kCMTimeZero)
+        cell.catPlayerLayer.player!.pause()
       }
-      coordinator.addCoordinatedAnimations ({
-        cell.transform = CGAffineTransform.identity
-        cell.layer.shadowOpacity = 0.7
-      })
     }
     
     //    if let nextIndexPath = nextIndexPath {
@@ -176,10 +145,18 @@ extension CatsViewController: UICollectionViewDataSource {
   
   func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
     rootView.updateFocusIfNeeded()
+    
+    // TODO: fix call
+    //for catCell in rootView.catsCollectionView.visibleCells as! [CatCollectionViewCell] {
+    //  catCell.setLoading()
+    //}
   }
   
   func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
     rootView.isScrolling = false
+    if rootView.catsCollectionView.indexPathsForVisibleItems.last!.item < rootView.catsCollectionView.cats.count - 1 {
+      rootView.catsCollectionView.reloadData()
+    }
     rootView.catsCollectionView.loadCats()
     rootView.updateFocusIfNeeded()
   }

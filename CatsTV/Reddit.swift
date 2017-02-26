@@ -13,8 +13,8 @@ class Reddit {
   static var after = ""
   
   // Retrieve cats data from Reddit
-  static func getCatURLs(completion: (([Cat]) -> Void)?) {
-    let url = URL(string: "https://www.reddit.com/r/catgifs/hot.json?limit=50" + (after.isEmpty ? "&after=" + after : ""))!
+  static func getCatURLs(completion: @escaping ([Cat]) -> Void) {
+    let url = URL(string: "https://www.reddit.com/r/catgifs/hot.json?limit=50" + (!after.isEmpty ? "&after=" + after : ""))!
     let task = URLSession.shared.dataTask(with: url) { data, _, error in
       if let error = error {
         print("error retrieving cats from reddit: \(error.localizedDescription)")
@@ -25,18 +25,14 @@ class Reddit {
         return
       }
       parse(data) { catURLs in
-        guard !catURLs.isEmpty else {
-          print("no cats, will try again")
-          DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            getCatURLs(completion: nil)
-          }
-          return
-        }
         var cats: [Cat] = []
         for catURL in catURLs {
           cats.append(Cat(url: catURL))
         }
-        completion!(cats)
+        
+        print(after)
+        
+        completion(cats)
       }
     }
     task.resume()
