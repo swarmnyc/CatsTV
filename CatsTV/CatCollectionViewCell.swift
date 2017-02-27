@@ -12,10 +12,7 @@ import AVKit
 
 class CatCollectionViewCell: UICollectionViewCell {
   
-  // Layers
-  lazy var blurView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
-  lazy var loadingCatImageView = UIImageView(image: #imageLiteral(resourceName: "LoadingCat"))
-  lazy var loadingGlassesImageView = UIImageView(image: #imageLiteral(resourceName: "LoadingGlasses"))
+  // Views and layers
   lazy var catThumbnailImageView: UIImageView = {
     let imageView = UIImageView()
     imageView.contentMode = .scaleAspectFill
@@ -23,15 +20,10 @@ class CatCollectionViewCell: UICollectionViewCell {
     return imageView
   }()
   lazy var catPlayerLayer: AVPlayerLayer = {
-    let playerLayer = AVPlayerLayer(player: AVPlayer())
+    let playerLayer = AVPlayerLayer()
     playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
     playerLayer.needsDisplayOnBoundsChange = true
-    playerLayer.player!.isMuted = true
-    playerLayer.isHidden = true
     return playerLayer
-  }()
-  let newview: UIView = {
-    return UIView()
   }()
   lazy var gradientView: UIView = {
     let view = UIView()
@@ -42,8 +34,7 @@ class CatCollectionViewCell: UICollectionViewCell {
   lazy var gradientMask = CAGradientLayer()
   
   // Properties
-  var catPlayerItem: AVPlayerItem?
-  var isLoadingCatBig = false
+  var cat: Cat!
   
   // Initialization
   required init?(coder aDecoder: NSCoder) {
@@ -72,49 +63,17 @@ class CatCollectionViewCell: UICollectionViewCell {
   override func prepareForReuse() {
     super.prepareForReuse()
     resetCatPlayer()
-    setLoading()
-  }
-  
-  // Loading new video
-  func setLoading() {
-    isLoadingCatBig = !isLoadingCatBig
-    UIView.animate(
-      withDuration: 0.4,
-      delay: 0,
-      options: [.curveEaseIn, .repeat, .autoreverse, .beginFromCurrentState],
-      animations: {
-        if self.isLoadingCatBig {
-          self.loadingCatImageView.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
-          self.loadingGlassesImageView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
-        } else {
-          self.loadingCatImageView.transform = CGAffineTransform.identity
-          self.loadingGlassesImageView.transform = CGAffineTransform.identity
-        }
-    })
   }
   
   // Set new video
-  func setVideo(with cat: Cat) {
-    let catThumbnailImage = UIImage(cgImage: try! AVAssetImageGenerator(asset: AVAsset(url: cat.url)).copyCGImage(at: kCMTimeZero, actualTime: nil))
-    catThumbnailImageView.image = catThumbnailImage
-    
-    let catPlayerItem = AVPlayerItem(url: cat.url)
-    catPlayerItem.addObserver(self, forKeyPath: #keyPath(AVPlayerItem.status), options: [.new], context: nil)
-    catPlayerLayer.player!.replaceCurrentItem(with: catPlayerItem)
+  func setThumbnail() {
+    catThumbnailImageView.image = cat.image
   }
   
   func resetCatPlayer() {
-    
-    // TODO: fix loading animation removal
-    //loadingCatImageView.layer.removeAllAnimations()
-    //loadingGlassesImageView.layer.removeAllAnimations()
-    
-    guard catPlayerLayer.player!.currentItem != nil else { return }
-    //catPlayerLayer.isHidden = true
-    catPlayerLayer.player!.cancelPendingPrerolls()
-    catPlayerLayer.player!.rate = 0
-    catPlayerLayer.player!.currentItem!.removeObserver(self, forKeyPath: #keyPath(AVPlayerItem.status))
-    catPlayerLayer.player!.replaceCurrentItem(with: nil)
+    if catPlayerLayer.player != nil {
+      catPlayerLayer.player = nil
+    }
   }
   
   // Initial configuration
@@ -127,27 +86,18 @@ class CatCollectionViewCell: UICollectionViewCell {
     gradientMask.endPoint = CGPoint(x: 1, y: 0.5)
     gradientMask.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
     gradientView.layer.mask = gradientMask
-    catPlayerLayer.frame = contentView.frame
-    catThumbnailImageView.layer.cornerRadius = 6
+    catPlayerLayer.frame = CGRect(
+      x: -contentView.frame.width * 0.2,
+      y: -contentView.frame.height * 0.2,
+      width: contentView.frame.width * 1.4,
+      height: contentView.frame.height * 1.4)
     
     // Add layers
-    contentView.addSubview(blurView)
-    contentView.addSubview(loadingCatImageView)
-    contentView.addSubview(loadingGlassesImageView)
     contentView.addSubview(catThumbnailImageView)
-    contentView.addSubview(gradientView)
     contentView.layer.addSublayer(catPlayerLayer)
+    contentView.addSubview(gradientView)
     
     // Constrain
-    blurView.snp.makeConstraints {
-      $0.edges.equalToSuperview()
-    }
-    loadingCatImageView.snp.makeConstraints {
-      $0.edges.equalToSuperview()
-    }
-    loadingGlassesImageView.snp.makeConstraints {
-      $0.edges.equalToSuperview()
-    }
     catThumbnailImageView.snp.makeConstraints {
       $0.edges.equalToSuperview()
     }

@@ -10,11 +10,12 @@ import Foundation
 import AVKit
 
 class Reddit {
-  static var after = ""
+  static var after: String? = ""
   
   // Retrieve cats data from Reddit
   static func getCatURLs(completion: @escaping ([Cat]) -> Void) {
-    let url = URL(string: "https://www.reddit.com/r/catgifs/hot.json?limit=50" + (!after.isEmpty ? "&after=" + after : ""))!
+    guard let after = after else { return }
+    let url = URL(string: "https://www.reddit.com/r/catgifs/hot.json?limit=50" + (after.isEmpty ? "&after=" + after : ""))!
     let task = URLSession.shared.dataTask(with: url) { data, _, error in
       if let error = error {
         print("error retrieving cats from reddit: \(error.localizedDescription)")
@@ -27,11 +28,14 @@ class Reddit {
       parse(data) { catURLs in
         var cats: [Cat] = []
         for catURL in catURLs {
-          cats.append(Cat(url: catURL))
+          let catImageGenerator = AVAssetImageGenerator(asset: AVAsset(url: catURL))
+          do {
+            let catImage = UIImage(cgImage: try catImageGenerator.copyCGImage(at: kCMTimeZero, actualTime: nil))
+            cats.append(Cat(url: catURL, image: catImage))
+          } catch {
+            continue
+          }
         }
-        
-        print(after)
-        
         completion(cats)
       }
     }
@@ -58,7 +62,11 @@ class Reddit {
         return
       }
       if let after = jsonData["after"] as? String {
-        Reddit.after = after
+        if after != Reddit.after {
+          Reddit.after = after
+        } else {
+          Reddit.after = nil
+        }
       }
       
       var catURLs: [URL] = []
@@ -89,10 +97,6 @@ class Reddit {
     } catch {
       print("error serializing reddit cats data: \(error)")
     }
-  }
-  
-  func dumb() {
-    
   }
 }
 

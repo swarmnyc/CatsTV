@@ -34,17 +34,12 @@ class CatsView: UIView {
   lazy var topCatVideoView = TopCatVideoView()
   lazy var upNextLabel: UILabel = {
     let label = UILabel()
-    label.text = "Up next..."
+    label.text = "up next"
     label.font = UIFont.systemFont(ofSize: 36, weight: UIFontWeightBlack)
     label.textColor = UIColor.white
     return label
   }()
-  lazy var catsCollectionView: CatsCollectionView = {
-    let collectionView = CatsCollectionView()
-    
-    return collectionView
-  }()
-  
+  lazy var catsCollectionView = CatsCollectionView()
   lazy var launchTransitionImageView: UIImageView? = UIImageView(image: #imageLiteral(resourceName: "LaunchSplash"))
   
   // Constraints
@@ -52,12 +47,8 @@ class CatsView: UIView {
   var musicCatButtonRight: Constraint!
   var launchTransitionImageViewCenterY: Constraint!
   
-  // Constants
-  let padding: CGFloat = 100
-  
   // Properties
   var isFullScreen = false
-  var isScrolling = false
   
   // Initialization
   required init?(coder aDecoder: NSCoder) {
@@ -88,13 +79,6 @@ class CatsView: UIView {
   
   override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
     super.didUpdateFocus(in: context, with: coordinator)
-    
-    print("updated focus")
-    if isFocused { print("rootview") }
-    print(catsCollectionView.canBecomeFocused)
-    if topCatVideoView.isFocused { print("topcatfocused") }
-    if catsCollectionView.isFocused { print("collectionviewfocused") }
-    
     coordinator.addCoordinatedAnimations({
       self.topCatVideoView.layer.shadowOpacity = self.topCatVideoView.isFocused ? 1 : 0.7
       UIView.animate(
@@ -136,12 +120,12 @@ class CatsView: UIView {
     catsCollectionView.snp.makeConstraints {
       $0.bottom.equalToSuperview().offset(-60)
       $0.centerX.equalToSuperview()
-      $0.width.equalToSuperview().offset(-padding * 2)
+      $0.width.equalToSuperview().offset(-180)
       $0.height.equalTo(catsCollectionView.itemSize.height)
     }
     upNextLabel.snp.makeConstraints {
       $0.left.equalTo(catsCollectionView)
-      $0.bottom.equalTo(catsCollectionView.snp.top).offset(-30)
+      $0.bottom.equalTo(catsCollectionView.snp.top).offset(-40)
     }
     blurView.snp.makeConstraints {
       $0.edges.equalToSuperview()
@@ -158,6 +142,11 @@ class CatsView: UIView {
       $0.centerX.width.height.equalToSuperview()
       launchTransitionImageViewCenterY = $0.centerY.equalToSuperview().constraint
     }
+  }
+  
+  func addDelegates(_ catTapDelegate: CatInputProtocol, _ nextCatDelegate: CatOutputProtocol) {
+    catsCollectionView.catTapDelegate = catTapDelegate
+    topCatVideoView.nextCatDelegate = nextCatDelegate
   }
   
   func addTargets() {
@@ -191,44 +180,6 @@ class CatsView: UIView {
     CALayer.shadow(topCatVideoView)
     CALayer.shadow(musicCatButton)
     CALayer.shadow(upNextLabel)
-  }
-  
-  // Animations
-  func prepareForCatDisplay() {
-    layoutIfNeeded()
-    UIView.animateKeyframes(
-      withDuration: 2,
-      delay: 0,
-      options: .calculationModeCubic,
-      animations: {
-        UIView.addKeyframe(
-          withRelativeStartTime: 1,
-          relativeDuration: 1,
-          animations: {
-            self.upNextLabel.alpha = 1
-            self.catsCollectionView.alpha = 1
-            self.layoutIfNeeded()
-        })
-    })
-  }
-  
-  func showCats() {
-    let topPlayer = topCatVideoView.topCatPlayerLayer.player!
-    let topPlayerItem = AVPlayerItem(url: self.catsCollectionView.cats.first!.url)
-    DispatchQueue.main.async {
-      topPlayer.replaceCurrentItem(with: topPlayerItem)
-      self.catsCollectionView.reloadData()
-      self.prepareForCatDisplay()
-      NotificationCenter.default.addObserver(
-        forName: Notification.Name.AVPlayerItemDidPlayToEndTime,
-        object: topPlayer.currentItem,
-        queue: OperationQueue.main
-      ) { _ in
-        topPlayer.seek(to: kCMTimeZero)
-        topPlayer.play()
-      }
-      topPlayer.play()
-    }
   }
   
   @objc func toggleFullScreen() {

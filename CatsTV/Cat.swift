@@ -10,4 +10,5 @@ import UIKit
 
 struct Cat {
   let url: URL
+  let image: UIImage
 }
