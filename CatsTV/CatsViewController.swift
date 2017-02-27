@@ -35,6 +35,7 @@ class CatsViewController: UIViewController {
   
   // Properties
   var isLaunch = true
+  var idleTimer: Timer!
   
   // Life cycle
   override func loadView() {
@@ -58,6 +59,16 @@ class CatsViewController: UIViewController {
     if isLaunch {
       rootView.animateFromLaunch()
       isLaunch = false
+    } else {
+      rootView.topCatVideoView.topCatPlayerLayer.player?.seek(to: kCMTimeZero)
+      rootView.topCatVideoView.topCatPlayerLayer.player?.play()
+      guard let visibleCells = rootView.catsCollectionView.visibleCells as? [CatCollectionViewCell] else { return }
+      for cell in visibleCells {
+        if cell.isFocused {
+          cell.catPlayerLayer.player?.seek(to: kCMTimeZero)
+          cell.catPlayerLayer.player?.play()
+        }
+      }
     }
   }
 }
@@ -66,12 +77,12 @@ class CatsViewController: UIViewController {
 extension CatsViewController: CatsViewProtocol {
   func store(cats: [Cat]) {
     print("🐈 got \(cats.count) cat urls from reddit 🐈")
-    if rootView.catsCollectionView.isLoading {
-      rootView.topCatVideoView.setVideo(AVPlayer(url: cats[0].url))
-      rootView.topCatVideoView.nextPlayer = AVPlayer(url: cats[1].url)
-      rootView.catsCollectionView.isLoading = false
-    }
     rootView.catsCollectionView.cats.append(contentsOf: cats)
+    
+    guard rootView.catsCollectionView.isLoading else { return }
+    rootView.topCatVideoView.setVideo(AVPlayer(url: cats[0].url))
+    rootView.topCatVideoView.nextPlayer = AVPlayer(url: cats[1].url)
+    rootView.catsCollectionView.isLoading = false
     rootView.catsCollectionView.reloadData()
   }
 }
@@ -87,8 +98,9 @@ extension CatsViewController: CatOutputProtocol {
   func nextCat() {
     rootView.topCatVideoView.index += 1
     rootView.topCatVideoView.setVideo(rootView.topCatVideoView.nextPlayer!)
-    rootView.topCatVideoView.nextPlayer = AVPlayer(url: rootView.catsCollectionView.cats[rootView.topCatVideoView.index].url)
-    rootView.catsCollectionView.scrollToItem(at: IndexPath(item: rootView.topCatVideoView.index, section: 0), at: .left, animated: true)
+    if rootView.topCatVideoView.index < rootView.catsCollectionView.cats.count {
+      rootView.topCatVideoView.nextPlayer = AVPlayer(url: rootView.catsCollectionView.cats[rootView.topCatVideoView.index].url)
+    }
   }
 }
 

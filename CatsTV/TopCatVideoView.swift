@@ -15,6 +15,16 @@ class TopCatVideoView: UIView {
   var nextCatDelegate: CatOutputProtocol!
   
   // Subviews
+  lazy var loadingCatImageView: UIImageView = {
+    let imageView = UIImageView(image: #imageLiteral(resourceName: "LoadingCat"))
+    imageView.contentMode = .scaleAspectFit
+    return imageView
+  }()
+  lazy var loadingGlassesImageView: UIImageView = {
+    let imageView = UIImageView(image: #imageLiteral(resourceName: "LoadingGlasses"))
+    imageView.contentMode = .scaleAspectFit
+    return imageView
+  }()
   lazy var topCatPlayerLayer: AVPlayerLayer = {
     let playerLayer = AVPlayerLayer()
     playerLayer.videoGravity = AVLayerVideoGravityResizeAspect
@@ -46,6 +56,17 @@ class TopCatVideoView: UIView {
     return true
   }
   
+  func toggleLoading() {
+    UIView.animate(
+      withDuration: 0.1,
+      delay: 0,
+      options: [.curveEaseIn, .repeat, .autoreverse, .beginFromCurrentState],
+      animations: {
+        self.loadingCatImageView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+        self.loadingGlassesImageView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+    })
+  }
+  
   // Set video
   func setVideo(_ player: AVPlayer) {
     NotificationCenter.default.removeObserver(self)
@@ -56,10 +77,10 @@ class TopCatVideoView: UIView {
       object: topCatPlayerLayer.player!.currentItem,
       queue: OperationQueue.main
     ) { _ in
+      self.playCount -= 1
       if self.playCount > 0 {
         self.topCatPlayerLayer.player!.seek(to: kCMTimeZero)
         self.topCatPlayerLayer.player!.play()
-        self.playCount -= 1
       } else {
         self.nextCatDelegate.nextCat()
       }
@@ -69,6 +90,18 @@ class TopCatVideoView: UIView {
   
   // Setup
   func configure() {
+    
+    // Add views and layers
+    addSubview(loadingCatImageView)
+    addSubview(loadingGlassesImageView)
     layer.addSublayer(topCatPlayerLayer)
+    
+    // Constrain
+    loadingCatImageView.snp.makeConstraints {
+      $0.center.equalToSuperview()
+    }
+    loadingGlassesImageView.snp.makeConstraints {
+      $0.center.equalToSuperview()
+    }
   }
 }

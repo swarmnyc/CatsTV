@@ -16,19 +16,16 @@ class LoadingCollectionViewCell: UICollectionViewCell {
   lazy var loadingCatImageView = UIImageView(image: #imageLiteral(resourceName: "LoadingCat"))
   lazy var loadingGlassesImageView = UIImageView(image: #imageLiteral(resourceName: "LoadingGlasses"))
   
-  // Properties
-  var isLoadingCatBig = false
-  
   // Initialization
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
   }
-
+  
   override init(frame: CGRect) {
     super.init(frame: frame)
     configure()
   }
-
+  
   override func prepareForReuse() {
     super.prepareForReuse()
     loadingCatImageView.layer.removeAllAnimations()
@@ -37,25 +34,16 @@ class LoadingCollectionViewCell: UICollectionViewCell {
   
   // Loading new video
   func setLoading() {
-    isLoadingCatBig = !isLoadingCatBig
     UIView.animate(
       withDuration: 0.4,
       delay: 0,
       options: [.curveEaseIn, .repeat, .autoreverse, .beginFromCurrentState],
       animations: {
-        if self.isLoadingCatBig {
-          self.blurView.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
-          self.loadingCatImageView.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
-          self.loadingGlassesImageView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
-        } else {
-          self.blurView.transform = CGAffineTransform.identity
-          self.loadingCatImageView.transform = CGAffineTransform.identity
-          self.loadingGlassesImageView.transform = CGAffineTransform.identity
-        }
+        self.blurView.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+        self.loadingCatImageView.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+        self.loadingGlassesImageView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
     })
   }
-  
-  
   
   // Initial configuration
   func configure() {
@@ -65,7 +53,7 @@ class LoadingCollectionViewCell: UICollectionViewCell {
     contentView.addSubview(loadingCatImageView)
     contentView.addSubview(loadingGlassesImageView)
     
-
+    
     // Constrain
     blurView.snp.makeConstraints {
       $0.edges.equalToSuperview()

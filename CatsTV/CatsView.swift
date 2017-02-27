@@ -125,7 +125,7 @@ class CatsView: UIView {
     }
     upNextLabel.snp.makeConstraints {
       $0.left.equalTo(catsCollectionView)
-      $0.bottom.equalTo(catsCollectionView.snp.top).offset(-40)
+      $0.bottom.equalTo(catsCollectionView.snp.top).offset(-50)
     }
     blurView.snp.makeConstraints {
       $0.edges.equalToSuperview()
@@ -164,6 +164,7 @@ class CatsView: UIView {
         self.launchTransitionImageView!.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
         self.launchTransitionImageView!.alpha = 0.3
         self.blurView.effect = nil
+        self.topCatVideoView.toggleLoading()
         self.layoutIfNeeded()
     }) { _ in
       self.launchTransitionImageView!.snp.removeConstraints()
