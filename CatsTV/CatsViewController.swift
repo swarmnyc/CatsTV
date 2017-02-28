@@ -11,16 +11,27 @@ import SnapKit
 import AVKit
 
 // Defines commands sent from presenter to view
-protocol CatsViewProtocol: class {
+protocol CatsOutputProtocol: class {
   func store(cats: [Cat])
 }
 
-protocol CatInputProtocol {
-  func catTapped(_: AVPlayer, _ index: Int)
-}
-
-protocol CatOutputProtocol {
+// Defines inputs in view
+protocol CatInputProtocol: class {
+  var catsCount: Int { get }
+  var currentVideoIndex: Int { get }
+  var isFullScreen: Bool { get set }
+  var isScrolling: Bool { get }
+  var isInitialLaunch: Bool { get }
+  func append(cats: [Cat])
+  func cat(index: Int) -> Cat
+  func playerForCat(index: Int) -> AVPlayer
+  func toggleFullScreen()
+  func setScrolling()
+  func setStoppedScrolling()
+  func userDidInteract()
+  func catTapped(previous: AVPlayer?, current: AVPlayer, next: AVPlayer?, currentIndex: Int)
   func nextCat()
+  func previousCat()
 }
 
 class CatsViewController: UIViewController {
@@ -34,19 +45,25 @@ class CatsViewController: UIViewController {
   }
   
   // Properties
-  var isLaunch = true
-  var idleTimer: Timer!
+  lazy var cats: [Cat] = []
+  var idleTimer: Timer?
+  
+  // Status flags
+  var isInitialLaunch = true
+  var isFullScreen = false
+  var isScrolling = false
   
   // Life cycle
   override func loadView() {
     view = CatsView()
-    rootView.addDelegates(self, self)
+    rootView.addDelegates(self)
+    rootView.isUserInteractionEnabled = false
   }
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    configure()
     presenter.provideCats()
+    configure()
   }
   
   override func viewDidLayoutSubviews() {
@@ -56,57 +73,138 @@ class CatsViewController: UIViewController {
   
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
-    if isLaunch {
+    if isInitialLaunch {
       rootView.animateFromLaunch()
-      isLaunch = false
-    } else {
-      rootView.topCatVideoView.topCatPlayerLayer.player?.seek(to: kCMTimeZero)
-      rootView.topCatVideoView.topCatPlayerLayer.player?.play()
-      guard let visibleCells = rootView.catsCollectionView.visibleCells as? [CatCollectionViewCell] else { return }
-      for cell in visibleCells {
-        if cell.isFocused {
-          cell.catPlayerLayer.player?.seek(to: kCMTimeZero)
-          cell.catPlayerLayer.player?.play()
-        }
-      }
     }
   }
 }
 
 // Cats view protocol
-extension CatsViewController: CatsViewProtocol {
+extension CatsViewController: CatsOutputProtocol {
   func store(cats: [Cat]) {
     print("🐈 got \(cats.count) cat urls from reddit 🐈")
-    rootView.catsCollectionView.cats.append(contentsOf: cats)
-    
-    guard rootView.catsCollectionView.isLoading else { return }
-    rootView.topCatVideoView.setVideo(AVPlayer(url: cats[0].url))
-    rootView.topCatVideoView.nextPlayer = AVPlayer(url: cats[1].url)
-    rootView.catsCollectionView.isLoading = false
+    rootView.catsCollectionView.update(with: cats)
+    if isInitialLaunch {
+      isInitialLaunch = false
+      setupVideoPlayersFromLaunch()
+      userDidInteract()
+    }
+  }
+  
+  private func setupVideoPlayersFromLaunch() {
+    guard cats.count > 1 else { return }
+    let current = AVPlayer(url: cats[0].url)
+    let next = AVPlayer(url: cats[1].url)
+    current.isMuted = true
+    next.isMuted = true
+    rootView.topCatVideoView.setPlayers(previous: nil, current: current, next: next)
     rootView.catsCollectionView.reloadData()
+    rootView.isUserInteractionEnabled = true
   }
 }
 
 extension CatsViewController: CatInputProtocol {
-  func catTapped(_ player: AVPlayer, _ index: Int) {
-    rootView.topCatVideoView.setVideo(player)
-    rootView.topCatVideoView.index = index
+  var catsCount: Int {
+    return cats.count
   }
-}
-
-extension CatsViewController: CatOutputProtocol {
-  func nextCat() {
-    rootView.topCatVideoView.index += 1
-    rootView.topCatVideoView.setVideo(rootView.topCatVideoView.nextPlayer!)
-    if rootView.topCatVideoView.index < rootView.catsCollectionView.cats.count {
-      rootView.topCatVideoView.nextPlayer = AVPlayer(url: rootView.catsCollectionView.cats[rootView.topCatVideoView.index].url)
+  
+  var currentVideoIndex: Int {
+    return rootView.topCatVideoView.index
+  }
+  
+  func append(cats: [Cat]) {
+    self.cats.append(contentsOf: cats)
+  }
+  
+  func cat(index: Int) -> Cat {
+    return cats[index]
+  }
+  
+  func playerForCat(index: Int) -> AVPlayer {
+    return AVPlayer(url: cats[index].url)
+  }
+  
+  func toggleFullScreen() {
+    isFullScreen ? rootView.makeRegularScreen() : rootView.makeFullScreen()
+    isFullScreen = !isFullScreen
+    rootView.topCatVideoView.toggleGestureRecognizersForScreenStatus()
+  }
+  
+  func setScrolling() {
+    isScrolling = true
+  }
+  
+  func setStoppedScrolling() {
+    isScrolling = false
+  }
+  
+  func userDidInteract() {
+    idleTimer?.invalidate()
+    idleTimer = Timer.scheduledTimer(withTimeInterval: 15, repeats: false) { _ in
+      guard !self.isFullScreen else { return }
+      self.toggleFullScreen()
     }
   }
-}
-
-// Configuration
-private extension CatsViewController {
+  
+  func catTapped(previous: AVPlayer?, current: AVPlayer, next: AVPlayer?, currentIndex: Int) {
+    if rootView.topCatVideoView.topCatPlayerLayer.player != nil {
+      rootView.topCatVideoView.removePlayers()
+    }
+    rootView.topCatVideoView.setPlayers(previous: previous, current: current, next: next)
+    rootView.topCatVideoView.index = currentIndex
+  }
+  
+  func nextCat() {
+    guard let nextPlayer = rootView.topCatVideoView.nextPlayer else { return }
+    rootView.topCatVideoView.index += 1
+    var previous: AVPlayer?
+    if let current = rootView.topCatVideoView.topCatPlayerLayer.player {
+      previous = current
+    } else if rootView.topCatVideoView.index > 1 {
+      previous = playerForCat(index: rootView.topCatVideoView.index - 1)
+    } else {
+      previous = nil
+    }
+    let current = nextPlayer
+    var next: AVPlayer?
+    if rootView.topCatVideoView.index + 1 < catsCount {
+      next = playerForCat(index: rootView.topCatVideoView.index + 1)
+    } else {
+      next = nil
+    }
+    rootView.topCatVideoView.setPlayers(previous: previous, current: current, next: next)
+  }
+  
+  func previousCat() {
+    guard let previousPlayer = rootView.topCatVideoView.previousPlayer else { return }
+    rootView.topCatVideoView.index -= 1
+    var previous: AVPlayer?
+    if rootView.topCatVideoView.index > 0 {
+      previous = playerForCat(index: rootView.topCatVideoView.index - 1)
+    } else {
+      previous = nil
+    }
+    let current = previousPlayer
+    var next: AVPlayer?
+    if let current = rootView.topCatVideoView.topCatPlayerLayer.player {
+      next = current
+    } else if rootView.topCatVideoView.index + 1 < catsCount {
+      next = playerForCat(index: rootView.topCatVideoView.index + 1)
+    } else {
+      next = nil
+    }
+    rootView.topCatVideoView.setPlayers(previous: previous, current: current, next: next)
+  }
+  
+  // Initial configuration
   func configure() {
-    rootView.addTargets()
+    
+    // Background audio
+    do {
+      try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient)
+      try AVAudioSession.sharedInstance().setActive(true)
+    } catch {
+      print(error)
+    }
   }
 }

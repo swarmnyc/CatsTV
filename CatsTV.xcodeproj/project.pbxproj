@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C41B642E1E65D33C00949040 /* MusicCatButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41B642D1E65D33C00949040 /* MusicCatButton.swift */; };
+		C41B64331E65F12100949040 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41B64321E65F12100949040 /* Colors.swift */; };
 		C43BBD801E63D889005F029E /* LoadingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43BBD7F1E63D889005F029E /* LoadingCollectionViewCell.swift */; };
 		C4B3CF7B1E5509BD00D401E9 /* TopCatVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B3CF7A1E5509BD00D401E9 /* TopCatVideoView.swift */; };
 		C4B3CF7E1E551DFE00D401E9 /* Shadows.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B3CF7D1E551DFE00D401E9 /* Shadows.swift */; };
@@ -26,6 +28,8 @@
 		2906A4EBDA0DC4885D0AEEF4 /* Pods_CatsTV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CatsTV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C022DEC322908946365CDCB /* Pods-CatsTV.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CatsTV.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CatsTV/Pods-CatsTV.debug.xcconfig"; sourceTree = "<group>"; };
 		6689ED6D1BFE0AF708EF0062 /* Pods-CatsTV.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CatsTV.release.xcconfig"; path = "Pods/Target Support Files/Pods-CatsTV/Pods-CatsTV.release.xcconfig"; sourceTree = "<group>"; };
+		C41B642D1E65D33C00949040 /* MusicCatButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicCatButton.swift; sourceTree = "<group>"; };
+		C41B64321E65F12100949040 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		C43BBD7F1E63D889005F029E /* LoadingCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingCollectionViewCell.swift; sourceTree = "<group>"; };
 		C4B3CF7A1E5509BD00D401E9 /* TopCatVideoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopCatVideoView.swift; sourceTree = "<group>"; };
 		C4B3CF7D1E551DFE00D401E9 /* Shadows.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shadows.swift; sourceTree = "<group>"; };
@@ -75,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				C4B3CF7A1E5509BD00D401E9 /* TopCatVideoView.swift */,
+				C41B642D1E65D33C00949040 /* MusicCatButton.swift */,
 				C4B61A8E1E53699A00DBEAD1 /* CatsCollectionView.swift */,
 				C43BBD811E63D896005F029E /* Cells */,
 			);
@@ -85,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				C4B3CF7D1E551DFE00D401E9 /* Shadows.swift */,
+				C41B64321E65F12100949040 /* Colors.swift */,
 			);
 			name = Other;
 			sourceTree = "<group>";
@@ -302,6 +308,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C41B642E1E65D33C00949040 /* MusicCatButton.swift in Sources */,
 				C4B61A911E5369D500DBEAD1 /* CatCollectionViewCell.swift in Sources */,
 				C4B3CF7E1E551DFE00D401E9 /* Shadows.swift in Sources */,
 				C43BBD801E63D889005F029E /* LoadingCollectionViewCell.swift in Sources */,
@@ -309,6 +316,7 @@
 				C4C859E01E5691300033CA97 /* CatsPresenter.swift in Sources */,
 				C4B61A941E53715700DBEAD1 /* Reddit.swift in Sources */,
 				C4DE95A21E53624D00CA80B2 /* CatsView.swift in Sources */,
+				C41B64331E65F12100949040 /* Colors.swift in Sources */,
 				C4B61A8F1E53699A00DBEAD1 /* CatsCollectionView.swift in Sources */,
 				C4B3CF7B1E5509BD00D401E9 /* TopCatVideoView.swift in Sources */,
 				C4DE95901E53611400CA80B2 /* AppDelegate.swift in Sources */,

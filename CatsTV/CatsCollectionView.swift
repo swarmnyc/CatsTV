@@ -12,12 +12,7 @@ import AVFoundation
 class CatsCollectionView: UICollectionView {
   
   // Delegation
-  var catTapDelegate: CatInputProtocol!
-  
-  // Properties
-  lazy var cats: [Cat] = []
-  var isLoading = true
-  var isScrolling = false
+  weak var inputDelegate: CatInputProtocol!
   
   // Constants
   let loadingIdentifier = "LoadingCollectionViewCell"
@@ -39,8 +34,47 @@ class CatsCollectionView: UICollectionView {
     configure()
   }
   
-  func didBeginScrolling() {
+  // Touches
+  override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+    super.touchesMoved(touches, with: event)
+    guard let visibleCells = visibleCells as? [CatCollectionViewCell] else { return }
+    for cell in visibleCells {
+      if !cell.catPlayerLayer.isHidden {
+        cell.catPlayerLayer.isHidden = true
+      }
+    }
+  }
+  
+  // Update data source with new cats
+  func update(with cats: [Cat]) {
+    let startIndex = self.inputDelegate.catsCount
+    self.inputDelegate.append(cats: cats)
     
+    guard startIndex > 0 else { return }
+    var indexPaths = [IndexPath]()
+    for i in 0..<cats.count {
+      indexPaths.append(IndexPath(item: startIndex + i, section: 0))
+    }
+    insertItems(at: indexPaths)
+    
+    guard let visibleCells = visibleCells as? [CatCollectionViewCell] else { return }
+    for cell in visibleCells {
+      cell.hideLoadingMessage()
+    }
+  }
+  
+  func startPlayers() {
+    guard let visibleCells = visibleCells as? [CatCollectionViewCell] else { return }
+    for cell in visibleCells {
+      cell.setVideo()
+    }
+  }
+  
+  func pausePlayers() {
+    guard let visibleCells = visibleCells as? [CatCollectionViewCell] else { return }
+    for cell in visibleCells {
+      cell.pausePlayer()
+    }
   }
   
   // Initial configuration
@@ -52,6 +86,7 @@ class CatsCollectionView: UICollectionView {
     layout.scrollDirection = .horizontal
     clipsToBounds = false
     decelerationRate = UIScrollViewDecelerationRateFast
+    remembersLastFocusedIndexPath = true
     delegate = self
     dataSource = self
     register(LoadingCollectionViewCell.self, forCellWithReuseIdentifier: loadingIdentifier)
@@ -61,50 +96,36 @@ class CatsCollectionView: UICollectionView {
 
 // Cats collection view delegate
 extension CatsCollectionView: UICollectionViewDelegate {
+  
+  // Selection
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    if (collectionView.cellForItem(at: indexPath) as! CatCollectionViewCell).catPlayerLayer.player != nil {
-      catTapDelegate.catTapped(AVPlayer(url: cats[indexPath.item].url), indexPath.item)
+    if (collectionView.cellForItem(at: indexPath) as? CatCollectionViewCell)?.catPlayerLayer.player != nil {
+      let previous = indexPath.item > 0 ? inputDelegate.playerForCat(index: indexPath.item - 1) : nil
+      let current = inputDelegate.playerForCat(index: indexPath.item)
+      let next = indexPath.item + 1 < inputDelegate.catsCount ? inputDelegate.playerForCat(index: indexPath.item + 1) : nil
+      previous?.isMuted = true
+      current.isMuted = true
+      next?.isMuted = true
+      inputDelegate.catTapped(previous: previous, current: current, next: next, currentIndex: indexPath.item)
     }
   }
   
+  // Focus
   func collectionView(_ collectionView: UICollectionView, didUpdateFocusIn context: UICollectionViewFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
-    DispatchQueue.main.async {
-      guard let visibleCells = self.visibleCells as? [CatCollectionViewCell] else { return }
-      for cell in visibleCells {
-        if cell.isFocused {
-          cell.catPlayerLayer.player = AVPlayer(url: cell.cat.url)
-          cell.catPlayerLayer.player!.play()
-          cell.catPlayerLayer.isHidden = false
-        } else {
-          cell.catPlayerLayer.player?.seek(to: kCMTimeZero)
-          cell.catPlayerLayer.player?.pause()
-          cell.catPlayerLayer.isHidden = true
-        }
+    guard let visibleCells = visibleCells as? [CatCollectionViewCell] else { return }
+    for cell in visibleCells {
+      if let item = indexPath(for: cell)?.item, item == inputDelegate.catsCount - 1 {
+        cell.showLoadingMessage()
+      } else {
+        cell.hideLoadingMessage()
       }
+      cell.isFocused ? cell.setVideo() : cell.hideVideo()
     }
   }
-}
-
-// Cats collection view data source
-extension CatsCollectionView: UICollectionViewDataSource {
-  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return !isLoading ? cats.count : 6
-  }
   
-  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    guard !isLoading else {
-      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: loadingIdentifier, for: indexPath) as! LoadingCollectionViewCell
-      cell.setLoading()
-      return cell
-    }
-    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CatCollectionViewCell
-    cell.cat = (collectionView as! CatsCollectionView).cats[indexPath.item]
-    cell.setThumbnail()
-    return cell
-  }
-  
-  func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-    isScrolling = true
+  // Scrolling
+  func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    inputDelegate.setScrolling()
   }
   
   func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
@@ -114,10 +135,26 @@ extension CatsCollectionView: UICollectionViewDataSource {
   }
   
   func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-    isScrolling = false
-    if indexPathsForVisibleItems.last!.item < cats.count - 1 {
-      reloadData()
+    inputDelegate.setStoppedScrolling()
+  }
+}
+
+// Cats collection view data source
+extension CatsCollectionView: UICollectionViewDataSource {
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    return !inputDelegate.isInitialLaunch ? inputDelegate.catsCount : 6
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    guard !inputDelegate.isInitialLaunch else {
+      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: loadingIdentifier, for: indexPath) as! LoadingCollectionViewCell
+      cell.setLoading()
+      return cell
     }
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CatCollectionViewCell
+    cell.cat = inputDelegate.cat(index: indexPath.item)
+    cell.setThumbnail()
+    return cell
   }
 }
 

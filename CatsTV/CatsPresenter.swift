@@ -15,13 +15,14 @@ protocol CatsPresenterProtocol: class {
 class CatsPresenter: CatsPresenterProtocol {
   
   // View
-  weak var view: CatsViewProtocol!
+  weak var view: CatsOutputProtocol!
   
+  // Retrieve cats
   func provideCats(){
     Reddit.getCatURLs { cats in
       DispatchQueue.main.async {
         self.view.store(cats: cats)
-        DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 2) {
+        DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 3) {
           self.provideCats()
         }
       }

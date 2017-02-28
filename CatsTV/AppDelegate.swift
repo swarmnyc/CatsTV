@@ -27,5 +27,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     return true
   }
+  
+  func applicationWillEnterForeground(_ application: UIApplication) {
+    let rootVC = (window!.rootViewController as! CatsViewController)
+    if !rootVC.isInitialLaunch {
+      rootVC.rootView.topCatVideoView.startTopPlayer()
+      rootVC.rootView.catsCollectionView.startPlayers()
+    }
+  }
+  
+  func applicationDidEnterBackground(_ application: UIApplication) {
+    let rootVC = (window!.rootViewController as! CatsViewController)
+    rootVC.idleTimer?.invalidate()
+    rootVC.rootView.topCatVideoView.pauseTopPlayer()
+    rootVC.rootView.catsCollectionView.pausePlayers()
+  }
 }
 

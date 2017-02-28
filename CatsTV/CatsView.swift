@@ -12,17 +12,16 @@ import AVKit
 
 class CatsView: UIView {
   
+  // Delegation
+  weak var inputDelegate: CatInputProtocol!
+  
   // View and layers
   lazy var backgroundImageView: UIImageView = {
     let imageView = UIImageView(image: #imageLiteral(resourceName: "Background"))
     imageView.contentMode = .scaleAspectFill
     return imageView
   }()
-  lazy var musicCatButton: UIButton = {
-    let button = UIButton()
-    button.setImage(#imageLiteral(resourceName: "MusicCat"), for: .normal)
-    return button
-  }()
+  lazy var musicCatButton = MusicCatButton()
   lazy var blurView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
   lazy var blackView: UIView = {
     let view = UIView()
@@ -34,8 +33,8 @@ class CatsView: UIView {
   lazy var topCatVideoView = TopCatVideoView()
   lazy var upNextLabel: UILabel = {
     let label = UILabel()
-    label.text = "up next"
-    label.font = UIFont.systemFont(ofSize: 36, weight: UIFontWeightBlack)
+    label.text = "Up next..."
+    label.font = UIFont.systemFont(ofSize: 32, weight: UIFontWeightBlack)
     label.textColor = UIColor.white
     return label
   }()
@@ -45,10 +44,6 @@ class CatsView: UIView {
   // Constraints
   var topCatVideoViewCenterX: Constraint!
   var musicCatButtonRight: Constraint!
-  var launchTransitionImageViewCenterY: Constraint!
-  
-  // Properties
-  var isFullScreen = false
   
   // Initialization
   required init?(coder aDecoder: NSCoder) {
@@ -66,19 +61,16 @@ class CatsView: UIView {
   
   // Presses
   override func pressesBegan(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
-    if presses.first?.type == UIPressType.menu, isFullScreen {
-      toggleFullScreen()
+    if inputDelegate.isFullScreen, (presses.first?.type == UIPressType.menu || presses.first?.type == UIPressType.select) {
+      makeRegularScreen()
     } else {
       super.pressesBegan(presses, with: event)
     }
   }
-  
-  override func shouldUpdateFocus(in context: UIFocusUpdateContext) -> Bool {
-    return !isFullScreen
-  }
-  
+
   override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
     super.didUpdateFocus(in: context, with: coordinator)
+    inputDelegate.userDidInteract()
     coordinator.addCoordinatedAnimations({
       self.topCatVideoView.layer.shadowOpacity = self.topCatVideoView.isFocused ? 1 : 0.7
       UIView.animate(
@@ -86,7 +78,7 @@ class CatsView: UIView {
         delay: 0,
         usingSpringWithDamping: 0.6,
         initialSpringVelocity: 1,
-        options: [.overrideInheritedDuration, .allowUserInteraction],
+        options: [.allowUserInteraction, .overrideInheritedDuration, .overrideInheritedOptions],
         animations: {
           self.musicCatButtonRight.update(offset: (self.musicCatButton.isFocused ? 50 : self.musicCatButton.frame.width - 195))
           self.topCatVideoViewCenterX.update(offset: self.musicCatButton.isFocused ? -self.musicCatButton.frame.width / 4 : 0)
@@ -94,6 +86,121 @@ class CatsView: UIView {
           self.layoutIfNeeded()
       })
     })
+  }
+  
+  func addDelegates(_ inputDelegate: CatInputProtocol) {
+    self.inputDelegate = inputDelegate
+    topCatVideoView.inputDelegate = inputDelegate
+    catsCollectionView.inputDelegate = inputDelegate
+    musicCatButton.inputDelegate = inputDelegate
+  }
+  
+  func animateFromLaunch() {
+    UIView.animate(
+      withDuration: 1.5,
+      delay: 0,
+      options: .curveEaseInOut,
+      animations: {
+        self.launchTransitionImageView!.alpha = 0
+        self.blurView.effect = nil
+        self.layoutIfNeeded()
+    }) { _ in
+      self.launchTransitionImageView!.removeFromSuperview()
+      self.launchTransitionImageView = nil
+      self.blurView.isHidden = true
+      self.topCatVideoView.prepareForLoading()
+    }
+  }
+  
+  // Adjustments after frames have been defined on screen
+  func makeAdjustmentsAfterInitialLayout() {
+    guard topCatVideoView.topCatPlayerLayer.frame == CGRect.zero else { return }
+    topCatVideoView.topCatPlayerLayer.frame = topCatVideoView.bounds
+    topCatVideoView.fullScreenFrame =
+      CGRect(x: -topCatVideoView.frame.minX,
+             y: -topCatVideoView.frame.minY,
+             width: UIScreen.main.bounds.width,
+             height: UIScreen.main.bounds.height)
+    CALayer.shadow(topCatVideoView)
+    CALayer.shadow(musicCatButton)
+    CALayer.shadow(upNextLabel)
+  }
+  
+  // Toggle top cat video size
+  func makeFullScreen() {
+    topCatVideoView.isUserInteractionEnabled = false
+    blurView.isHidden = false
+    blackView.isHidden = false
+    UIView.animateKeyframes(
+      withDuration: 0.8,
+      delay: 0,
+      options: [],
+      animations: {
+        UIView.addKeyframe(
+          withRelativeStartTime: 0,
+          relativeDuration: 0.6,
+          animations: {
+            self.topCatVideoView.layer.shadowColor = UIColor.black.cgColor
+            self.blurView.effect = UIBlurEffect(style: .dark)
+            self.musicCatButtonRight.update(offset: self.musicCatButton.frame.width)
+            self.layoutIfNeeded()
+        })
+        UIView.addKeyframe(
+          withRelativeStartTime: 0.1,
+          relativeDuration: 0.8,
+          animations: {
+            self.blackView.alpha = 1
+        })
+        UIView.addKeyframe(
+          withRelativeStartTime: 0,
+          relativeDuration: 1,
+          animations: {
+            self.topCatVideoView.topCatPlayerLayer.frame = self.topCatVideoView.fullScreenFrame
+            self.layoutIfNeeded()
+        })
+    }) { _ in
+      self.topCatVideoView.isUserInteractionEnabled = true
+      self.musicCatButton.isUserInteractionEnabled = false
+      self.catsCollectionView.isUserInteractionEnabled = false
+    }
+  }
+  
+  func makeRegularScreen() {
+    topCatVideoView.isUserInteractionEnabled = false
+    UIView.animateKeyframes(
+      withDuration: 0.7,
+      delay: 0,
+      options: [],
+      animations: {
+        UIView.addKeyframe(
+          withRelativeStartTime: 0,
+          relativeDuration: 0.8,
+          animations: {
+            self.musicCatButtonRight.update(offset: self.musicCatButton.frame.width - 195)
+            self.blurView.effect = nil
+            self.blackView.alpha = 0
+            self.layoutIfNeeded()
+        })
+        UIView.addKeyframe(
+          withRelativeStartTime: 0.7, relativeDuration: 0.3, animations: {
+            self.topCatVideoView.layer.shadowColor = UIColor.themeGreen.cgColor
+        })
+        UIView.addKeyframe(
+          withRelativeStartTime: 0,
+          relativeDuration: 1,
+          animations: {
+            self.topCatVideoView.topCatPlayerLayer.frame = self.topCatVideoView.bounds
+            self.layoutIfNeeded()
+        })
+    }) { _ in
+      self.blurView.isHidden = true
+      self.blackView.isHidden = true
+      let item = self.topCatVideoView.index + (self.topCatVideoView.index + 1 < self.inputDelegate.catsCount ? 1 : 0)
+      self.catsCollectionView.scrollToItem(at: IndexPath(item: item, section: 0), at: .left, animated: true)
+      self.topCatVideoView.isUserInteractionEnabled = true
+      self.musicCatButton.isUserInteractionEnabled = true
+      self.catsCollectionView.isUserInteractionEnabled = true
+    }
   }
   
   // Initial configuration
@@ -115,7 +222,7 @@ class CatsView: UIView {
     }
     musicCatButton.snp.makeConstraints {
       musicCatButtonRight = $0.right.equalToSuperview().offset(#imageLiteral(resourceName: "MusicCat").size.width - 195).constraint
-      $0.centerY.equalToSuperview()
+      $0.centerY.equalTo(topCatVideoView)
     }
     catsCollectionView.snp.makeConstraints {
       $0.bottom.equalToSuperview().offset(-60)
@@ -139,93 +246,7 @@ class CatsView: UIView {
       $0.width.height.equalToSuperview().dividedBy(1.65)
     }
     launchTransitionImageView?.snp.makeConstraints {
-      $0.centerX.width.height.equalToSuperview()
-      launchTransitionImageViewCenterY = $0.centerY.equalToSuperview().constraint
-    }
-  }
-  
-  func addDelegates(_ catTapDelegate: CatInputProtocol, _ nextCatDelegate: CatOutputProtocol) {
-    catsCollectionView.catTapDelegate = catTapDelegate
-    topCatVideoView.nextCatDelegate = nextCatDelegate
-  }
-  
-  func addTargets() {
-    topCatVideoView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(toggleFullScreen)))
-    musicCatButton.addTarget(self, action: #selector(appleMusicButtonTouched), for: .primaryActionTriggered)
-  }
-  
-  func animateFromLaunch() {
-    UIView.animate(
-      withDuration: 1.5,
-      delay: 0,
-      options: .curveEaseInOut,
-      animations: {
-        self.launchTransitionImageViewCenterY.update(offset: self.launchTransitionImageView!.frame.height)
-        self.launchTransitionImageView!.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
-        self.launchTransitionImageView!.alpha = 0.3
-        self.blurView.effect = nil
-        self.topCatVideoView.toggleLoading()
-        self.layoutIfNeeded()
-    }) { _ in
-      self.launchTransitionImageView!.snp.removeConstraints()
-      self.launchTransitionImageView!.removeFromSuperview()
-      self.launchTransitionImageView = nil
-      self.blurView.isHidden = true
-    }
-  }
-  
-  // Adjustments after frames have been defined on screen
-  func makeAdjustmentsAfterInitialLayout() {
-    guard topCatVideoView.topCatPlayerLayer.frame == CGRect.zero else { return }
-    topCatVideoView.topCatPlayerLayer.frame = topCatVideoView.bounds
-    CALayer.shadow(topCatVideoView)
-    CALayer.shadow(musicCatButton)
-    CALayer.shadow(upNextLabel)
-  }
-  
-  @objc func toggleFullScreen() {
-    isFullScreen = !isFullScreen
-    let fullFrame = CGRect(x: -topCatVideoView.frame.minX,
-                           y: -topCatVideoView.frame.minY,
-                           width: UIScreen.main.bounds.width,
-                           height: UIScreen.main.bounds.height)
-    blurView.isHidden = false
-    blackView.isHidden = false
-    topCatVideoView.layer.shadowOpacity = 0
-    UIView.animateKeyframes(
-      withDuration: isFullScreen ? 0.8 : 0.6,
-      delay: 0,
-      options: [],
-      animations: {
-        UIView.addKeyframe(
-          withRelativeStartTime: 0,
-          relativeDuration: self.isFullScreen ? 0.3 : 0.8,
-          animations: {
-            self.musicCatButtonRight.update(offset: self.isFullScreen ? self.musicCatButton.frame.width : self.musicCatButton.frame.width - 195)
-            self.blurView.effect = self.isFullScreen ? UIBlurEffect(style: .dark) : nil
-            self.blackView.alpha = self.isFullScreen ? 1 : 0
-            self.layoutIfNeeded()
-        })
-        UIView.addKeyframe(
-          withRelativeStartTime: 0,
-          relativeDuration: 1,
-          animations: {
-            self.topCatVideoView.topCatPlayerLayer.frame = self.isFullScreen ? fullFrame : self.topCatVideoView.bounds
-            self.layoutIfNeeded()
-        })
-    }) { _ in
-      if !self.isFullScreen {
-        self.blurView.isHidden = true
-        self.blackView.isHidden = true
-        self.topCatVideoView.layer.shadowOpacity = 1
-      }
-    }
-  }
-  
-  @objc func appleMusicButtonTouched() {
-    let url = URL(string: "music:")!
-    if UIApplication.shared.canOpenURL(url) {
-      UIApplication.shared.open(url, options: [:])
+      $0.edges.edges.equalToSuperview()
     }
   }
 }
