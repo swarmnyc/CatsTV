@@ -62,7 +62,7 @@ class CatsView: UIView {
   // Presses
   override func pressesBegan(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
     if inputDelegate.isFullScreen, (presses.first?.type == UIPressType.menu || presses.first?.type == UIPressType.select) {
-      makeRegularScreen()
+      inputDelegate.toggleFullScreen()
     } else {
       super.pressesBegan(presses, with: event)
     }
@@ -243,7 +243,8 @@ class CatsView: UIView {
     topCatVideoView.snp.makeConstraints {
       topCatVideoViewCenterX = $0.centerX.equalToSuperview().constraint
       $0.centerY.equalToSuperview().dividedBy(1.25)
-      $0.width.height.equalToSuperview().dividedBy(1.65)
+      $0.width.equalToSuperview()
+      $0.height.equalToSuperview().dividedBy(1.65)
     }
     launchTransitionImageView?.snp.makeConstraints {
       $0.edges.edges.equalToSuperview()
