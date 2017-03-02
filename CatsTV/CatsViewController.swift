@@ -19,9 +19,10 @@ protocol CatsOutputProtocol: class {
 protocol CatInputProtocol: class {
   var catsCount: Int { get }
   var currentVideoIndex: Int { get }
+  var isLaunch: Bool { get }
+  var didPerformInitialLayout: Bool { get set }
   var isFullScreen: Bool { get set }
   var isScrolling: Bool { get }
-  var isInitialLaunch: Bool { get }
   func append(cats: [Cat])
   func cat(index: Int) -> Cat
   func playerForCat(index: Int) -> AVPlayer
@@ -49,49 +50,50 @@ class CatsViewController: UIViewController {
   var idleTimer: Timer?
   
   // Status flags
-  var isInitialLaunch = true
+  var isLaunch = true
+  var didPerformInitialLayout = false
   var isFullScreen = false
   var isScrolling = false
   
-  // Life cycle
+  // Set custom root view
   override func loadView() {
     view = CatsView()
-    rootView.addDelegates(self)
-    rootView.isUserInteractionEnabled = false
   }
   
+  // Life cycle
   override func viewDidLoad() {
     super.viewDidLoad()
     presenter.provideCats()
     configure()
   }
-  
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
     rootView.makeAdjustmentsAfterInitialLayout()
   }
-  
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
-    if isInitialLaunch {
-      rootView.animateFromLaunch()
+    if isLaunch {
+      rootView.animateOnLaunch()
     }
   }
 }
 
 // Cats view protocol
 extension CatsViewController: CatsOutputProtocol {
+  
+  // Store cats retrieved from Reddit
   func store(cats: [Cat]) {
     print("🐈 got \(cats.count) cat urls from reddit 🐈")
     rootView.catsCollectionView.update(with: cats)
-    if isInitialLaunch {
-      isInitialLaunch = false
-      setupVideoPlayersFromLaunch()
+    if isLaunch {
+      isLaunch = false
+      setVideoPlayersOnLaunch()
       userDidInteract()
     }
   }
   
-  private func setupVideoPlayersFromLaunch() {
+  // Configure video players on app launch
+  private func setVideoPlayersOnLaunch() {
     guard cats.count > 1 else { return }
     let current = AVPlayer(url: cats[0].url)
     let next = AVPlayer(url: cats[1].url)
@@ -104,40 +106,50 @@ extension CatsViewController: CatsOutputProtocol {
 }
 
 extension CatsViewController: CatInputProtocol {
+  
+  // Number of stored cats
   var catsCount: Int {
     return cats.count
   }
   
+  // Index of the cat video currently playing
   var currentVideoIndex: Int {
     return rootView.topCatVideoView.index
   }
   
+  // Store new cats
   func append(cats: [Cat]) {
     self.cats.append(contentsOf: cats)
   }
   
+  // Provide cat at the specified index
   func cat(index: Int) -> Cat {
     return cats[index]
   }
   
+  // Provide video for cat at the specified index
   func playerForCat(index: Int) -> AVPlayer {
     return AVPlayer(url: cats[index].url)
   }
   
+  // Switch between regular and full screen modes
   func toggleFullScreen() {
     isFullScreen ? rootView.makeRegularScreen() : rootView.makeFullScreen()
     isFullScreen = !isFullScreen
-    rootView.topCatVideoView.toggleGestureRecognizersForScreenStatus()
+    rootView.toggleGestureRecognizersForScreenStatus()
   }
   
+  // Collection view is scrolling
   func setScrolling() {
     isScrolling = true
   }
   
+  // Collection view is not scrolling
   func setStoppedScrolling() {
     isScrolling = false
   }
   
+  // Prevent automatic full screen mode when user has recently interacted
   func userDidInteract() {
     idleTimer?.invalidate()
     idleTimer = Timer.scheduledTimer(withTimeInterval: 15, repeats: false) { _ in
@@ -146,6 +158,7 @@ extension CatsViewController: CatInputProtocol {
     }
   }
   
+  // New video selected from collection view
   func catTapped(previous: AVPlayer?, current: AVPlayer, next: AVPlayer?, currentIndex: Int) {
     if rootView.topCatVideoView.topCatPlayerLayer.player != nil {
       rootView.topCatVideoView.removePlayers()
@@ -154,6 +167,7 @@ extension CatsViewController: CatInputProtocol {
     rootView.topCatVideoView.index = currentIndex
   }
   
+  // Right swipe moves forward one video in full screen mode
   func nextCat() {
     guard let nextPlayer = rootView.topCatVideoView.nextPlayer else { return }
     rootView.topCatVideoView.index += 1
@@ -175,6 +189,7 @@ extension CatsViewController: CatInputProtocol {
     rootView.topCatVideoView.setPlayers(previous: previous, current: current, next: next)
   }
   
+  // Left swipe moves back one video in full screen mode
   func previousCat() {
     guard let previousPlayer = rootView.topCatVideoView.previousPlayer else { return }
     rootView.topCatVideoView.index -= 1
@@ -199,7 +214,10 @@ extension CatsViewController: CatInputProtocol {
   // Initial configuration
   func configure() {
     
-    // Background audio
+    // Delegation setup
+    rootView.addDelegates(self)
+    
+    // Allow background audio for Apple Music
     do {
       try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient)
       try AVAudioSession.sharedInstance().setActive(true)

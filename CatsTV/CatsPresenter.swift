@@ -9,6 +9,7 @@
 import Foundation
 
 protocol CatsPresenterProtocol: class {
+  var appIsActive: Bool { get set }
   func provideCats()
 }
 
@@ -17,12 +18,16 @@ class CatsPresenter: CatsPresenterProtocol {
   // View
   weak var view: CatsOutputProtocol!
   
+  // Properties
+  var appIsActive = true
+  
   // Retrieve cats
   func provideCats(){
     Reddit.getCatURLs { cats in
       DispatchQueue.main.async {
         self.view.store(cats: cats)
-        DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 3) {
+        guard self.appIsActive else { return }
+        DispatchQueue.global(qos: .background).async {
           self.provideCats()
         }
       }

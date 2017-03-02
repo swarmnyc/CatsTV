@@ -15,7 +15,7 @@ class Reddit {
   // Retrieve cats data from Reddit
   static func getCatURLs(completion: @escaping ([Cat]) -> Void) {
     guard let after = after else { return }
-    let url = URL(string: "https://www.reddit.com/r/catgifs/hot.json?limit=30" + (after.isEmpty ? "" : "&after=" + after))!
+    let url = URL(string: "https://www.reddit.com/r/catgifs/hot.json?limit=10" + (after.isEmpty ? "" : "&after=" + after))!
     let task = URLSession.shared.dataTask(with: url) { data, _, error in
       if let error = error {
         print("error retrieving cats from reddit: \(error.localizedDescription)")
@@ -93,7 +93,8 @@ class Reddit {
       }
       completion(catURLs)
     } catch {
-      print("error serializing reddit cats data: \(error)")
+      print("error serializing reddit cats data: \(error.localizedDescription)")
+      completion([])
     }
   }
 }

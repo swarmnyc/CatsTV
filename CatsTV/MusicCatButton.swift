@@ -27,11 +27,6 @@ class MusicCatButton: UIButton {
     configure()
   }
   
-  // Focus
-  override var canBecomeFocused: Bool {
-    return !inputDelegate.isFullScreen
-  }
-  
   // Actions
   @objc func touched() {
     let url = URL(string: "music:")!

@@ -39,16 +39,6 @@ class TopCatVideoView: UIView {
   
   // Gesture recognition
   lazy var screenTapGestureRecognizer = UITapGestureRecognizer()
-  lazy var rightSwipeGestureReconizer: UISwipeGestureRecognizer = {
-    let recognizer = UISwipeGestureRecognizer()
-    recognizer.direction = .right
-    return recognizer
-  }()
-  lazy var leftSwipeGestureReconizer: UISwipeGestureRecognizer = {
-    let recognizer = UISwipeGestureRecognizer()
-    recognizer.direction = .left
-    return recognizer
-  }()
   
   // Constraints
   var loadingCatImageViewWidth: Constraint!
@@ -61,19 +51,20 @@ class TopCatVideoView: UIView {
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
   }
-  
   override init(frame: CGRect) {
     super.init(frame: frame)
   }
-  
   convenience init() {
     self.init(frame: CGRect.zero)
     configure()
   }
   
-  // Property overrides
+  // User interaction
   override var canBecomeFocused: Bool {
     return true
+  }
+  func screenTapped() {
+    inputDelegate.toggleFullScreen()
   }
   
   // Prepare for video loading
@@ -184,39 +175,11 @@ class TopCatVideoView: UIView {
     topCatPlayerLayer.player!.play()
   }
   
-  func toggleGestureRecognizersForScreenStatus() {
-    if inputDelegate.isFullScreen {
-      removeGestureRecognizer(screenTapGestureRecognizer)
-      addGestureRecognizer(leftSwipeGestureReconizer)
-      addGestureRecognizer(rightSwipeGestureReconizer)
-    } else {
-      addGestureRecognizer(screenTapGestureRecognizer)
-      removeGestureRecognizer(leftSwipeGestureReconizer)
-      removeGestureRecognizer(rightSwipeGestureReconizer)
-    }
-  }
-  
-  func screenTapped() {
-    inputDelegate.toggleFullScreen()
-  }
-  
-  func swipedRight() {
-    NotificationCenter.default.removeObserver(self.topCatPlayerLayer.player!.currentItem!)
-    inputDelegate.nextCat()
-  }
-  
-  func swipedLeft() {
-    NotificationCenter.default.removeObserver(self.topCatPlayerLayer.player!.currentItem!)
-    inputDelegate.previousCat()
-  }
-  
   // Initial configuration
   func configure() {
     
     // Setup
     screenTapGestureRecognizer.addTarget(self, action: #selector(screenTapped))
-    rightSwipeGestureReconizer.addTarget(self, action: #selector(swipedRight))
-    leftSwipeGestureReconizer.addTarget(self, action: #selector(swipedLeft))
     
     // Gesture recognition
     addGestureRecognizer(screenTapGestureRecognizer)

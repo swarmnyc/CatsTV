@@ -12,6 +12,6 @@ extension CALayer {
   static func shadow(_ view: UIView) {
     view.layer.shadowRadius = view.frame.height / 10
     view.layer.shadowColor = UIColor.themeGreen.cgColor
-    view.layer.shadowOpacity = 0.7
+    view.layer.shadowOpacity = 0.8
   }
 }

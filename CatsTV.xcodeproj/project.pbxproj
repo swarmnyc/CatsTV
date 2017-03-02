@@ -141,7 +141,6 @@
 			isa = PBXGroup;
 			children = (
 				C4DE958F1E53611400CA80B2 /* AppDelegate.swift */,
-				C4DE959F1E53622600CA80B2 /* Launch Module */,
 				C4DE959E1E53621E00CA80B2 /* Cats Module */,
 				C4B61A921E53712B00DBEAD1 /* Data Managers */,
 				C4B61A951E5379D900DBEAD1 /* Entities */,
@@ -159,13 +158,6 @@
 				C4C859DE1E5690F90033CA97 /* Presenter */,
 			);
 			name = "Cats Module";
-			sourceTree = "<group>";
-		};
-		C4DE959F1E53622600CA80B2 /* Launch Module */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "Launch Module";
 			sourceTree = "<group>";
 		};
 		C4DE95A01E53623600CA80B2 /* View */ = {

@@ -121,6 +121,7 @@ extension CatsCollectionView: UICollectionViewDelegate {
       }
       cell.isFocused ? cell.setVideo() : cell.hideVideo()
     }
+    remembersLastFocusedIndexPath = true
   }
   
   // Scrolling
@@ -142,11 +143,11 @@ extension CatsCollectionView: UICollectionViewDelegate {
 // Cats collection view data source
 extension CatsCollectionView: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return !inputDelegate.isInitialLaunch ? inputDelegate.catsCount : 6
+    return !inputDelegate.isLaunch ? inputDelegate.catsCount : 6
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    guard !inputDelegate.isInitialLaunch else {
+    guard !inputDelegate.isLaunch else {
       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: loadingIdentifier, for: indexPath) as! LoadingCollectionViewCell
       cell.setLoading()
       return cell
