@@ -30,17 +30,10 @@ class CatsView: UIView {
     }()
     lazy var blurView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
     lazy var tvCatView: TVCatView = TVCatView()
-    lazy var blackView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.black
-        view.alpha = 0
-        view.isHidden = true
-        return view
-    }()
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "CatGIFTV"
-        label.font = UIFont.systemFont(ofSize: 40, weight: UIFontWeightBlack)
+        label.font = UIFont.systemFont(ofSize: 28, weight: UIFontWeightBlack)
         label.textColor = UIColor.white
         return label
     }()
@@ -107,7 +100,6 @@ class CatsView: UIView {
     // Resize top cat video to fill screen
     func makeFullScreen() {
         blurView.isHidden = false
-        blackView.isHidden = false
         topCatVideoView.isUserInteractionEnabled = false
         catsCollectionView.isUserInteractionEnabled = false
         UIView.animateKeyframes(
@@ -128,12 +120,6 @@ class CatsView: UIView {
                         self.topCatVideoView.layer.shadowColor = UIColor.black.cgColor
                         self.blurView.effect = UIBlurEffect(style: .dark)
                         self.layoutIfNeeded()
-                })
-                UIView.addKeyframe(
-                    withRelativeStartTime: 0.1,
-                    relativeDuration: 0.8,
-                    animations: {
-                        self.blackView.alpha = 1
                 })
                 UIView.addKeyframe(
                     withRelativeStartTime: 0.2,
@@ -158,12 +144,10 @@ class CatsView: UIView {
                     animations: {
                         self.topCatVideoView.topCatPlayerLayer.frame = self.topCatVideoView.bounds
                         self.blurView.effect = nil
-                        self.blackView.alpha = 0
                         self.layoutIfNeeded()
                 })
         }) { _ in
             self.blurView.isHidden = true
-            self.blackView.isHidden = true
             let item = self.topCatVideoView.index + (self.topCatVideoView.index + 1 < self.inputDelegate.catsCount ? 1 : 0)
             self.catsCollectionView.scrollToItem(at: IndexPath(item: item, section: 0), at: .left, animated: true)
             self.topCatVideoView.isUserInteractionEnabled = true
@@ -199,7 +183,6 @@ class CatsView: UIView {
         addSubview(topCatVideoView)
         addSubview(blurView)
         addSubview(tvCatView)
-        addSubview(blackView)
         addSubview(catsCollectionView)
         addSubview(titleLabel)
         
@@ -217,17 +200,19 @@ class CatsView: UIView {
             $0.edges.equalToSuperview()
         }
         tvCatView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
-        blackView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.center.equalToSuperview()
+            $0.width.equalTo(80)
+            $0.height.equalTo(101)
         }
         catsCollectionView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.top.equalToSuperview().offset(25)
+            $0.left.equalToSuperview().offset(10)
+            $0.bottom.equalToSuperview().offset(-10)
+            $0.right.equalToSuperview()
         }
         titleLabel.snp.makeConstraints {
-            $0.right.equalToSuperview().offset(-25)
-            $0.top.equalToSuperview().offset(40)
+            $0.right.equalToSuperview().offset(-30)
+            $0.top.equalToSuperview().offset(45)
         }
     }
 }

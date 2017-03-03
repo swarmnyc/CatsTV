@@ -39,7 +39,7 @@ public class StyleKit : NSObject {
         shadow.shadowBlurRadius = 6
 
         //// Image Declarations
-        let catIcon = UIImage(named: "catIcon.png")!
+        let catIcon = #imageLiteral(resourceName: "TVCat")
 
         //// Rectangle Drawing
         let rectanglePath = UIBezierPath(roundedRect: CGRect(x: 0, y: 21, width: 80, height: 80), cornerRadius: number)

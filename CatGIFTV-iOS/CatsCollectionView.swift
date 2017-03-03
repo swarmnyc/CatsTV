@@ -17,8 +17,8 @@ class CatsCollectionView: UICollectionView {
     // Constants
     let loadingIdentifier = "LoadingCollectionViewCell"
     let reuseIdentifier = "CatCollectionViewCell"
-    let itemSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-    let spacing: CGFloat = 0
+    let itemSize = CGSize(width: UIScreen.main.bounds.width - 20, height: UIScreen.main.bounds.height - 35)
+    let spacing: CGFloat = 10
     
     // Initialization
     required init?(coder aDecoder: NSCoder) {
@@ -32,17 +32,6 @@ class CatsCollectionView: UICollectionView {
     convenience init() {
         self.init(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
         configure()
-    }
-    
-    // Touches
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesMoved(touches, with: event)
-        guard let visibleCells = visibleCells as? [CatCollectionViewCell] else { return }
-        for cell in visibleCells {
-            if !cell.catPlayerLayer.isHidden {
-                cell.catPlayerLayer.isHidden = true
-            }
-        }
     }
     
     // Update data source with new cats
@@ -84,8 +73,11 @@ class CatsCollectionView: UICollectionView {
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = spacing
         layout.scrollDirection = .horizontal
+        layer.cornerRadius = 20
+        clipsToBounds = true
         backgroundColor = UIColor.clear
-        clipsToBounds = false
+        isPagingEnabled = true
+        showsHorizontalScrollIndicator = false
         decelerationRate = UIScrollViewDecelerationRateFast
         delegate = self
         dataSource = self
@@ -98,15 +90,8 @@ extension CatsCollectionView: UICollectionViewDelegate {
     
     // Selection
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if (collectionView.cellForItem(at: indexPath) as? CatCollectionViewCell)?.catPlayerLayer.player != nil {
-            let previous = indexPath.item > 0 ? inputDelegate.playerForCat(index: indexPath.item - 1) : nil
-            let current = inputDelegate.playerForCat(index: indexPath.item)
-            let next = indexPath.item + 1 < inputDelegate.catsCount ? inputDelegate.playerForCat(index: indexPath.item + 1) : nil
-            previous?.isMuted = true
-            current.isMuted = true
-            next?.isMuted = true
-            inputDelegate.catTapped(previous: previous, current: current, next: next, currentIndex: indexPath.item)
-        }
+        let cell = collectionView.cellForItem(at: indexPath) as! CatCollectionViewCell
+        cell.setVideo()
     }
     
     // Scrolling

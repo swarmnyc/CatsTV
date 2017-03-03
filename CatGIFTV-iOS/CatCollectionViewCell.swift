@@ -16,6 +16,7 @@ class CatCollectionViewCell: UICollectionViewCell {
     lazy var catThumbnailImageView: UIImageView = {
         let imageView = UIImageView(image: #imageLiteral(resourceName: "TVCat"))
         imageView.contentMode = .scaleAspectFill
+        imageView.layer.cornerRadius = 20
         imageView.clipsToBounds = true
         return imageView
     }()
@@ -24,6 +25,8 @@ class CatCollectionViewCell: UICollectionViewCell {
         playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
         playerLayer.needsDisplayOnBoundsChange = true
         playerLayer.isHidden = true
+        playerLayer.cornerRadius = 20
+        playerLayer.masksToBounds = true
         return playerLayer
     }()
     lazy var gradientView: UIView = {
@@ -141,17 +144,12 @@ class CatCollectionViewCell: UICollectionViewCell {
     func configure() {
         
         // Setup
-        CALayer.shadow(self)
         gradientMask.frame = contentView.bounds
         gradientMask.startPoint = CGPoint(x: 0, y: 0.5)
         gradientMask.endPoint = CGPoint(x: 1, y: 0.5)
         gradientMask.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
         gradientView.layer.mask = gradientMask
-        catPlayerLayer.frame = CGRect(
-            x: -contentView.frame.width * 0.155,
-            y: -contentView.frame.height * 0.155,
-            width: contentView.frame.width * 1.31,
-            height: contentView.frame.height * 1.31)
+        catPlayerLayer.frame = CGRect(x: 0, y: 0, width: contentView.bounds.width, height: contentView.bounds.height)
         
         // Add layers
         contentView.addSubview(catThumbnailImageView)
