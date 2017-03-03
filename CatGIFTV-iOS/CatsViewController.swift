@@ -29,7 +29,6 @@ protocol CatInputProtocol: class {
     func toggleFullScreen()
     func setScrolling()
     func setStoppedScrolling()
-    func userDidInteract()
     func catTapped(previous: AVPlayer?, current: AVPlayer, next: AVPlayer?, currentIndex: Int)
     func nextCat()
     func previousCat()
@@ -88,7 +87,6 @@ extension CatsViewController: CatsOutputProtocol {
         if isLaunch {
             isLaunch = false
             setVideoPlayersOnLaunch()
-            userDidInteract()
         }
     }
     
@@ -116,7 +114,6 @@ extension CatsViewController: CatInputProtocol {
     var currentVideoIndex: Int {
         return rootView.topCatVideoView.index
     }
-    
     
     // Store new cats
     func append(cats: [Cat]) {
@@ -148,15 +145,6 @@ extension CatsViewController: CatInputProtocol {
     // Collection view is not scrolling
     func setStoppedScrolling() {
         isScrolling = false
-    }
-    
-    // Prevent automatic full screen mode when user has recently interacted
-    func userDidInteract() {
-        idleTimer?.invalidate()
-        idleTimer = Timer.scheduledTimer(withTimeInterval: 15, repeats: false) { _ in
-            guard !self.isFullScreen else { return }
-            self.toggleFullScreen()
-        }
     }
     
     // New video selected from collection view

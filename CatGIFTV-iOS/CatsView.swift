@@ -239,10 +239,11 @@ class CatsView: UIView {
             $0.edges.equalToSuperview()
         }
         topCatVideoView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(20)
+            $0.top.equalToSuperview().offset(60)
             $0.centerX.equalToSuperview()
-            $0.width.equalTo(80)
-            $0.height.equalTo(50)
+            $0.width.equalToSuperview().dividedBy(1.1)
+            $0.height.equalToSuperview().dividedBy(1.5)
+//            $0.height.equalTo(topCatVideoView.snp.width).dividedBy(UIScreen.main.bounds.height / UIScreen.main.bounds.width)
         }
         launchTransitionImageView?.snp.makeConstraints {
             $0.edges.edges.equalToSuperview()

@@ -17,8 +17,8 @@ class CatsCollectionView: UICollectionView {
     // Constants
     let loadingIdentifier = "LoadingCollectionViewCell"
     let reuseIdentifier = "CatCollectionViewCell"
-    let itemSize = CGSize(width: 30, height: 30)
-    let spacing: CGFloat = 10
+    let itemSize = CGSize(width: 80, height: 101)
+    let spacing: CGFloat = 40
     
     // Initialization
     required init?(coder aDecoder: NSCoder) {

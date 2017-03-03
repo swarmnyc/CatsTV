@@ -23,6 +23,7 @@
 		C4673D121E692563000C59F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4DE95961E53611400CA80B2 /* Assets.xcassets */; };
 		C4673D141E692759000C59F5 /* CatCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4673D131E692759000C59F5 /* CatCollectionViewCell.swift */; };
 		C4673D181E693274000C59F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4673D171E693274000C59F5 /* LaunchScreen.storyboard */; };
+		C4673D1A1E6937D8000C59F5 /* StyleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4673D191E6937D8000C59F5 /* StyleKit.swift */; };
 		C4B3CF7B1E5509BD00D401E9 /* TopCatVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B3CF7A1E5509BD00D401E9 /* TopCatVideoView.swift */; };
 		C4B3CF7E1E551DFE00D401E9 /* Shadows.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B3CF7D1E551DFE00D401E9 /* Shadows.swift */; };
 		C4B61A8F1E53699A00DBEAD1 /* CatsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B61A8E1E53699A00DBEAD1 /* CatsCollectionView.swift */; };
@@ -31,7 +32,6 @@
 		C4B61A971E537A0400DBEAD1 /* Cat.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B61A961E537A0400DBEAD1 /* Cat.swift */; };
 		C4C859E01E5691300033CA97 /* CatsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C859DF1E5691300033CA97 /* CatsPresenter.swift */; };
 		C4DE95901E53611400CA80B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DE958F1E53611400CA80B2 /* AppDelegate.swift */; };
-		C4DE95971E53611400CA80B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4DE95961E53611400CA80B2 /* Assets.xcassets */; };
 		C4DE959D1E53620E00CA80B2 /* CatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DE959C1E53620E00CA80B2 /* CatsViewController.swift */; };
 		C4DE95A21E53624D00CA80B2 /* CatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DE95A11E53624D00CA80B2 /* CatsView.swift */; };
 /* End PBXBuildFile section */
@@ -52,6 +52,7 @@
 		C4673D0E1E692360000C59F5 /* CatsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatsView.swift; sourceTree = "<group>"; };
 		C4673D131E692759000C59F5 /* CatCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatCollectionViewCell.swift; sourceTree = "<group>"; };
 		C4673D171E693274000C59F5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C4673D191E6937D8000C59F5 /* StyleKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleKit.swift; sourceTree = "<group>"; };
 		C4B3CF7A1E5509BD00D401E9 /* TopCatVideoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopCatVideoView.swift; sourceTree = "<group>"; };
 		C4B3CF7D1E551DFE00D401E9 /* Shadows.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shadows.swift; sourceTree = "<group>"; };
 		C4B61A8E1E53699A00DBEAD1 /* CatsCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatsCollectionView.swift; sourceTree = "<group>"; };
@@ -122,6 +123,7 @@
 				C4673D011E691C10000C59F5 /* Subviews */,
 				C4673CDD1E68EE1D000C59F5 /* Info.plist */,
 				C4673D171E693274000C59F5 /* LaunchScreen.storyboard */,
+				C4673D191E6937D8000C59F5 /* StyleKit.swift */,
 			);
 			path = "CatGIFTV-iOS";
 			sourceTree = "<group>";
@@ -181,11 +183,11 @@
 				C4B61A951E5379D900DBEAD1 /* Entities */,
 				C4DE95961E53611400CA80B2 /* Assets.xcassets */,
 				C4B3CF7C1E551DC500D401E9 /* Other */,
-				C4DE958E1E53611400CA80B2 /* CatGIFTV-tvOS */,
 				C4673CD01E68EE1D000C59F5 /* CatGIFTV-iOS */,
 				C4DE958D1E53611400CA80B2 /* Products */,
 				D3FBAFEAC34C911D50D8C14D /* Pods */,
 				63A8E0771595888D9D0C5DBE /* Frameworks */,
+				C4DE958E1E53611400CA80B2 /* CatGIFTV-tvOS */,
 			);
 			sourceTree = "<group>";
 		};
@@ -335,7 +337,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C4DE95971E53611400CA80B2 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -445,6 +446,7 @@
 				C4673D101E69238A000C59F5 /* Shadows.swift in Sources */,
 				C4673D051E691CB1000C59F5 /* CatsCollectionView.swift in Sources */,
 				C4673D0C1E691FDE000C59F5 /* Reddit.swift in Sources */,
+				C4673D1A1E6937D8000C59F5 /* StyleKit.swift in Sources */,
 				C4673D0D1E692029000C59F5 /* Cat.swift in Sources */,
 				C4673D0B1E691FC9000C59F5 /* CatsPresenter.swift in Sources */,
 				C4673D0F1E692360000C59F5 /* CatsView.swift in Sources */,

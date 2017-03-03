@@ -14,8 +14,9 @@ class CatCollectionViewCell: UICollectionViewCell {
     
     // Views and layers
     lazy var catThumbnailImageView: UIImageView = {
-        let imageView = UIImageView()
+        let imageView = UIImageView(image: #imageLiteral(resourceName: "TVCat"))
         imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
         return imageView
     }()
     lazy var catPlayerLayer: AVPlayerLayer = {
