@@ -1,6 +1,21 @@
 {
   "images" : [
     {
+      "idiom" : "iphone",
+      "filename" : "icon2 sm-3.png",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "iphone",
+      "filename" : "icon2 sm-2.png",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "iphone",
+      "filename" : "icon2 sm-1.png",
+      "scale" : "3x"
+    },
+    {
       "idiom" : "tv",
       "filename" : "icon2 sm.png",
       "scale" : "1x"

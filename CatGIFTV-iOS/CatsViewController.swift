@@ -2,13 +2,13 @@
 //  CatsViewController.swift
 //  CatsTV
 //
-//  Created by William Robinson on 2/14/17.
+//  Created by William Robinson on 3/2/17.
 //
 //
 
 import UIKit
 import SnapKit
-import AVKit
+import AVFoundation
 
 // Defines commands sent from presenter to view
 protocol CatsOutputProtocol: class {
@@ -117,6 +117,7 @@ extension CatsViewController: CatInputProtocol {
         return rootView.topCatVideoView.index
     }
     
+    
     // Store new cats
     func append(cats: [Cat]) {
         self.cats.append(contentsOf: cats)
@@ -213,16 +214,7 @@ extension CatsViewController: CatInputProtocol {
     
     // Initial configuration
     func configure() {
-        
         // Delegation setup
         rootView.addDelegates(self)
-        
-        // Allow background audio for Apple Music
-        do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient)
-            try AVAudioSession.sharedInstance().setActive(true)
-        } catch {
-            print(error)
-        }
     }
 }

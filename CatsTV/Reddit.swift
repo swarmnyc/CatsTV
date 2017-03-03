@@ -6,8 +6,8 @@
 //
 //
 
-import Foundation
-import AVKit
+import UIKit
+import AVFoundation
 
 class Reddit {
   static var after: String? = ""

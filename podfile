@@ -2,3 +2,8 @@ target 'CatsTV' do
   use_frameworks!
   pod 'SnapKit'
 end
+
+target 'CatGIFTV-iOS' do
+  use_frameworks!
+  pod 'SnapKit'
+  end
