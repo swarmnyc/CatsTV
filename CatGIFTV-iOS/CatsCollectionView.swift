@@ -17,8 +17,8 @@ class CatsCollectionView: UICollectionView {
     // Constants
     let loadingIdentifier = "LoadingCollectionViewCell"
     let reuseIdentifier = "CatCollectionViewCell"
-    let itemSize = CGSize(width: 80, height: 101)
-    let spacing: CGFloat = 40
+    let itemSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+    let spacing: CGFloat = 0
     
     // Initialization
     required init?(coder aDecoder: NSCoder) {
@@ -84,6 +84,7 @@ class CatsCollectionView: UICollectionView {
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = spacing
         layout.scrollDirection = .horizontal
+        backgroundColor = UIColor.clear
         clipsToBounds = false
         decelerationRate = UIScrollViewDecelerationRateFast
         delegate = self

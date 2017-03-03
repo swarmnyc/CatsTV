@@ -69,12 +69,6 @@ public class CatsViewController: UIViewController {
         super.viewDidLayoutSubviews()
         rootView.makeAdjustmentsAfterInitialLayout()
     }
-    override open func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        if isLaunch {
-            rootView.animateOnLaunch()
-        }
-    }
 }
 
 // Cats view protocol

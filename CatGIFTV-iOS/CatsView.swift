@@ -29,6 +29,7 @@ class CatsView: UIView {
         return imageView
     }()
     lazy var blurView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
+    lazy var tvCatView: TVCatView = TVCatView()
     lazy var blackView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.black
@@ -36,16 +37,15 @@ class CatsView: UIView {
         view.isHidden = true
         return view
     }()
-    lazy var topCatVideoView = TopCatVideoView()
-    lazy var upNextLabel: UILabel = {
+    lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Up next..."
-        label.font = UIFont.systemFont(ofSize: 14, weight: UIFontWeightBlack)
+        label.text = "CatGIFTV"
+        label.font = UIFont.systemFont(ofSize: 40, weight: UIFontWeightBlack)
         label.textColor = UIColor.white
         return label
     }()
+    lazy var topCatVideoView = TopCatVideoView()
     lazy var catsCollectionView = CatsCollectionView()
-    lazy var launchTransitionImageView: UIImageView? = UIImageView(image: #imageLiteral(resourceName: "LaunchSplash"))
     
     // Gesture recognition
     lazy var rightSwipeGestureReconizer: UISwipeGestureRecognizer = {
@@ -58,6 +58,10 @@ class CatsView: UIView {
         recognizer.direction = .left
         return recognizer
     }()
+    
+    // Constraints
+    var topCatVideoViewWidth: Constraint!
+    var topCatVideoViewHeight: Constraint!
     
     // Initialization
     required init?(coder aDecoder: NSCoder) {
@@ -87,24 +91,6 @@ class CatsView: UIView {
         catsCollectionView.inputDelegate = inputDelegate
     }
     
-    // Animations on app launch
-    func animateOnLaunch() {
-        UIView.animate(
-            withDuration: 1.5,
-            delay: 0,
-            options: .curveEaseInOut,
-            animations: {
-                self.launchTransitionImageView!.alpha = 0
-                self.blurView.effect = nil
-                self.layoutIfNeeded()
-        }) { _ in
-            self.launchTransitionImageView!.removeFromSuperview()
-            self.launchTransitionImageView = nil
-            self.blurView.isHidden = true
-            self.topCatVideoView.prepareForLoading()
-        }
-    }
-    
     // Adjustments after frames have been defined by Auto Layout constraints
     func makeAdjustmentsAfterInitialLayout() {
         guard !inputDelegate.didPerformInitialLayout else { return }
@@ -115,7 +101,6 @@ class CatsView: UIView {
                    width: UIScreen.main.bounds.width,
                    height: UIScreen.main.bounds.height)
         CALayer.shadow(topCatVideoView)
-        CALayer.shadow(upNextLabel)
         inputDelegate.didPerformInitialLayout = true
     }
     
@@ -211,42 +196,38 @@ class CatsView: UIView {
         
         // Add subviews and sublayers
         addSubview(backgroundImageView)
-        addSubview(upNextLabel)
-        addSubview(catsCollectionView)
-        addSubview(blurView)
-        addSubview(blackView)
         addSubview(topCatVideoView)
-        addSubview(launchTransitionImageView!)
+        addSubview(blurView)
+        addSubview(tvCatView)
+        addSubview(blackView)
+        addSubview(catsCollectionView)
+        addSubview(titleLabel)
         
         // Add constraints
         backgroundImageView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-        catsCollectionView.snp.makeConstraints {
-            $0.bottom.equalToSuperview().offset(-20)
+        topCatVideoView.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(40)
             $0.centerX.equalToSuperview()
-            $0.width.equalToSuperview()
-            $0.height.equalTo(catsCollectionView.itemSize.height)
-        }
-        upNextLabel.snp.makeConstraints {
-            $0.left.equalTo(catsCollectionView)
-            $0.bottom.equalTo(catsCollectionView.snp.top).offset(-20)
+            topCatVideoViewWidth = $0.width.equalToSuperview().dividedBy(1.1).constraint
+            topCatVideoViewHeight = $0.height.equalToSuperview().dividedBy(1.8).constraint
         }
         blurView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        tvCatView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
         blackView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-        topCatVideoView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(60)
-            $0.centerX.equalToSuperview()
-            $0.width.equalToSuperview().dividedBy(1.1)
-            $0.height.equalToSuperview().dividedBy(1.5)
-//            $0.height.equalTo(topCatVideoView.snp.width).dividedBy(UIScreen.main.bounds.height / UIScreen.main.bounds.width)
+        catsCollectionView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
-        launchTransitionImageView?.snp.makeConstraints {
-            $0.edges.edges.equalToSuperview()
+        titleLabel.snp.makeConstraints {
+            $0.right.equalToSuperview().offset(-25)
+            $0.top.equalToSuperview().offset(40)
         }
     }
 }
