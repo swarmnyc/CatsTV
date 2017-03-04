@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationWillEnterForeground(_ application: UIApplication) {
         let rootVC = window!.rootViewController as! CatsViewController
-        rootVC.rootView.catsCollectionView.startPlayers()
+        rootVC.rootView.catsCollectionView.setCurrentPlayer()
         rootVC.presenter.appIsActive = true
         rootVC.presenter.provideCats()
     }
@@ -48,6 +48,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationDidEnterBackground(_ application: UIApplication) {
         let rootVC = window!.rootViewController as! CatsViewController
-        rootVC.rootView.catsCollectionView.pausePlayers()
+        rootVC.rootView.catsCollectionView.removeCurrentPlayer()
     }
 }

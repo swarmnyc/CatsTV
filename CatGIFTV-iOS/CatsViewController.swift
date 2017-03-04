@@ -18,53 +18,59 @@ protocol CatsOutputProtocol: class {
 // Defines inputs in view
 protocol CatInputProtocol: class {
     var catsCount: Int { get }
+    var catIndex: Int { get }
+    var isLaunch: Bool { get }
     func cat(index: Int) -> Cat
+    func currentCatIndex(_ catIndex: Int)
     func userDidInteract()
+    func completeLaunch()
 }
 
-public class CatsViewController: UIViewController {
-    
+class CatsViewController: UIViewController {
     // Presenter
     var presenter: CatsPresenterProtocol!
-    
+    // Cat input protocol
+    var catsCount: Int {
+        return cats.count
+    }
+    var catIndex: Int = 0
+    var isLaunch: Bool = true
     // Subviews
     var rootView: CatsView {
         return view as! CatsView
     }
-    
     // Properties
     lazy var cats: [Cat] = []
     var idleTimer: Timer?
-    var isUserActive = true
+    var isUserActive: Bool = true
     
-    // Set root view
-    override open func loadView() {
-        view = CatsView()
+    // Status bar
+    public override var prefersStatusBarHidden: Bool {
+        return !isUserActive
+    }
+    public override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
+        return .slide
     }
     
+    // Set root view
+    override func loadView() {
+        view = CatsView()
+    }
     // Life cycle
-    override open func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         presenter.provideCats()
         configure()
     }
-    
     // Screen rotation
-    func screenRotated() {
-        switch UIDevice.current.orientation {
-        case .portrait:
-            rootView.catsCollectionView.layoutCellsForPortraitOrientation()
-        case .landscapeLeft, .landscapeRight:
-            rootView.catsCollectionView.layoutCellsForLandscapeOrientation()
-        default:
-            return
-        }
+    public override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        rootView.catsCollectionView.resizeCellsForOrientationChange()
     }
 }
 
 // Cats view protocol
 extension CatsViewController: CatsOutputProtocol {
-    
     // Store cats retrieved from Reddit
     func store(cats: [Cat]) {
         let startIndex = self.cats.count
@@ -72,6 +78,7 @@ extension CatsViewController: CatsOutputProtocol {
         if startIndex > 0 {
             rootView.catsCollectionView.update(with: cats, at: startIndex)
         } else {
+            guard cats.count > 0 else { return }
             rootView.catsCollectionView.reloadData()
             rootView.animateAppLaunch()
         }
@@ -79,38 +86,60 @@ extension CatsViewController: CatsOutputProtocol {
 }
 
 extension CatsViewController: CatInputProtocol {
-    
-    // Number of stored cats
-    var catsCount: Int {
-        return cats.count
-    }
-    
     // Provide cat at the specified index
     func cat(index: Int) -> Cat {
         return cats[index]
     }
-    
+    // Set new current cat index
+    func currentCatIndex(_ catIndex: Int) {
+        if self.catIndex != catIndex {
+            self.catIndex = catIndex
+        }
+    }
     // Idle timer for user touch
     func userDidInteract() {
         idleTimer?.invalidate()
         if !isUserActive {
             rootView.animateToActiveInterface()
             isUserActive = true
+            UIView.animate(
+                withDuration: 0.5,
+                delay: 0,
+                options: [.curveEaseOut, .allowUserInteraction],
+                animations: { 
+                    self.setNeedsStatusBarAppearanceUpdate()
+            })
         }
         idleTimer = Timer.scheduledTimer(withTimeInterval: 5, repeats: false) { _ in
             guard self.isUserActive else { return }
             self.rootView.animateToInactiveInterface()
             self.isUserActive = false
+            UIView.animate(
+                withDuration: 0.2,
+                delay: 0,
+                options: [.curveEaseOut, .allowUserInteraction],
+                animations: {
+                    self.setNeedsStatusBarAppearanceUpdate()
+            })
         }
     }
-    
+    // Mark initial launch process as complete
+    func completeLaunch() {
+        isLaunch = false
+    }
+}
+
+private extension CatsViewController {
     // Initial configuration
     func configure() {
-        
         // Delegation setup
         rootView.addDelegates(self)
-        
-        // Observe screen rotation
-        NotificationCenter.default.addObserver(self, selector: #selector(screenRotated), name: Notification.Name.UIDeviceOrientationDidChange, object: nil)
+        // Allow background audio for Apple Music
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient)
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch {
+            print(error)
+        }
     }
 }

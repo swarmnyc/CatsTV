@@ -18,10 +18,8 @@ import SnapKit
 import AVKit
 
 class CatsView: UIView {
-    
     // Delegation
     weak var inputDelegate: CatInputProtocol!
-    
     // Subviews and sublayers
     lazy var catsCollectionView = CatsCollectionView()
     lazy var titleImageView: UIImageView = {
@@ -33,7 +31,6 @@ class CatsView: UIView {
         imageView.layer.shadowOpacity = 0
         return imageView
     }()
-    
     // Initialization
     init() {
         super.init(frame: CGRect.zero)
@@ -42,17 +39,15 @@ class CatsView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
     // Delegation setup
     func addDelegates(_ inputDelegate: CatInputProtocol) {
         self.inputDelegate = inputDelegate
         catsCollectionView.inputDelegate = inputDelegate
     }
-    
     // Animations for application launch
     func animateAppLaunch() {
         UIView.animate(
-            withDuration: 0.6,
+            withDuration: 0.4,
             delay: 0,
             options: .curveEaseOut,
             animations: {
@@ -68,11 +63,10 @@ class CatsView: UIView {
             self.inputDelegate.userDidInteract()
         }
     }
-    
     // Animations when user becomes active after previously being inactive
     func animateToActiveInterface() {
         UIView.animate(
-            withDuration: 0.2,
+            withDuration: 0.15,
             delay: 0,
             options: .curveEaseIn,
             animations: {
@@ -83,7 +77,6 @@ class CatsView: UIView {
                 self.layoutIfNeeded()
         })
     }
-    
     // Animations when user becomes inactive
     func animateToInactiveInterface() {
         UIView.animate(
@@ -98,14 +91,11 @@ class CatsView: UIView {
                 self.layoutIfNeeded()
         })
     }
-    
     // Initial configuration
     func configure() {
-        
         // Add subviews and sublayers
         addSubview(catsCollectionView)
         addSubview(titleImageView)
-        
         // Add constraints
         catsCollectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()

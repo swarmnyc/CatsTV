@@ -32,8 +32,6 @@ class TopCatVideoView: UIView {
     playerLayer.needsDisplayOnBoundsChange = true
     return playerLayer
   }()
-  var previousPlayer: AVPlayer?
-  var nextPlayer: AVPlayer?
   var index = 0
   var playCount = 0
   

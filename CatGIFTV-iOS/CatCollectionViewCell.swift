@@ -16,7 +16,7 @@ class CatCollectionViewCell: UICollectionViewCell {
     lazy var catThumbnailImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
-        imageView.layer.cornerRadius = 8
+        imageView.layer.cornerRadius = 6
         imageView.clipsToBounds = true
         return imageView
     }()
@@ -24,14 +24,19 @@ class CatCollectionViewCell: UICollectionViewCell {
         let playerLayer = AVPlayerLayer()
         playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
         playerLayer.needsDisplayOnBoundsChange = true
-        playerLayer.isHidden = true
-        playerLayer.cornerRadius = 8
+        playerLayer.cornerRadius = 6
         playerLayer.masksToBounds = true
         return playerLayer
     }()
+    lazy var whiteView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.white
+        view.alpha = 0
+        return view
+    }()
     
     // Gesture recognition
-    let longPress = UILongPressGestureRecognizer()
+    let longPressGestureRecognizer = UILongPressGestureRecognizer()
     
     // Properties
     var cat: Cat!
@@ -45,31 +50,19 @@ class CatCollectionViewCell: UICollectionViewCell {
         super.init(coder: aDecoder)
     }
     
-    // Set playback to normal rate after a long press or any other touch event has ended
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesEnded(touches, with: event)
-        if catPlayerLayer.player?.rate != 1 {
-            catPlayerLayer.player?.rate = 1
-        }
-    }
-    
     // Reset cell
     override func prepareForReuse() {
-        super.prepareForReuse()
         hideVideo()
+        super.prepareForReuse()
     }
     
     // Set thumbnail image
     func setThumbnail() {
         catThumbnailImageView.image = cat.image
     }
-    
-    // Set video
-    func setVideo() {
-        guard catPlayerLayer.player == nil else {
-            startPlayer()
-            return
-        }
+    // Set video player
+    func setPlayer() {
+        guard catPlayerLayer.player == nil else { return }
         let player = AVPlayer(url: cat.url)
         player.isMuted = true
         catPlayerLayer.player = player
@@ -78,49 +71,57 @@ class CatCollectionViewCell: UICollectionViewCell {
             object: catPlayerLayer.player!.currentItem,
             queue: OperationQueue.main
         ) { _ in
-            self.catPlayerLayer.player!.seek(to: kCMTimeZero)
-            self.catPlayerLayer.player!.play()
+            self.catPlayerLayer.player?.seek(to: kCMTimeZero)
+            self.catPlayerLayer.player?.play()
         }
-        catPlayerLayer.player!.play()
-        catPlayerLayer.isHidden = false
-        addGestureRecognizer(longPress)
     }
-    
+    // Start video playback
     func startPlayer() {
-        catPlayerLayer.player?.seek(to: kCMTimeZero)
         catPlayerLayer.player?.play()
     }
-    
+    // Stop video playback
     func pausePlayer() {
         catPlayerLayer.player?.pause()
     }
-    
+    // Set player to original starting point
+    func rewindPlayer() {
+        catPlayerLayer.player?.seek(to: kCMTimeZero)
+    }
     func hideVideo() {
         guard catPlayerLayer.player != nil else { return }
         NotificationCenter.default.removeObserver(catPlayerLayer.player!.currentItem!)
         catPlayerLayer.player = nil
-        catPlayerLayer.isHidden = true
     }
-    
-    func decreasePlayerSpeed() {
-        catPlayerLayer.player?.rate = 0.3
+    func longPress(_ gestureRecognizer: UILongPressGestureRecognizer) {
+        switch gestureRecognizer.state {
+        case .began:
+            catPlayerLayer.player?.rate = 0.35
+        case .ended:
+            catPlayerLayer.player?.rate = 1
+        default:
+            return
+        }
     }
-    
+}
+
+private extension CatCollectionViewCell {
     // Initial configuration
     func configure() {
-        
         // Setup
-        catPlayerLayer.frame = CGRect(x: 0, y: 0, width: contentView.bounds.width, height: contentView.bounds.height)
-        longPress.minimumPressDuration = 0.7
-        longPress.addTarget(self, action: #selector(decreasePlayerSpeed))
-        
+        catPlayerLayer.frame = CGRect(x: 3, y: 3, width: UIScreen.main.bounds.width - 6, height: UIScreen.main.bounds.height - 6)
+        // Gesture recognition
+        longPressGestureRecognizer.addTarget(self, action: #selector(longPress))
+        addGestureRecognizer(longPressGestureRecognizer)
         // Add subviews and sublayers
         contentView.addSubview(catThumbnailImageView)
         contentView.layer.addSublayer(catPlayerLayer)
-        
+        contentView.addSubview(whiteView)
         // Constrain
         catThumbnailImageView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.edges.equalTo(UIEdgeInsetsMake(3, 3, 3, 3))
+        }
+        whiteView.snp.makeConstraints {
+            $0.edges.equalTo(UIEdgeInsetsMake(3, 3, 3, 3))
         }
     }
 }
