@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Fabric
+import Crashlytics
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -25,27 +28,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window!.rootViewController = view
         window!.makeKeyAndVisible()
         
+        // Fabric setup
+        Fabric.with([Crashlytics.self])
+        
         return true
     }
     
-//    func applicationWillEnterForeground(_ application: UIApplication) {
-//        let rootVC = window!.rootViewController as! CatsViewController
-//        rootVC.rootView.topCatVideoView.startTopPlayer()
-//        rootVC.rootView.catsCollectionView.startPlayers()
-//        rootVC.presenter.appIsActive = true
-//        rootVC.presenter.provideCats()
-//        rootVC.userDidInteract()
-//    }
-//    
-//    func applicationWillResignActive(_ application: UIApplication) {
-//        let rootVC = window!.rootViewController as! CatsViewController
-//        rootVC.idleTimer?.invalidate()
-//        rootVC.presenter.appIsActive = false
-//    }
-//    
-//    func applicationDidEnterBackground(_ application: UIApplication) {
-//        let rootVC = window!.rootViewController as! CatsViewController
-//        rootVC.rootView.topCatVideoView.pauseTopPlayer()
-//        rootVC.rootView.catsCollectionView.pausePlayers()
-//    }
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        let rootVC = window!.rootViewController as! CatsViewController
+        rootVC.rootView.catsCollectionView.startPlayers()
+        rootVC.presenter.appIsActive = true
+        rootVC.presenter.provideCats()
+    }
+    
+    func applicationWillResignActive(_ application: UIApplication) {
+        let rootVC = window!.rootViewController as! CatsViewController
+        rootVC.presenter.appIsActive = false
+    }
+    
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        let rootVC = window!.rootViewController as! CatsViewController
+        rootVC.rootView.catsCollectionView.pausePlayers()
+    }
 }

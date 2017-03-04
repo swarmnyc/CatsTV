@@ -15,41 +15,31 @@ class CatsCollectionView: UICollectionView {
     weak var inputDelegate: CatInputProtocol!
     
     // Constants
-    let loadingIdentifier = "LoadingCollectionViewCell"
     let reuseIdentifier = "CatCollectionViewCell"
-    let itemSize = CGSize(width: UIScreen.main.bounds.width - 20, height: UIScreen.main.bounds.height - 35)
-    let spacing: CGFloat = 10
     
     // Initialization
+    init() {
+        super.init(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
+        configure()
+    }
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
-    override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
-        super.init(frame: frame, collectionViewLayout: layout)
-    }
-    
-    convenience init() {
-        self.init(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
-        configure()
+    // Detect touches to determine user activity status
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        inputDelegate.userDidInteract()
+        return super.hitTest(point, with: event)
     }
     
     // Update data source with new cats
-    func update(with cats: [Cat]) {
-        let startIndex = self.inputDelegate.catsCount
-        self.inputDelegate.append(cats: cats)
-        
-        guard startIndex > 0 else { return }
+    func update(with cats: [Cat], at startIndex: Int) {
         var indexPaths = [IndexPath]()
         for i in 0..<cats.count {
             indexPaths.append(IndexPath(item: startIndex + i, section: 0))
+            print(i)
         }
         insertItems(at: indexPaths)
-        
-        guard let visibleCells = visibleCells as? [CatCollectionViewCell] else { return }
-        for cell in visibleCells {
-            cell.hideLoadingMessage()
-        }
     }
     
     func startPlayers() {
@@ -66,49 +56,51 @@ class CatsCollectionView: UICollectionView {
         }
     }
     
+    func layoutCellsForPortraitOrientation() {
+        (collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        layoutIfNeeded()
+    }
+    
+    func layoutCellsForLandscapeOrientation() {
+        (collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSize(width: UIScreen.main.bounds.height, height: UIScreen.main.bounds.width)
+        layoutIfNeeded()
+    }
+    
     // Initial configuration
     func configure() {
-        let layout = collectionViewLayout as! UICollectionViewFlowLayout
-        layout.itemSize = itemSize
-        layout.minimumInteritemSpacing = 0
-        layout.minimumLineSpacing = spacing
-        layout.scrollDirection = .horizontal
-        layer.cornerRadius = 20
-        clipsToBounds = true
+        
+        // Setup
+        alpha = 0
         backgroundColor = UIColor.clear
         isPagingEnabled = true
         showsHorizontalScrollIndicator = false
         decelerationRate = UIScrollViewDecelerationRateFast
+        let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
+        flowLayout.itemSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        flowLayout.minimumInteritemSpacing = 0
+        flowLayout.minimumLineSpacing = 0
+        flowLayout.scrollDirection = .horizontal
+        
+        // Registration
+        register(CatCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         delegate = self
         dataSource = self
-        register(CatCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
 }
 
 // Cats collection view delegate
 extension CatsCollectionView: UICollectionViewDelegate {
-    
-    // Selection
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as! CatCollectionViewCell
-        cell.setVideo()
+        (collectionView.cellForItem(at: indexPath) as! CatCollectionViewCell).startPlayer()
     }
     
-    // Scrolling
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        inputDelegate.setScrolling()
-    }
-    
-    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
-        for cell in visibleCells as! [CatCollectionViewCell] {
-            cell.setThumbnail()
-        }
-    }
-    
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        inputDelegate.setStoppedScrolling()
+    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let cell = cell as! CatCollectionViewCell
+        cell.pausePlayer()
+        cell.hideVideo()
     }
 }
+
 
 // Cats collection view data source
 extension CatsCollectionView: UICollectionViewDataSource {
@@ -120,6 +112,7 @@ extension CatsCollectionView: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CatCollectionViewCell
         cell.cat = inputDelegate.cat(index: indexPath.item)
         cell.setThumbnail()
+        cell.setVideo()
         return cell
     }
 }

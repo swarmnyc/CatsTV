@@ -1,9 +1,16 @@
-target 'CatsTV' do
+def universal_pods
   use_frameworks!
   pod 'SnapKit'
+  pod 'PromiseKit'
+  pod 'SwiftLint'
+  pod 'Fabric'
+  pod 'Crashlytics'
+end
+
+target 'CatsTV' do
+  universal_pods
 end
 
 target 'CatGIFTV-iOS' do
-  use_frameworks!
-  pod 'SnapKit'
-  end
+  universal_pods
+end

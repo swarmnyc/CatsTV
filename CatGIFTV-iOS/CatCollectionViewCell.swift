@@ -14,9 +14,9 @@ class CatCollectionViewCell: UICollectionViewCell {
     
     // Views and layers
     lazy var catThumbnailImageView: UIImageView = {
-        let imageView = UIImageView(image: #imageLiteral(resourceName: "TVCat"))
+        let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
-        imageView.layer.cornerRadius = 20
+        imageView.layer.cornerRadius = 8
         imageView.clipsToBounds = true
         return imageView
     }()
@@ -25,56 +25,32 @@ class CatCollectionViewCell: UICollectionViewCell {
         playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
         playerLayer.needsDisplayOnBoundsChange = true
         playerLayer.isHidden = true
-        playerLayer.cornerRadius = 20
+        playerLayer.cornerRadius = 8
         playerLayer.masksToBounds = true
         return playerLayer
     }()
-    lazy var gradientView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.black
-        view.alpha = 0
-        return view
-    }()
-    lazy var blurView: UIVisualEffectView = {
-        let label = UILabel()
-        label.text = "Loading..."
-        label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 28, weight: UIFontWeightBlack)
-        label.textColor = UIColor.white
-        let effectView = UIVisualEffectView(effect: nil)
-        effectView.addSubview(label)
-        label.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
-        return effectView
-    }()
-    lazy var gradientMask = CAGradientLayer()
+    
+    // Gesture recognition
+    let longPress = UILongPressGestureRecognizer()
     
     // Properties
     var cat: Cat!
-    var playerObserverActive = false
     
     // Initialization
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
     }
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
     
-    // Observe player item status
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        guard keyPath == #keyPath(AVPlayerItem.status) else {
-            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
-            return
+    // Set playback to normal rate after a long press or any other touch event has ended
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
+        if catPlayerLayer.player?.rate != 1 {
+            catPlayerLayer.player?.rate = 1
         }
-        guard AVPlayerItemStatus(rawValue: change![.newKey] as! Int)! == .readyToPlay else { return }
-        catPlayerLayer.player!.currentItem!.removeObserver(self, forKeyPath: #keyPath(AVPlayerItem.status))
-        playerObserverActive = false
-        catPlayerLayer.player!.play()
-        catPlayerLayer.isHidden = false
     }
     
     // Reset cell
@@ -90,31 +66,24 @@ class CatCollectionViewCell: UICollectionViewCell {
     
     // Set video
     func setVideo() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            guard self.catPlayerLayer.player == nil else { return }
-            let player = AVPlayer(url: self.cat.url)
-            player.isMuted = true
-            self.catPlayerLayer.player = player
-            self.catPlayerLayer.player!.currentItem!.addObserver(self, forKeyPath: #keyPath(AVPlayerItem.status), options: .new, context: nil)
-            self.playerObserverActive = true
+        guard catPlayerLayer.player == nil else {
+            startPlayer()
+            return
         }
-    }
-    // Hide and remove video
-    func hideVideo() {
-        guard playerObserverActive else { return }
-        playerObserverActive = false
-        catPlayerLayer.player!.currentItem!.removeObserver(self, forKeyPath: #keyPath(AVPlayerItem.status))
-        if !catPlayerLayer.isHidden {
-            catPlayerLayer.isHidden = true
+        let player = AVPlayer(url: cat.url)
+        player.isMuted = true
+        catPlayerLayer.player = player
+        NotificationCenter.default.addObserver(
+            forName: Notification.Name.AVPlayerItemDidPlayToEndTime,
+            object: catPlayerLayer.player!.currentItem,
+            queue: OperationQueue.main
+        ) { _ in
+            self.catPlayerLayer.player!.seek(to: kCMTimeZero)
+            self.catPlayerLayer.player!.play()
         }
-        catPlayerLayer.player = nil
-    }
-    
-    func pausePlayer() {
-        guard playerObserverActive else { return }
-        playerObserverActive = false
-        catPlayerLayer.player!.currentItem!.removeObserver(self, forKeyPath: #keyPath(AVPlayerItem.status))
-        catPlayerLayer.player!.pause()
+        catPlayerLayer.player!.play()
+        catPlayerLayer.isHidden = false
+        addGestureRecognizer(longPress)
     }
     
     func startPlayer() {
@@ -122,101 +91,36 @@ class CatCollectionViewCell: UICollectionViewCell {
         catPlayerLayer.player?.play()
     }
     
-    // Display message when additional cats are being retrieved
-    func showLoadingMessage() {
-        guard blurView.effect == nil else { return }
-        contentView.addSubview(blurView)
-        blurView.snp.makeConstraints {
-            $0.center.equalToSuperview()
-            $0.width.height.equalToSuperview().multipliedBy(1.4)
-        }
-        blurView.effect = UIBlurEffect(style: .light)
+    func pausePlayer() {
+        catPlayerLayer.player?.pause()
     }
     
-    // Hide and remove loading message once cats have been stored
-    func hideLoadingMessage() {
-        guard blurView.effect != nil else { return }
-        blurView.effect = nil
-        blurView.removeFromSuperview()
+    func hideVideo() {
+        guard catPlayerLayer.player != nil else { return }
+        NotificationCenter.default.removeObserver(catPlayerLayer.player!.currentItem!)
+        catPlayerLayer.player = nil
+        catPlayerLayer.isHidden = true
+    }
+    
+    func decreasePlayerSpeed() {
+        catPlayerLayer.player?.rate = 0.3
     }
     
     // Initial configuration
     func configure() {
         
         // Setup
-        gradientMask.frame = contentView.bounds
-        gradientMask.startPoint = CGPoint(x: 0, y: 0.5)
-        gradientMask.endPoint = CGPoint(x: 1, y: 0.5)
-        gradientMask.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
-        gradientView.layer.mask = gradientMask
         catPlayerLayer.frame = CGRect(x: 0, y: 0, width: contentView.bounds.width, height: contentView.bounds.height)
+        longPress.minimumPressDuration = 0.7
+        longPress.addTarget(self, action: #selector(decreasePlayerSpeed))
         
-        // Add layers
+        // Add subviews and sublayers
         contentView.addSubview(catThumbnailImageView)
         contentView.layer.addSublayer(catPlayerLayer)
-        contentView.addSubview(gradientView)
         
         // Constrain
         catThumbnailImageView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-        gradientView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
     }
-    
-    // ••••••••••
-    
-    //  func increaseGradient(_ count: Int) {
-    //    guard gradientMask != nil, gradientView.alpha < 1 else { return }
-    //    var adjustedCount = count
-    //    if Double(gradientView.alpha) + Double(count) / 10 > 1 {
-    //      adjustedCount = Int(1 - Double(gradientView.alpha)) * 10
-    //    }
-    //
-    //    layoutIfNeeded()
-    //    UIView.animateKeyframes(
-    //      withDuration: Double(adjustedCount) / 10,
-    //      delay: 0,
-    //      options: .allowUserInteraction,
-    //      animations: {
-    //        for i in 0..<adjustedCount {
-    //          UIView.addKeyframe(
-    //            withRelativeStartTime: Double(i) / 10,
-    //            relativeDuration: 0.1,
-    //            animations: {
-    //              self.gradientView.alpha += 0.1
-    //              self.layoutIfNeeded()
-    //          })
-    //        }
-    //    })
-    //  }
-    //
-    //  func reduceGradient(_ count: Int) {
-    //    guard gradientMask != nil, gradientView.alpha > 0.6  else { return }
-    //    var adjustedCount = count
-    //    if Double(gradientView.alpha) + Double(count) / 10 < 0.6 {
-    //      adjustedCount = Int(Double(gradientView.alpha) - 0.6) * 10
-    //    }
-    //
-    //    layoutIfNeeded()
-    //    UIView.animateKeyframes(
-    //      withDuration: Double(adjustedCount) / 10,
-    //      delay: 0,
-    //      options: .allowUserInteraction,
-    //      animations: {
-    //        for i in 0..<adjustedCount {
-    //          UIView.addKeyframe(
-    //            withRelativeStartTime: Double(i) / 10,
-    //            relativeDuration: 0.1,
-    //            animations: {
-    //              self.gradientView.alpha -= 0.1
-    //              self.layoutIfNeeded()
-    //          })
-    //        }
-    //    })
-    //  }
-    
-    // ••••••••••
-    
 }

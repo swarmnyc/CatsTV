@@ -1,12 +1,35 @@
 PODS:
+  - Crashlytics (3.8.4):
+    - Fabric (~> 1.6.3)
+  - Fabric (1.6.11)
+  - PromiseKit (4.1.7):
+    - PromiseKit/Foundation (= 4.1.7)
+    - PromiseKit/QuartzCore (= 4.1.7)
+    - PromiseKit/UIKit (= 4.1.7)
+  - PromiseKit/CorePromise (4.1.7)
+  - PromiseKit/Foundation (4.1.7):
+    - PromiseKit/CorePromise
+  - PromiseKit/QuartzCore (4.1.7):
+    - PromiseKit/CorePromise
+  - PromiseKit/UIKit (4.1.7):
+    - PromiseKit/CorePromise
   - SnapKit (3.1.2)
+  - SwiftLint (0.16.1)
 
 DEPENDENCIES:
+  - Crashlytics
+  - Fabric
+  - PromiseKit
   - SnapKit
+  - SwiftLint
 
 SPEC CHECKSUMS:
+  Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
+  Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
+  PromiseKit: 779f2e41faf62d854e7593026ddbcb0bb5c5002d
   SnapKit: 12b24f569cb7c143acc9c22b9d91b23e7b1c84a2
+  SwiftLint: b8b683208cc09640898f16318a7a452274e91f61
 
-PODFILE CHECKSUM: a509555fcc25abbe18ab9cec19d56b3ea609fcf5
+PODFILE CHECKSUM: 27c85066f5debfb16dbb552b8eee1af3bf5d1cc6
 
 COCOAPODS: 1.2.0
