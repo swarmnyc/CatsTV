@@ -19,9 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Module setup
         let view = CatsViewController()
-        let presenter = CatsPresenter()
-        view.presenter = presenter
-        presenter.view = view
+        let viewModel = CatsViewModel()
+        view.viewModel = viewModel
+        viewModel.view = view
         
         // Window setup
         window = UIWindow(frame: UIScreen.main.bounds)
@@ -37,13 +37,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillEnterForeground(_ application: UIApplication) {
         let rootVC = window!.rootViewController as! CatsViewController
         rootVC.rootView.catsCollectionView.setCurrentPlayer()
-        rootVC.presenter.appIsActive = true
-        rootVC.presenter.provideCats()
+        rootVC.viewModel.enableCatAcquisition()
+        rootVC.viewModel.retrieveCats()
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
         let rootVC = window!.rootViewController as! CatsViewController
-        rootVC.presenter.appIsActive = false
+        rootVC.viewModel.disableCatAcquisition()
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {

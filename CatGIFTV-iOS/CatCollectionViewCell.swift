@@ -87,11 +87,31 @@ class CatCollectionViewCell: UICollectionViewCell {
     func rewindPlayer() {
         catPlayerLayer.player?.seek(to: kCMTimeZero)
     }
+    
+    // Brief white flash on screen when touched
+    func whiteFlash() {
+        UIView.animate(
+            withDuration: 0.07,
+            delay: 0,
+            options: [.curveEaseIn, .allowUserInteraction],
+            animations: {
+                self.whiteView.alpha = 0.2
+        })
+        UIView.animate(
+            withDuration: 0.13,
+            delay: 0.07,
+            options: [.curveEaseOut, .allowUserInteraction],
+            animations: {
+                self.whiteView.alpha = 0
+        })
+    }
+    
     func hideVideo() {
         guard catPlayerLayer.player != nil else { return }
         NotificationCenter.default.removeObserver(catPlayerLayer.player!.currentItem!)
         catPlayerLayer.player = nil
     }
+    
     func longPress(_ gestureRecognizer: UILongPressGestureRecognizer) {
         switch gestureRecognizer.state {
         case .began:

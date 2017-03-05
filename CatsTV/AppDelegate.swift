@@ -38,15 +38,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let rootVC = window!.rootViewController as! CatsViewController
     rootVC.rootView.topCatVideoView.startTopPlayer()
     rootVC.rootView.catsCollectionView.startPlayers()
-    rootVC.presenter.appIsActive = true
-    rootVC.presenter.provideCats()
+    rootVC.viewModel.appIsActive = true
+    rootVC.viewModel.provideCats()
     rootVC.userDidInteract()
   }
   
   func applicationWillResignActive(_ application: UIApplication) {
     let rootVC = window!.rootViewController as! CatsViewController
     rootVC.idleTimer?.invalidate()
-    rootVC.presenter.appIsActive = false
+    rootVC.viewModel.appIsActive = false
   }
   
   func applicationDidEnterBackground(_ application: UIApplication) {

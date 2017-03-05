@@ -15,8 +15,6 @@
 		C4673CD21E68EE1D000C59F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4673CD11E68EE1D000C59F5 /* AppDelegate.swift */; };
 		C4673D001E691B93000C59F5 /* CatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4673CFF1E691B93000C59F5 /* CatsViewController.swift */; };
 		C4673D051E691CB1000C59F5 /* CatsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4673D041E691CB1000C59F5 /* CatsCollectionView.swift */; };
-		C4673D0B1E691FC9000C59F5 /* CatsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C859DF1E5691300033CA97 /* CatsPresenter.swift */; };
-		C4673D0C1E691FDE000C59F5 /* Reddit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B61A931E53715700DBEAD1 /* Reddit.swift */; };
 		C4673D0D1E692029000C59F5 /* Cat.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B61A961E537A0400DBEAD1 /* Cat.swift */; };
 		C4673D0F1E692360000C59F5 /* CatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4673D0E1E692360000C59F5 /* CatsView.swift */; };
 		C4673D101E69238A000C59F5 /* Shadows.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B3CF7D1E551DFE00D401E9 /* Shadows.swift */; };
@@ -29,9 +27,11 @@
 		C4B61A911E5369D500DBEAD1 /* CatCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B61A901E5369D500DBEAD1 /* CatCollectionViewCell.swift */; };
 		C4B61A941E53715700DBEAD1 /* Reddit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B61A931E53715700DBEAD1 /* Reddit.swift */; };
 		C4B61A971E537A0400DBEAD1 /* Cat.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B61A961E537A0400DBEAD1 /* Cat.swift */; };
-		C4C859E01E5691300033CA97 /* CatsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C859DF1E5691300033CA97 /* CatsPresenter.swift */; };
 		C4D8B5921E6A390100A9E626 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4DE95961E53611400CA80B2 /* Assets.xcassets */; };
 		C4D8B5931E6A391700A9E626 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4DE95961E53611400CA80B2 /* Assets.xcassets */; };
+		C4D8B5961E6AE1DE00A9E626 /* Reddit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D8B5941E6AE1CD00A9E626 /* Reddit.swift */; };
+		C4D8B5981E6B84A600A9E626 /* CatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D8B5971E6B84A600A9E626 /* CatsViewModel.swift */; };
+		C4D8B5991E6B95C100A9E626 /* CatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D8B5971E6B84A600A9E626 /* CatsViewModel.swift */; };
 		C4DE95901E53611400CA80B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DE958F1E53611400CA80B2 /* AppDelegate.swift */; };
 		C4DE959D1E53620E00CA80B2 /* CatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DE959C1E53620E00CA80B2 /* CatsViewController.swift */; };
 		C4DE95A21E53624D00CA80B2 /* CatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DE95A11E53624D00CA80B2 /* CatsView.swift */; };
@@ -45,7 +45,7 @@
 		C41B642D1E65D33C00949040 /* MusicCatButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicCatButton.swift; sourceTree = "<group>"; };
 		C41B64321E65F12100949040 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		C43BBD7F1E63D889005F029E /* LoadingCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingCollectionViewCell.swift; sourceTree = "<group>"; };
-		C4673CCF1E68EE1D000C59F5 /* CatGIFTV-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CatGIFTV-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4673CCF1E68EE1D000C59F5 /* CatsTV-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CatsTV-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4673CD11E68EE1D000C59F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C4673CDD1E68EE1D000C59F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C4673CFF1E691B93000C59F5 /* CatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatsViewController.swift; sourceTree = "<group>"; };
@@ -58,11 +58,12 @@
 		C4B61A8E1E53699A00DBEAD1 /* CatsCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatsCollectionView.swift; sourceTree = "<group>"; };
 		C4B61A901E5369D500DBEAD1 /* CatCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatCollectionViewCell.swift; sourceTree = "<group>"; };
 		C4B61A931E53715700DBEAD1 /* Reddit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reddit.swift; sourceTree = "<group>"; };
-		C4B61A961E537A0400DBEAD1 /* Cat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cat.swift; sourceTree = "<group>"; };
-		C4C859DF1E5691300033CA97 /* CatsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatsPresenter.swift; sourceTree = "<group>"; };
-		C4DE958C1E53611400CA80B2 /* CatsTV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatsTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4B61A961E537A0400DBEAD1 /* Cat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Cat.swift; path = ../CatsTV/Cat.swift; sourceTree = "<group>"; };
+		C4D8B5941E6AE1CD00A9E626 /* Reddit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reddit.swift; path = "CatGIFTV-iOS/Reddit.swift"; sourceTree = SOURCE_ROOT; };
+		C4D8B5971E6B84A600A9E626 /* CatsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CatsViewModel.swift; path = ../CatsTV/CatsViewModel.swift; sourceTree = "<group>"; };
+		C4DE958C1E53611400CA80B2 /* CatsTV-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CatsTV-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4DE958F1E53611400CA80B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C4DE95961E53611400CA80B2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = CatsTV/Assets.xcassets; sourceTree = "<group>"; };
+		C4DE95961E53611400CA80B2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C4DE95981E53611400CA80B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C4DE959C1E53620E00CA80B2 /* CatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatsViewController.swift; sourceTree = "<group>"; };
 		C4DE95A11E53624D00CA80B2 /* CatsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatsView.swift; sourceTree = "<group>"; };
@@ -119,16 +120,15 @@
 			name = Subviews;
 			sourceTree = "<group>";
 		};
-		C4673CD01E68EE1D000C59F5 /* CatGIFTV-iOS */ = {
+		C4673CD01E68EE1D000C59F5 /* CatsTV-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				C4673CD11E68EE1D000C59F5 /* AppDelegate.swift */,
-				C4673CFF1E691B93000C59F5 /* CatsViewController.swift */,
-				C4673D0E1E692360000C59F5 /* CatsView.swift */,
-				C4673D011E691C10000C59F5 /* Subviews */,
-				C4673CDD1E68EE1D000C59F5 /* Info.plist */,
-				C4673D171E693274000C59F5 /* LaunchScreen.storyboard */,
+				C4D8B59F1E6BA16900A9E626 /* Model */,
+				C4D8B5A01E6BA17300A9E626 /* View */,
+				C4D8B5A11E6BA17B00A9E626 /* ViewModel */,
+				C4D8B5A21E6BA1A100A9E626 /* Other */,
 			);
+			name = "CatsTV-iOS";
 			path = "CatGIFTV-iOS";
 			sourceTree = "<group>";
 		};
@@ -146,90 +146,163 @@
 			children = (
 				C4B3CF7D1E551DFE00D401E9 /* Shadows.swift */,
 				C41B64321E65F12100949040 /* Colors.swift */,
+				C4DE95961E53611400CA80B2 /* Assets.xcassets */,
 			);
 			name = Other;
-			path = CatsTV;
+			path = ../CatsTV;
 			sourceTree = "<group>";
 		};
-		C4B61A921E53712B00DBEAD1 /* Data Managers */ = {
+		C4D8B59B1E6BA09200A9E626 /* CatsTV */ = {
 			isa = PBXGroup;
 			children = (
-				C4B61A931E53715700DBEAD1 /* Reddit.swift */,
+				C4D8B59D1E6BA12600A9E626 /* Model */,
+				C4D8B59E1E6BA12F00A9E626 /* View */,
+				C4D8B59C1E6BA11900A9E626 /* ViewModel */,
+				C4B3CF7C1E551DC500D401E9 /* Other */,
 			);
-			name = "Data Managers";
-			path = CatsTV;
+			name = CatsTV;
+			path = "CatGIFTV-iOS";
 			sourceTree = "<group>";
 		};
-		C4B61A951E5379D900DBEAD1 /* Entities */ = {
+		C4D8B59C1E6BA11900A9E626 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C4D8B5971E6B84A600A9E626 /* CatsViewModel.swift */,
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
+		C4D8B59D1E6BA12600A9E626 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C4D8B5A71E6BA44D00A9E626 /* Entities */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		C4D8B59E1E6BA12F00A9E626 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		C4D8B59F1E6BA16900A9E626 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C4D8B5A81E6BA46800A9E626 /* DataManagers */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		C4D8B5A01E6BA17300A9E626 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C4673CD11E68EE1D000C59F5 /* AppDelegate.swift */,
+				C4673CFF1E691B93000C59F5 /* CatsViewController.swift */,
+				C4673D0E1E692360000C59F5 /* CatsView.swift */,
+				C4673D011E691C10000C59F5 /* Subviews */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		C4D8B5A11E6BA17B00A9E626 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
+		C4D8B5A21E6BA1A100A9E626 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				C4673CDD1E68EE1D000C59F5 /* Info.plist */,
+				C4673D171E693274000C59F5 /* LaunchScreen.storyboard */,
+			);
+			name = Other;
+			sourceTree = "<group>";
+		};
+		C4D8B5A31E6BA1BF00A9E626 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C4D8B5A91E6BA47800A9E626 /* DataManagers */,
+				C4B61A931E53715700DBEAD1 /* Reddit.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		C4D8B5A41E6BA1C200A9E626 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C4DE958F1E53611400CA80B2 /* AppDelegate.swift */,
+				C4DE959C1E53620E00CA80B2 /* CatsViewController.swift */,
+				C4DE95A11E53624D00CA80B2 /* CatsView.swift */,
+				C43BBD821E63D8A7005F029E /* Subviews */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		C4D8B5A61E6BA1F800A9E626 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				C4DE95981E53611400CA80B2 /* Info.plist */,
+			);
+			name = Other;
+			sourceTree = "<group>";
+		};
+		C4D8B5A71E6BA44D00A9E626 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
 				C4B61A961E537A0400DBEAD1 /* Cat.swift */,
 			);
 			name = Entities;
-			path = CatsTV;
 			sourceTree = "<group>";
 		};
-		C4C859DE1E5690F90033CA97 /* Presenters */ = {
+		C4D8B5A81E6BA46800A9E626 /* DataManagers */ = {
 			isa = PBXGroup;
 			children = (
-				C4C859DF1E5691300033CA97 /* CatsPresenter.swift */,
+				C4D8B5941E6AE1CD00A9E626 /* Reddit.swift */,
 			);
-			name = Presenters;
-			path = CatsTV;
+			name = DataManagers;
+			sourceTree = "<group>";
+		};
+		C4D8B5A91E6BA47800A9E626 /* DataManagers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = DataManagers;
 			sourceTree = "<group>";
 		};
 		C4DE95811E5360D800CA80B2 = {
 			isa = PBXGroup;
 			children = (
-				C4C859DE1E5690F90033CA97 /* Presenters */,
-				C4B61A921E53712B00DBEAD1 /* Data Managers */,
-				C4B61A951E5379D900DBEAD1 /* Entities */,
-				C4DE95961E53611400CA80B2 /* Assets.xcassets */,
-				C4B3CF7C1E551DC500D401E9 /* Other */,
-				C4673CD01E68EE1D000C59F5 /* CatGIFTV-iOS */,
+				C4D8B59B1E6BA09200A9E626 /* CatsTV */,
+				C4673CD01E68EE1D000C59F5 /* CatsTV-iOS */,
+				C4DE958E1E53611400CA80B2 /* CatsTV-tvOS */,
 				C4DE958D1E53611400CA80B2 /* Products */,
 				D3FBAFEAC34C911D50D8C14D /* Pods */,
 				63A8E0771595888D9D0C5DBE /* Frameworks */,
-				C4DE958E1E53611400CA80B2 /* CatGIFTV-tvOS */,
 			);
 			sourceTree = "<group>";
 		};
 		C4DE958D1E53611400CA80B2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C4DE958C1E53611400CA80B2 /* CatsTV.app */,
-				C4673CCF1E68EE1D000C59F5 /* CatGIFTV-iOS.app */,
+				C4DE958C1E53611400CA80B2 /* CatsTV-tvOS.app */,
+				C4673CCF1E68EE1D000C59F5 /* CatsTV-iOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C4DE958E1E53611400CA80B2 /* CatGIFTV-tvOS */ = {
+		C4DE958E1E53611400CA80B2 /* CatsTV-tvOS */ = {
 			isa = PBXGroup;
 			children = (
-				C4DE958F1E53611400CA80B2 /* AppDelegate.swift */,
-				C4DE959E1E53621E00CA80B2 /* Cats Module */,
-				C4DE95981E53611400CA80B2 /* Info.plist */,
+				C4D8B5A31E6BA1BF00A9E626 /* Model */,
+				C4D8B5A41E6BA1C200A9E626 /* View */,
+				C4D8B5A61E6BA1F800A9E626 /* Other */,
 			);
-			name = "CatGIFTV-tvOS";
+			name = "CatsTV-tvOS";
 			path = CatsTV;
-			sourceTree = "<group>";
-		};
-		C4DE959E1E53621E00CA80B2 /* Cats Module */ = {
-			isa = PBXGroup;
-			children = (
-				C4DE95A01E53623600CA80B2 /* View */,
-			);
-			name = "Cats Module";
-			sourceTree = "<group>";
-		};
-		C4DE95A01E53623600CA80B2 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				C4DE959C1E53620E00CA80B2 /* CatsViewController.swift */,
-				C4DE95A11E53624D00CA80B2 /* CatsView.swift */,
-				C43BBD821E63D8A7005F029E /* Subviews */,
-			);
-			name = View;
 			sourceTree = "<group>";
 		};
 		D3FBAFEAC34C911D50D8C14D /* Pods */ = {
@@ -246,9 +319,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C4673CCE1E68EE1D000C59F5 /* CatGIFTV-iOS */ = {
+		C4673CCE1E68EE1D000C59F5 /* CatsTV-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C4673CFA1E68EE1E000C59F5 /* Build configuration list for PBXNativeTarget "CatGIFTV-iOS" */;
+			buildConfigurationList = C4673CFA1E68EE1E000C59F5 /* Build configuration list for PBXNativeTarget "CatsTV-iOS" */;
 			buildPhases = (
 				BD984D917BF9593DA184532F /* [CP] Check Pods Manifest.lock */,
 				C4673CCB1E68EE1D000C59F5 /* Sources */,
@@ -262,14 +335,14 @@
 			);
 			dependencies = (
 			);
-			name = "CatGIFTV-iOS";
+			name = "CatsTV-iOS";
 			productName = "CatGIFTV-iOS";
-			productReference = C4673CCF1E68EE1D000C59F5 /* CatGIFTV-iOS.app */;
+			productReference = C4673CCF1E68EE1D000C59F5 /* CatsTV-iOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		C4DE958B1E53611400CA80B2 /* CatsTV */ = {
+		C4DE958B1E53611400CA80B2 /* CatsTV-tvOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C4DE95991E53611400CA80B2 /* Build configuration list for PBXNativeTarget "CatsTV" */;
+			buildConfigurationList = C4DE95991E53611400CA80B2 /* Build configuration list for PBXNativeTarget "CatsTV-tvOS" */;
 			buildPhases = (
 				0C73F768F72F724A10165949 /* [CP] Check Pods Manifest.lock */,
 				C4DE95881E53611400CA80B2 /* Sources */,
@@ -283,9 +356,9 @@
 			);
 			dependencies = (
 			);
-			name = CatsTV;
+			name = "CatsTV-tvOS";
 			productName = CatsTV;
-			productReference = C4DE958C1E53611400CA80B2 /* CatsTV.app */;
+			productReference = C4DE958C1E53611400CA80B2 /* CatsTV-tvOS.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -322,8 +395,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C4DE958B1E53611400CA80B2 /* CatsTV */,
-				C4673CCE1E68EE1D000C59F5 /* CatGIFTV-iOS */,
+				C4673CCE1E68EE1D000C59F5 /* CatsTV-iOS */,
+				C4DE958B1E53611400CA80B2 /* CatsTV-tvOS */,
 			);
 		};
 /* End PBXProject section */
@@ -472,14 +545,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4D8B5991E6B95C100A9E626 /* CatsViewModel.swift in Sources */,
 				C4673CD21E68EE1D000C59F5 /* AppDelegate.swift in Sources */,
 				C4673D111E69238C000C59F5 /* Colors.swift in Sources */,
 				C4673D141E692759000C59F5 /* CatCollectionViewCell.swift in Sources */,
 				C4673D101E69238A000C59F5 /* Shadows.swift in Sources */,
 				C4673D051E691CB1000C59F5 /* CatsCollectionView.swift in Sources */,
-				C4673D0C1E691FDE000C59F5 /* Reddit.swift in Sources */,
+				C4D8B5961E6AE1DE00A9E626 /* Reddit.swift in Sources */,
 				C4673D0D1E692029000C59F5 /* Cat.swift in Sources */,
-				C4673D0B1E691FC9000C59F5 /* CatsPresenter.swift in Sources */,
 				C4673D0F1E692360000C59F5 /* CatsView.swift in Sources */,
 				C4673D001E691B93000C59F5 /* CatsViewController.swift in Sources */,
 			);
@@ -494,7 +567,7 @@
 				C4B3CF7E1E551DFE00D401E9 /* Shadows.swift in Sources */,
 				C43BBD801E63D889005F029E /* LoadingCollectionViewCell.swift in Sources */,
 				C4B61A971E537A0400DBEAD1 /* Cat.swift in Sources */,
-				C4C859E01E5691300033CA97 /* CatsPresenter.swift in Sources */,
+				C4D8B5981E6B84A600A9E626 /* CatsViewModel.swift in Sources */,
 				C4B61A941E53715700DBEAD1 /* Reddit.swift in Sources */,
 				C4DE95A21E53624D00CA80B2 /* CatsView.swift in Sources */,
 				C41B64331E65F12100949040 /* Colors.swift in Sources */,
@@ -749,7 +822,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C4673CFA1E68EE1E000C59F5 /* Build configuration list for PBXNativeTarget "CatGIFTV-iOS" */ = {
+		C4673CFA1E68EE1E000C59F5 /* Build configuration list for PBXNativeTarget "CatsTV-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C4673CF41E68EE1E000C59F5 /* Debug */,
@@ -767,7 +840,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C4DE95991E53611400CA80B2 /* Build configuration list for PBXNativeTarget "CatsTV" */ = {
+		C4DE95991E53611400CA80B2 /* Build configuration list for PBXNativeTarget "CatsTV-tvOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C4DE959A1E53611400CA80B2 /* Debug */,

@@ -19,22 +19,26 @@ protocol CatsOutputProtocol: class {
 protocol CatInputProtocol: class {
     var catsCount: Int { get }
     var catIndex: Int { get }
-    var isLaunch: Bool { get }
+    var isScrolling: Bool { get }
     func cat(index: Int) -> Cat
     func currentCatIndex(_ catIndex: Int)
     func userDidInteract()
-    func completeLaunch()
+    func setScrolling()
+    func stoppedScrolling()
 }
 
 class CatsViewController: UIViewController {
+    
     // Presenter
-    var presenter: CatsPresenterProtocol!
+    var viewModel: CatsViewModelProtocol!
+    
     // Cat input protocol
     var catsCount: Int {
         return cats.count
     }
     var catIndex: Int = 0
-    var isLaunch: Bool = true
+    var isScrolling = false
+    
     // Subviews
     var rootView: CatsView {
         return view as! CatsView
@@ -48,6 +52,9 @@ class CatsViewController: UIViewController {
     public override var prefersStatusBarHidden: Bool {
         return !isUserActive
     }
+    public override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     public override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
         return .slide
     }
@@ -59,7 +66,7 @@ class CatsViewController: UIViewController {
     // Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter.provideCats()
+        viewModel.retrieveCats()
         configure()
     }
     // Screen rotation
@@ -73,12 +80,19 @@ class CatsViewController: UIViewController {
 extension CatsViewController: CatsOutputProtocol {
     // Store cats retrieved from Reddit
     func store(cats: [Cat]) {
-        let startIndex = self.cats.count
+        guard !isScrolling else { return }
+        let updateIndex = self.cats.count
         self.cats.append(contentsOf: cats)
-        if startIndex > 0 {
-            rootView.catsCollectionView.update(with: cats, at: startIndex)
+        
+        print("••")
+        print("cat: \(catIndex)\ncount: \(self.cats.count)")
+        print("••")
+        
+        catIndex + 20 > self.cats.count ? viewModel.enableCatAcquisition() : viewModel.disableCatAcquisition()
+        if updateIndex > 0 {
+            rootView.catsCollectionView.update(with: cats, at: updateIndex)
         } else {
-            guard cats.count > 0 else { return }
+            guard self.cats.count > 0 else { return }
             rootView.catsCollectionView.reloadData()
             rootView.animateAppLaunch()
         }
@@ -94,8 +108,12 @@ extension CatsViewController: CatInputProtocol {
     func currentCatIndex(_ catIndex: Int) {
         if self.catIndex != catIndex {
             self.catIndex = catIndex
+            if catIndex + 10 > self.cats.count {
+                viewModel.retrieveCats()
+            }
         }
     }
+    
     // Idle timer for user touch
     func userDidInteract() {
         idleTimer?.invalidate()
@@ -106,7 +124,7 @@ extension CatsViewController: CatInputProtocol {
                 withDuration: 0.5,
                 delay: 0,
                 options: [.curveEaseOut, .allowUserInteraction],
-                animations: { 
+                animations: {
                     self.setNeedsStatusBarAppearanceUpdate()
             })
         }
@@ -115,7 +133,7 @@ extension CatsViewController: CatInputProtocol {
             self.rootView.animateToInactiveInterface()
             self.isUserActive = false
             UIView.animate(
-                withDuration: 0.2,
+                withDuration: 0.1,
                 delay: 0,
                 options: [.curveEaseOut, .allowUserInteraction],
                 animations: {
@@ -123,9 +141,15 @@ extension CatsViewController: CatInputProtocol {
             })
         }
     }
-    // Mark initial launch process as complete
-    func completeLaunch() {
-        isLaunch = false
+    
+    // Set state to scrolling
+    func setScrolling() {
+        isScrolling = true
+    }
+    
+    // Set state to not scrolling
+    func stoppedScrolling() {
+        isScrolling = false
     }
 }
 

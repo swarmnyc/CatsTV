@@ -38,7 +38,7 @@ protocol CatInputProtocol: class {
 public class CatsViewController: UIViewController {
     
     // Presenter
-    var presenter: CatsPresenterProtocol!
+    var viewModel: CatsViewModelProtocol!
     
     // Subviews
     var rootView: CatsView {
@@ -63,7 +63,7 @@ public class CatsViewController: UIViewController {
     // Life cycle
     override open func viewDidLoad() {
         super.viewDidLoad()
-        presenter.provideCats()
+        viewModel.provideCats()
         configure()
     }
     override open func viewDidLayoutSubviews() {
