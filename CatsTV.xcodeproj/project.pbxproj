@@ -58,9 +58,9 @@
 		C4B61A8E1E53699A00DBEAD1 /* CatsCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatsCollectionView.swift; sourceTree = "<group>"; };
 		C4B61A901E5369D500DBEAD1 /* CatCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatCollectionViewCell.swift; sourceTree = "<group>"; };
 		C4B61A931E53715700DBEAD1 /* Reddit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reddit.swift; sourceTree = "<group>"; };
-		C4B61A961E537A0400DBEAD1 /* Cat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Cat.swift; path = ../CatsTV/Cat.swift; sourceTree = "<group>"; };
-		C4D8B5941E6AE1CD00A9E626 /* Reddit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reddit.swift; path = "CatGIFTV-iOS/Reddit.swift"; sourceTree = SOURCE_ROOT; };
-		C4D8B5971E6B84A600A9E626 /* CatsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CatsViewModel.swift; path = ../CatsTV/CatsViewModel.swift; sourceTree = "<group>"; };
+		C4B61A961E537A0400DBEAD1 /* Cat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Cat.swift; path = Cat.swift; sourceTree = "<group>"; };
+		C4D8B5941E6AE1CD00A9E626 /* Reddit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reddit.swift; path = Reddit.swift; sourceTree = "<group>"; };
+		C4D8B5971E6B84A600A9E626 /* CatsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CatsViewModel.swift; path = CatsViewModel.swift; sourceTree = "<group>"; };
 		C4DE958C1E53611400CA80B2 /* CatsTV-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CatsTV-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4DE958F1E53611400CA80B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C4DE95961E53611400CA80B2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -103,65 +103,68 @@
 		C43BBD811E63D896005F029E /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				C43BBD7F1E63D889005F029E /* LoadingCollectionViewCell.swift */,
 				C4B61A901E5369D500DBEAD1 /* CatCollectionViewCell.swift */,
+				C43BBD7F1E63D889005F029E /* LoadingCollectionViewCell.swift */,
 			);
 			name = Cells;
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		C43BBD821E63D8A7005F029E /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
-				C4B3CF7A1E5509BD00D401E9 /* TopCatVideoView.swift */,
-				C41B642D1E65D33C00949040 /* MusicCatButton.swift */,
-				C4B61A8E1E53699A00DBEAD1 /* CatsCollectionView.swift */,
 				C43BBD811E63D896005F029E /* Cells */,
+				C4B61A8E1E53699A00DBEAD1 /* CatsCollectionView.swift */,
+				C41B642D1E65D33C00949040 /* MusicCatButton.swift */,
+				C4B3CF7A1E5509BD00D401E9 /* TopCatVideoView.swift */,
 			);
 			name = Subviews;
+			path = Subviews;
 			sourceTree = "<group>";
 		};
 		C4673CD01E68EE1D000C59F5 /* CatsTV-iOS */ = {
 			isa = PBXGroup;
 			children = (
 				C4D8B59F1E6BA16900A9E626 /* Model */,
+				C4D8B5A21E6BA1A100A9E626 /* Other */,
 				C4D8B5A01E6BA17300A9E626 /* View */,
 				C4D8B5A11E6BA17B00A9E626 /* ViewModel */,
-				C4D8B5A21E6BA1A100A9E626 /* Other */,
 			);
 			name = "CatsTV-iOS";
-			path = "CatGIFTV-iOS";
+			path = "CatsTV-iOS";
 			sourceTree = "<group>";
 		};
 		C4673D011E691C10000C59F5 /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
-				C4673D041E691CB1000C59F5 /* CatsCollectionView.swift */,
 				C4673D131E692759000C59F5 /* CatCollectionViewCell.swift */,
+				C4673D041E691CB1000C59F5 /* CatsCollectionView.swift */,
 			);
 			name = Subviews;
+			path = Subviews;
 			sourceTree = "<group>";
 		};
 		C4B3CF7C1E551DC500D401E9 /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				C4B3CF7D1E551DFE00D401E9 /* Shadows.swift */,
-				C41B64321E65F12100949040 /* Colors.swift */,
 				C4DE95961E53611400CA80B2 /* Assets.xcassets */,
+				C41B64321E65F12100949040 /* Colors.swift */,
+				C4B3CF7D1E551DFE00D401E9 /* Shadows.swift */,
 			);
 			name = Other;
-			path = ../CatsTV;
+			path = Other;
 			sourceTree = "<group>";
 		};
 		C4D8B59B1E6BA09200A9E626 /* CatsTV */ = {
 			isa = PBXGroup;
 			children = (
 				C4D8B59D1E6BA12600A9E626 /* Model */,
+				C4B3CF7C1E551DC500D401E9 /* Other */,
 				C4D8B59E1E6BA12F00A9E626 /* View */,
 				C4D8B59C1E6BA11900A9E626 /* ViewModel */,
-				C4B3CF7C1E551DC500D401E9 /* Other */,
 			);
 			name = CatsTV;
-			path = "CatGIFTV-iOS";
+			path = CatsTV;
 			sourceTree = "<group>";
 		};
 		C4D8B59C1E6BA11900A9E626 /* ViewModel */ = {
@@ -170,6 +173,7 @@
 				C4D8B5971E6B84A600A9E626 /* CatsViewModel.swift */,
 			);
 			name = ViewModel;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		C4D8B59D1E6BA12600A9E626 /* Model */ = {
@@ -178,6 +182,7 @@
 				C4D8B5A71E6BA44D00A9E626 /* Entities */,
 			);
 			name = Model;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		C4D8B59E1E6BA12F00A9E626 /* View */ = {
@@ -185,6 +190,7 @@
 			children = (
 			);
 			name = View;
+			path = View;
 			sourceTree = "<group>";
 		};
 		C4D8B59F1E6BA16900A9E626 /* Model */ = {
@@ -193,17 +199,19 @@
 				C4D8B5A81E6BA46800A9E626 /* DataManagers */,
 			);
 			name = Model;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		C4D8B5A01E6BA17300A9E626 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C4673CD11E68EE1D000C59F5 /* AppDelegate.swift */,
-				C4673CFF1E691B93000C59F5 /* CatsViewController.swift */,
-				C4673D0E1E692360000C59F5 /* CatsView.swift */,
 				C4673D011E691C10000C59F5 /* Subviews */,
+				C4673CD11E68EE1D000C59F5 /* AppDelegate.swift */,
+				C4673D0E1E692360000C59F5 /* CatsView.swift */,
+				C4673CFF1E691B93000C59F5 /* CatsViewController.swift */,
 			);
 			name = View;
+			path = View;
 			sourceTree = "<group>";
 		};
 		C4D8B5A11E6BA17B00A9E626 /* ViewModel */ = {
@@ -211,6 +219,7 @@
 			children = (
 			);
 			name = ViewModel;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		C4D8B5A21E6BA1A100A9E626 /* Other */ = {
@@ -220,6 +229,7 @@
 				C4673D171E693274000C59F5 /* LaunchScreen.storyboard */,
 			);
 			name = Other;
+			path = Other;
 			sourceTree = "<group>";
 		};
 		C4D8B5A31E6BA1BF00A9E626 /* Model */ = {
@@ -229,17 +239,19 @@
 				C4B61A931E53715700DBEAD1 /* Reddit.swift */,
 			);
 			name = Model;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		C4D8B5A41E6BA1C200A9E626 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C4DE958F1E53611400CA80B2 /* AppDelegate.swift */,
-				C4DE959C1E53620E00CA80B2 /* CatsViewController.swift */,
-				C4DE95A11E53624D00CA80B2 /* CatsView.swift */,
 				C43BBD821E63D8A7005F029E /* Subviews */,
+				C4DE958F1E53611400CA80B2 /* AppDelegate.swift */,
+				C4DE95A11E53624D00CA80B2 /* CatsView.swift */,
+				C4DE959C1E53620E00CA80B2 /* CatsViewController.swift */,
 			);
 			name = View;
+			path = View;
 			sourceTree = "<group>";
 		};
 		C4D8B5A61E6BA1F800A9E626 /* Other */ = {
@@ -248,6 +260,7 @@
 				C4DE95981E53611400CA80B2 /* Info.plist */,
 			);
 			name = Other;
+			path = Other;
 			sourceTree = "<group>";
 		};
 		C4D8B5A71E6BA44D00A9E626 /* Entities */ = {
@@ -256,6 +269,7 @@
 				C4B61A961E537A0400DBEAD1 /* Cat.swift */,
 			);
 			name = Entities;
+			path = Entities;
 			sourceTree = "<group>";
 		};
 		C4D8B5A81E6BA46800A9E626 /* DataManagers */ = {
@@ -264,6 +278,7 @@
 				C4D8B5941E6AE1CD00A9E626 /* Reddit.swift */,
 			);
 			name = DataManagers;
+			path = DataManagers;
 			sourceTree = "<group>";
 		};
 		C4D8B5A91E6BA47800A9E626 /* DataManagers */ = {
@@ -271,6 +286,7 @@
 			children = (
 			);
 			name = DataManagers;
+			path = DataManagers;
 			sourceTree = "<group>";
 		};
 		C4DE95811E5360D800CA80B2 = {
@@ -279,9 +295,9 @@
 				C4D8B59B1E6BA09200A9E626 /* CatsTV */,
 				C4673CD01E68EE1D000C59F5 /* CatsTV-iOS */,
 				C4DE958E1E53611400CA80B2 /* CatsTV-tvOS */,
-				C4DE958D1E53611400CA80B2 /* Products */,
-				D3FBAFEAC34C911D50D8C14D /* Pods */,
 				63A8E0771595888D9D0C5DBE /* Frameworks */,
+				D3FBAFEAC34C911D50D8C14D /* Pods */,
+				C4DE958D1E53611400CA80B2 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -298,11 +314,11 @@
 			isa = PBXGroup;
 			children = (
 				C4D8B5A31E6BA1BF00A9E626 /* Model */,
-				C4D8B5A41E6BA1C200A9E626 /* View */,
 				C4D8B5A61E6BA1F800A9E626 /* Other */,
+				C4D8B5A41E6BA1C200A9E626 /* View */,
 			);
 			name = "CatsTV-tvOS";
-			path = CatsTV;
+			path = "CatsTV-tvOS";
 			sourceTree = "<group>";
 		};
 		D3FBAFEAC34C911D50D8C14D /* Pods */ = {
@@ -608,7 +624,7 @@
 				);
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = "CatGIFTV-iOS/Info.plist";
+				INFOPLIST_FILE = "CatsTV-iOS/Other/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -644,7 +660,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = "CatGIFTV-iOS/Info.plist";
+				INFOPLIST_FILE = "CatsTV-iOS/Other/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -751,7 +767,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = CatsTV/Info.plist;
+				INFOPLIST_FILE = "CatsTV-tvOS/Other/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -805,7 +821,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = CatsTV/Info.plist;
+				INFOPLIST_FILE = "CatsTV-tvOS/Other/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.swarmnyc.CATSRightMeow;
