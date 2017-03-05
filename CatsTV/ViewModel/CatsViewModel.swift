@@ -10,13 +10,10 @@ import Foundation
 
 protocol CatsViewModelProtocol: class {
     var isLaunch: Bool { get }
-    var isPopulating: Bool { get }
-    func retrieveCats()
-    func provideCats()
-    func enableCatAcquisition()
-    func disableCatAcquisition()
+    var isRetrievingCats: Bool { get }
     func completeLaunch()
-    func completePopulating()
+    func retrieveCats()
+    func stopRetrievingCats()
 }
 
 class CatsViewModel: CatsViewModelProtocol {
@@ -25,54 +22,25 @@ class CatsViewModel: CatsViewModelProtocol {
     weak var view: CatsOutputProtocol!
     
     // Properties
-    var catBucket: Set<Cat> = []
-    var proceedWithCatAcquisition: Bool = true
     var isLaunch: Bool = true
-    var isPopulating: Bool = true
+    var isRetrievingCats: Bool = false
     
     // Retrieve cats and store in cat bucket
     func retrieveCats(){
+        isRetrievingCats = true
         Reddit.getCatURLs { cats in
-            if self.isPopulating {
-                self.catBucket = cats
-                self.provideCats()
-            } else {
-                self.catBucket.formUnion(cats)
+            DispatchQueue.main.async {
+                self.view.store(cats: cats)
             }
-            guard self.proceedWithCatAcquisition else { return }
-            self.retrieveCats()
         }
     }
     
-    // Provide bucketed cats then empty bucket
-    func provideCats() {
-        guard !catBucket.isEmpty else {
-            retrieveCats()
-            return
-        }
-        DispatchQueue.main.async {
-            self.view.store(cats: self.catBucket)
-            self.catBucket = []
-        }
-    }
-    
-    // Allow more cats to be retrieved
-    func enableCatAcquisition() {
-        proceedWithCatAcquisition = true
-    }
-    
-    // Prevent retrieval of additional cats
-    func disableCatAcquisition() {
-        proceedWithCatAcquisition = false
+    func stopRetrievingCats() {
+        isRetrievingCats = false
     }
     
     // Mark launch as complete
     func completeLaunch() {
         isLaunch = false
-    }
-    
-    // MarK initial cat populating as complete
-    func completePopulating() {
-        isPopulating = false
     }
 }

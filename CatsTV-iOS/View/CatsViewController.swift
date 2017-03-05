@@ -16,12 +16,10 @@ protocol CatsOutputProtocol: class {
 protocol CatInputProtocol: class {
     var catsCount: Int { get }
     var catIndex: Int { get }
-    var isScrolling: Bool { get }
     func cat(index: Int) -> Cat
     func currentCatIndex(_ catIndex: Int)
     func userDidInteract()
-    func setScrolling()
-    func stoppedScrolling()
+    func finishedScrolling()
 }
 
 class CatsViewController: UIViewController {
@@ -34,14 +32,14 @@ class CatsViewController: UIViewController {
         return cats.count
     }
     var catIndex: Int = 0
-    var isScrolling = false
     
     // Subviews
     var rootView: CatsView {
         return view as! CatsView
     }
     // Properties
-    lazy var cats: [Cat] = []
+    var cats: [Cat] = []
+    var catBucket: Set<Cat> = []
     var idleTimer: Timer?
     var isUserActive: Bool = true
     
@@ -78,22 +76,21 @@ extension CatsViewController: CatsOutputProtocol {
     
     // Store cats retrieved from Reddit
     func store(cats: Set<Cat>) {
-        guard !isScrolling else { return }
-        let initialCatCount = catsCount
-        for cat in cats {
-            guard !self.cats.contains(cat) else { continue }
-            self.cats.append(cat)
+        catBucket.formUnion(cats)
+        if !cats.isEmpty, !rootView.catsCollectionView.isDragging, !rootView.catsCollectionView.isDecelerating {
+            rootView.catsCollectionView.performBatchUpdates({
+                for cat in self.catBucket {
+                    guard !self.cats.contains(cat) else { continue }
+                    self.cats.append(cat)
+                    self.rootView.catsCollectionView.insertItems(at: [IndexPath(item: self.catsCount - 1, section: 0)])
+                }
+                self.catBucket = []
+            })
         }
-        if !viewModel.isPopulating || initialCatCount == 0 {
-            rootView.catsCollectionView.reloadData()
-        }
-        if catIndex > self.cats.count - 20 {
-            viewModel.enableCatAcquisition()
+        if catIndex <= self.cats.count - 20 || viewModel.isLaunch {
+            viewModel.retrieveCats()
         } else {
-            viewModel.disableCatAcquisition()
-            if viewModel.isPopulating {
-                viewModel.completePopulating()
-            }
+            viewModel.stopRetrievingCats()
         }
         if viewModel.isLaunch {
             rootView.animateAppLaunch()
@@ -103,6 +100,7 @@ extension CatsViewController: CatsOutputProtocol {
 }
 
 extension CatsViewController: CatInputProtocol {
+    
     // Provide cat at the specified index
     func cat(index: Int) -> Cat {
         return cats[index]
@@ -111,8 +109,8 @@ extension CatsViewController: CatInputProtocol {
     // Set new current cat index
     func currentCatIndex(_ catIndex: Int) {
         self.catIndex = catIndex
-        if catIndex + 10 > self.cats.count {
-            viewModel.provideCats()
+        if catIndex > self.cats.count - 20, !viewModel.isRetrievingCats {
+            viewModel.retrieveCats()
         }
     }
     
@@ -144,17 +142,17 @@ extension CatsViewController: CatInputProtocol {
         }
     }
     
-    // Set state to scrolling
-    func setScrolling() {
-        isScrolling = true
-        if viewModel.isPopulating {
-            viewModel.completePopulating()
-        }
-    }
-    
-    // Scrolling has finished
-    func stoppedScrolling() {
-        isScrolling = false
+    // Update collection view with new cats when scrolling has finished
+    func finishedScrolling() {
+        guard !catBucket.isEmpty else { return }
+        rootView.catsCollectionView.performBatchUpdates({
+            for cat in self.catBucket {
+                guard !self.cats.contains(cat) else { continue }
+                self.cats.append(cat)
+                self.rootView.catsCollectionView.insertItems(at: [IndexPath(item: self.catsCount - 1, section: 0)])
+            }
+            self.catBucket = []
+        })
     }
 }
 

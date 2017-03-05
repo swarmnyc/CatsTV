@@ -34,13 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillEnterForeground(_ application: UIApplication) {
         let rootVC = window!.rootViewController as! CatsViewController
         rootVC.rootView.catsCollectionView.setCurrentPlayer()
-        rootVC.viewModel.enableCatAcquisition()
         rootVC.viewModel.retrieveCats()
-    }
-    
-    func applicationWillResignActive(_ application: UIApplication) {
-        let rootVC = window!.rootViewController as! CatsViewController
-        rootVC.viewModel.disableCatAcquisition()
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {

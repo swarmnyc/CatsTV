@@ -15,7 +15,7 @@ class Reddit {
     // Retrieve cats data from Reddit
     static func getCatURLs(completion: @escaping (Set<Cat>) -> Void) {
         guard let after = after else { return }
-        let url = URL(string: "https://www.reddit.com/r/catgifs/hot.json?limit=5" + (after.isEmpty ? "" : "&after=" + after))!
+        let url = URL(string: "https://www.reddit.com/r/catgifs/hot.json?limit=10" + (after.isEmpty ? "" : "&after=" + after))!
         let task = URLSession.shared.dataTask(with: url) { data, _, error in
             if let error = error {
                 print("error retrieving cats from reddit: \(error.localizedDescription)")

@@ -117,16 +117,12 @@ extension CatsCollectionView: UICollectionViewDelegate {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.isDragging || scrollView.isDecelerating {
-            inputDelegate.setScrolling()
-        }
+        let currentCatIndex = Int(round(CGFloat(inputDelegate.catsCount) * (scrollView.contentOffset.x / scrollView.contentSize.width)))
+        inputDelegate.currentCatIndex(currentCatIndex)
     }
     
-    // Scrolling motion has ended
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        inputDelegate.stoppedScrolling()
-        let currentCatIndex = Int(CGFloat(inputDelegate.catsCount) * (scrollView.contentOffset.x / scrollView.contentSize.width))
-        inputDelegate.currentCatIndex(currentCatIndex)
+        inputDelegate.finishedScrolling()
     }
 }
 
