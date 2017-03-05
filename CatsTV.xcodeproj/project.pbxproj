@@ -42,21 +42,21 @@
 		5304C70648121229F9A5E522 /* Pods-CatsTV-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CatsTV-tvOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CatsTV-tvOS/Pods-CatsTV-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		7510A1AB35C66C6BAE74768A /* Pods_CatsTV_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CatsTV_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		89B8CF1D21CAE140B44FC6FD /* Pods-CatsTV-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CatsTV-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CatsTV-iOS/Pods-CatsTV-iOS.debug.xcconfig"; sourceTree = "<group>"; };
-		C41B642D1E65D33C00949040 /* MusicCatButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MusicCatButton.swift; path = Subviews/MusicCatButton.swift; sourceTree = "<group>"; };
+		C41B642D1E65D33C00949040 /* MusicCatButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MusicCatButton.swift; path = MusicCatButton.swift; sourceTree = "<group>"; };
 		C41B64321E65F12100949040 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
-		C43BBD7F1E63D889005F029E /* LoadingCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoadingCollectionViewCell.swift; path = Subviews/Cells/LoadingCollectionViewCell.swift; sourceTree = "<group>"; };
+		C43BBD7F1E63D889005F029E /* LoadingCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoadingCollectionViewCell.swift; path = LoadingCollectionViewCell.swift; sourceTree = "<group>"; };
 		C4673CCF1E68EE1D000C59F5 /* CatsTV-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CatsTV-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4673CD11E68EE1D000C59F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C4673CDD1E68EE1D000C59F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C4673CFF1E691B93000C59F5 /* CatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatsViewController.swift; sourceTree = "<group>"; };
-		C4673D041E691CB1000C59F5 /* CatsCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CatsCollectionView.swift; path = Subviews/CatsCollectionView.swift; sourceTree = "<group>"; };
+		C4673D041E691CB1000C59F5 /* CatsCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CatsCollectionView.swift; path = CatsCollectionView.swift; sourceTree = "<group>"; };
 		C4673D0E1E692360000C59F5 /* CatsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatsView.swift; sourceTree = "<group>"; };
-		C4673D131E692759000C59F5 /* CatCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CatCollectionViewCell.swift; path = Subviews/CatCollectionViewCell.swift; sourceTree = "<group>"; };
+		C4673D131E692759000C59F5 /* CatCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CatCollectionViewCell.swift; path = CatCollectionViewCell.swift; sourceTree = "<group>"; };
 		C4673D171E693274000C59F5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		C4B3CF7A1E5509BD00D401E9 /* TopCatVideoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TopCatVideoView.swift; path = Subviews/TopCatVideoView.swift; sourceTree = "<group>"; };
+		C4B3CF7A1E5509BD00D401E9 /* TopCatVideoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TopCatVideoView.swift; path = TopCatVideoView.swift; sourceTree = "<group>"; };
 		C4B3CF7D1E551DFE00D401E9 /* Shadows.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shadows.swift; sourceTree = "<group>"; };
-		C4B61A8E1E53699A00DBEAD1 /* CatsCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CatsCollectionView.swift; path = Subviews/CatsCollectionView.swift; sourceTree = "<group>"; };
-		C4B61A901E5369D500DBEAD1 /* CatCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CatCollectionViewCell.swift; path = Subviews/Cells/CatCollectionViewCell.swift; sourceTree = "<group>"; };
+		C4B61A8E1E53699A00DBEAD1 /* CatsCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CatsCollectionView.swift; path = CatsCollectionView.swift; sourceTree = "<group>"; };
+		C4B61A901E5369D500DBEAD1 /* CatCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CatCollectionViewCell.swift; path = CatCollectionViewCell.swift; sourceTree = "<group>"; };
 		C4B61A931E53715700DBEAD1 /* Reddit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reddit.swift; sourceTree = "<group>"; };
 		C4B61A961E537A0400DBEAD1 /* Cat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cat.swift; sourceTree = "<group>"; };
 		C4D8B5941E6AE1CD00A9E626 /* Reddit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reddit.swift; sourceTree = "<group>"; };
@@ -104,8 +104,8 @@
 			isa = PBXGroup;
 			children = (
 				C4D8B59F1E6BA16900A9E626 /* Model */,
-				C4D8B5A01E6BA17300A9E626 /* View */,
 				C4D8B5A21E6BA1A100A9E626 /* Other */,
+				C4D8B5A01E6BA17300A9E626 /* View */,
 			);
 			path = "CatsTV-iOS";
 			sourceTree = "<group>";
@@ -124,8 +124,8 @@
 			isa = PBXGroup;
 			children = (
 				C4D8B59D1E6BA12600A9E626 /* Model */,
-				C4D8B59C1E6BA11900A9E626 /* ViewModel */,
 				C4B3CF7C1E551DC500D401E9 /* Other */,
+				C4D8B59C1E6BA11900A9E626 /* ViewModel */,
 			);
 			path = CatsTV;
 			sourceTree = "<group>";
@@ -158,10 +158,10 @@
 			isa = PBXGroup;
 			children = (
 				C4673CD11E68EE1D000C59F5 /* AppDelegate.swift */,
+				C4673D131E692759000C59F5 /* CatCollectionViewCell.swift */,
+				C4673D041E691CB1000C59F5 /* CatsCollectionView.swift */,
 				C4673D0E1E692360000C59F5 /* CatsView.swift */,
 				C4673CFF1E691B93000C59F5 /* CatsViewController.swift */,
-				C4673D041E691CB1000C59F5 /* CatsCollectionView.swift */,
-				C4673D131E692759000C59F5 /* CatCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -188,13 +188,13 @@
 			isa = PBXGroup;
 			children = (
 				C4DE958F1E53611400CA80B2 /* AppDelegate.swift */,
+				C4B61A901E5369D500DBEAD1 /* CatCollectionViewCell.swift */,
+				C4B61A8E1E53699A00DBEAD1 /* CatsCollectionView.swift */,
 				C4DE95A11E53624D00CA80B2 /* CatsView.swift */,
 				C4DE959C1E53620E00CA80B2 /* CatsViewController.swift */,
-				C4B3CF7A1E5509BD00D401E9 /* TopCatVideoView.swift */,
-				C4B61A8E1E53699A00DBEAD1 /* CatsCollectionView.swift */,
-				C4B61A901E5369D500DBEAD1 /* CatCollectionViewCell.swift */,
 				C43BBD7F1E63D889005F029E /* LoadingCollectionViewCell.swift */,
 				C41B642D1E65D33C00949040 /* MusicCatButton.swift */,
+				C4B3CF7A1E5509BD00D401E9 /* TopCatVideoView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -255,8 +255,8 @@
 			isa = PBXGroup;
 			children = (
 				C4D8B5A31E6BA1BF00A9E626 /* Model */,
-				C4D8B5A41E6BA1C200A9E626 /* View */,
 				C4D8B5A61E6BA1F800A9E626 /* Other */,
+				C4D8B5A41E6BA1C200A9E626 /* View */,
 			);
 			path = "CatsTV-tvOS";
 			sourceTree = "<group>";
@@ -328,7 +328,7 @@
 				TargetAttributes = {
 					C4673CCE1E68EE1D000C59F5 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = TWPE6ND5AF;
+						DevelopmentTeam = 49E6AM57U3;
 						ProvisioningStyle = Automatic;
 					};
 					C4DE958B1E53611400CA80B2 = {
@@ -554,7 +554,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = TWPE6ND5AF;
+				DEVELOPMENT_TEAM = 49E6AM57U3;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -596,7 +596,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = TWPE6ND5AF;
+				DEVELOPMENT_TEAM = 49E6AM57U3;
 				ENABLE_NS_ASSERTIONS = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
