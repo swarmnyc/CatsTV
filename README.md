@@ -10,10 +10,10 @@ Technically, there are:
 
 ```swift
 enum Ever {
-	case .forever
-    case .prettyMuchLikeAlways
-    case .haveIDoneTooMuch
-    case .areThereTooMany
-    case .literalCatStackOverflow
+	case forever
+	case prettyMuchLikeAlways
+	case haveIDoneTooMuch
+	case areThereTooMany
+	case literalCatStackOverflow
 }
 ```
