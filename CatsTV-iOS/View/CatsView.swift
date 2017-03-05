@@ -1,25 +1,17 @@
-//
-//  CatsView.swift
-//  CatsTV
-//
-//  Created by William Robinson on 3/2/17.
-//
-//
-//
-//  CatsView.swift
-//  CatsTV
-//
-//  Created by William Robinson on 2/14/17.
-//
-//
+
+
+
+
 
 import UIKit
 import SnapKit
 import AVKit
 
 class CatsView: UIView {
+    
     // Delegation
     weak var inputDelegate: CatInputProtocol!
+    
     // Subviews and sublayers
     lazy var catsCollectionView = CatsCollectionView()
     lazy var titleImageView: UIImageView = {
@@ -31,6 +23,7 @@ class CatsView: UIView {
         imageView.layer.shadowOpacity = 0
         return imageView
     }()
+    
     // Initialization
     init() {
         super.init(frame: CGRect.zero)
@@ -39,11 +32,13 @@ class CatsView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
+    
     // Delegation setup
     func addDelegates(_ inputDelegate: CatInputProtocol) {
         self.inputDelegate = inputDelegate
         catsCollectionView.inputDelegate = inputDelegate
     }
+    
     // Animations for application launch
     func animateAppLaunch() {
         UIView.animate(
@@ -63,6 +58,7 @@ class CatsView: UIView {
             self.inputDelegate.userDidInteract()
         }
     }
+    
     // Animations when user becomes active after previously being inactive
     func animateToActiveInterface() {
         UIView.animate(
@@ -77,6 +73,7 @@ class CatsView: UIView {
                 self.layoutIfNeeded()
         })
     }
+    
     // Animations when user becomes inactive
     func animateToInactiveInterface() {
         UIView.animate(
@@ -91,6 +88,7 @@ class CatsView: UIView {
                 self.layoutIfNeeded()
         })
     }
+    
     // Initial configuration
     func configure() {
         // Add subviews and sublayers
@@ -105,4 +103,7 @@ class CatsView: UIView {
         }
     }
 }
+
+
+
 

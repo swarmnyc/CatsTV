@@ -1,10 +1,7 @@
-//
-//  CatsViewController.swift
-//  CatsTV
-//
-//  Created by William Robinson on 3/2/17.
-//
-//
+
+
+
+
 
 import UIKit
 import SnapKit
@@ -12,7 +9,7 @@ import AVFoundation
 
 // Defines commands sent from presenter to view
 protocol CatsOutputProtocol: class {
-    func store(cats: [Cat])
+    func store(cats: Set<Cat>)
 }
 
 // Defines inputs in view
@@ -78,23 +75,26 @@ class CatsViewController: UIViewController {
 
 // Cats view protocol
 extension CatsViewController: CatsOutputProtocol {
+    
     // Store cats retrieved from Reddit
-    func store(cats: [Cat]) {
+    func store(cats: Set<Cat>) {
         guard !isScrolling else { return }
-        let updateIndex = self.cats.count
-        self.cats.append(contentsOf: cats)
-        
-        print("••")
-        print("cat: \(catIndex)\ncount: \(self.cats.count)")
-        print("••")
-        
-        catIndex + 20 > self.cats.count ? viewModel.enableCatAcquisition() : viewModel.disableCatAcquisition()
-        if updateIndex > 0 {
-            rootView.catsCollectionView.update(with: cats, at: updateIndex)
+        for cat in cats {
+            guard !self.cats.contains(cat) else { continue }
+            self.cats.append(cat)
+        }
+        rootView.catsCollectionView.reloadData()
+        if catIndex > self.cats.count - 20 {
+            viewModel.enableCatAcquisition()
         } else {
-            guard self.cats.count > 0 else { return }
-            rootView.catsCollectionView.reloadData()
+            viewModel.disableCatAcquisition()
+            if viewModel.isPopulating {
+                viewModel.completePopulating()
+            }
+        }
+        if viewModel.isLaunch {
             rootView.animateAppLaunch()
+            viewModel.completeLaunch()
         }
     }
 }
@@ -104,13 +104,12 @@ extension CatsViewController: CatInputProtocol {
     func cat(index: Int) -> Cat {
         return cats[index]
     }
+    
     // Set new current cat index
     func currentCatIndex(_ catIndex: Int) {
-        if self.catIndex != catIndex {
-            self.catIndex = catIndex
-            if catIndex + 10 > self.cats.count {
-                viewModel.retrieveCats()
-            }
+        self.catIndex = catIndex
+        if catIndex + 10 > self.cats.count {
+            viewModel.provideCats()
         }
     }
     
@@ -145,9 +144,12 @@ extension CatsViewController: CatInputProtocol {
     // Set state to scrolling
     func setScrolling() {
         isScrolling = true
+        if viewModel.isPopulating {
+            viewModel.completePopulating()
+        }
     }
     
-    // Set state to not scrolling
+    // Scrolling has finished
     func stoppedScrolling() {
         isScrolling = false
     }
@@ -167,3 +169,7 @@ private extension CatsViewController {
         }
     }
 }
+
+
+
+

@@ -1,10 +1,7 @@
-//
-//  AppDelegate.swift
-//  CatGIFTV-iOS
-//
-//  Created by William Robinson on 3/2/17.
-//
-//
+
+
+
+
 
 import UIKit
 import Fabric
@@ -51,3 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         rootVC.rootView.catsCollectionView.removeCurrentPlayer()
     }
 }
+
+
+
+

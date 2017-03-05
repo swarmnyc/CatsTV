@@ -13,9 +13,9 @@ class Reddit {
     static var after: String? = ""
     
     // Retrieve cats data from Reddit
-    static func getCatURLs(completion: @escaping ([Cat]) -> Void) {
+    static func getCatURLs(completion: @escaping (Set<Cat>) -> Void) {
         guard let after = after else { return }
-        let url = URL(string: "https://www.reddit.com/r/catgifs/hot.json?limit=3" + (after.isEmpty ? "" : "&after=" + after))!
+        let url = URL(string: "https://www.reddit.com/r/catgifs/hot.json?limit=5" + (after.isEmpty ? "" : "&after=" + after))!
         let task = URLSession.shared.dataTask(with: url) { data, _, error in
             if let error = error {
                 print("error retrieving cats from reddit: \(error.localizedDescription)")
@@ -26,12 +26,12 @@ class Reddit {
                 return
             }
             parse(data) { catURLs in
-                var cats: [Cat] = []
+                var cats: Set<Cat> = []
                 for catURL in catURLs {
                     let catImageGenerator = AVAssetImageGenerator(asset: AVAsset(url: catURL))
                     do {
                         let catImage = UIImage(cgImage: try catImageGenerator.copyCGImage(at: kCMTimeZero, actualTime: nil))
-                        cats.append(Cat(url: catURL, image: catImage))
+                        cats.insert(Cat(url: catURL, image: catImage))
                     } catch {
                         continue
                     }

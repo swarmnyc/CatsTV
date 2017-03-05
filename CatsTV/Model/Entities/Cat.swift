@@ -8,7 +8,12 @@
 
 import UIKit
 
-struct Cat {
-  let url: URL
-  let image: UIImage
+struct Cat: Hashable {
+    let url: URL
+    let image: UIImage
+    let hashValue: Int = UUID().hashValue
+    
+    static func ==(lhs: Cat, rhs: Cat) -> Bool {
+        return lhs.url == rhs.url
+    }
 }

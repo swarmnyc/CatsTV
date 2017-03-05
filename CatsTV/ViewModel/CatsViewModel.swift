@@ -9,10 +9,14 @@
 import Foundation
 
 protocol CatsViewModelProtocol: class {
+    var isLaunch: Bool { get }
+    var isPopulating: Bool { get }
     func retrieveCats()
     func provideCats()
     func enableCatAcquisition()
     func disableCatAcquisition()
+    func completeLaunch()
+    func completePopulating()
 }
 
 class CatsViewModel: CatsViewModelProtocol {
@@ -21,22 +25,34 @@ class CatsViewModel: CatsViewModelProtocol {
     weak var view: CatsOutputProtocol!
     
     // Properties
-    var catBucket: [Cat] = []
+    var catBucket: Set<Cat> = []
     var proceedWithCatAcquisition: Bool = true
+    var isLaunch: Bool = true
+    var isPopulating: Bool = true
     
     // Retrieve cats and store in cat bucket
     func retrieveCats(){
         Reddit.getCatURLs { cats in
-            self.catBucket.append(contentsOf: cats)
-            self.provideCats()
+            if self.isPopulating {
+                self.catBucket = cats
+                self.provideCats()
+            } else {
+                self.catBucket.formUnion(cats)
+            }
+            guard self.proceedWithCatAcquisition else { return }
+            self.retrieveCats()
         }
     }
     
     // Provide bucketed cats then empty bucket
     func provideCats() {
-        guard !catBucket.isEmpty else { return }
+        guard !catBucket.isEmpty else {
+            retrieveCats()
+            return
+        }
         DispatchQueue.main.async {
             self.view.store(cats: self.catBucket)
+            self.catBucket = []
         }
     }
     
@@ -48,5 +64,15 @@ class CatsViewModel: CatsViewModelProtocol {
     // Prevent retrieval of additional cats
     func disableCatAcquisition() {
         proceedWithCatAcquisition = false
+    }
+    
+    // Mark launch as complete
+    func completeLaunch() {
+        isLaunch = false
+    }
+    
+    // MarK initial cat populating as complete
+    func completePopulating() {
+        isPopulating = false
     }
 }

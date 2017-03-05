@@ -1,6 +1,8 @@
 
 
 
+
+
 import UIKit
 import AVFoundation
 
@@ -33,17 +35,6 @@ class CatsCollectionView: UICollectionView {
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         inputDelegate.userDidInteract()
         return super.hitTest(point, with: event)
-    }
-    
-    // Update data source with new cats
-    func update(with cats: [Cat], at startIndex: Int) {
-        var indexPaths = [IndexPath]()
-        for i in 0..<cats.count {
-            indexPaths.append(IndexPath(item: startIndex + i, section: 0))
-        }
-        performBatchUpdates({
-            self.insertItems(at: indexPaths)
-        })
     }
     
     // Set video for current player and begin playback
@@ -125,8 +116,10 @@ extension CatsCollectionView: UICollectionViewDelegate {
         cell.pausePlayer()
     }
     
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        inputDelegate.setScrolling()
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.isDragging || scrollView.isDecelerating {
+            inputDelegate.setScrolling()
+        }
     }
     
     // Scrolling motion has ended
@@ -153,3 +146,7 @@ extension CatsCollectionView: UICollectionViewDataSource {
         return cell
     }
 }
+
+
+
+
