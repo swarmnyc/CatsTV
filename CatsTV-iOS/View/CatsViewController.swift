@@ -79,11 +79,14 @@ extension CatsViewController: CatsOutputProtocol {
     // Store cats retrieved from Reddit
     func store(cats: Set<Cat>) {
         guard !isScrolling else { return }
+        let initialCatCount = catsCount
         for cat in cats {
             guard !self.cats.contains(cat) else { continue }
             self.cats.append(cat)
         }
-        rootView.catsCollectionView.reloadData()
+        if !viewModel.isPopulating || initialCatCount == 0 {
+            rootView.catsCollectionView.reloadData()
+        }
         if catIndex > self.cats.count - 20 {
             viewModel.enableCatAcquisition()
         } else {

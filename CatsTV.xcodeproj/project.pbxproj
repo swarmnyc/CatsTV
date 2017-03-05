@@ -158,10 +158,10 @@
 			isa = PBXGroup;
 			children = (
 				C4673CD11E68EE1D000C59F5 /* AppDelegate.swift */,
-				C4673D131E692759000C59F5 /* CatCollectionViewCell.swift */,
-				C4673D041E691CB1000C59F5 /* CatsCollectionView.swift */,
-				C4673D0E1E692360000C59F5 /* CatsView.swift */,
 				C4673CFF1E691B93000C59F5 /* CatsViewController.swift */,
+				C4673D0E1E692360000C59F5 /* CatsView.swift */,
+				C4673D041E691CB1000C59F5 /* CatsCollectionView.swift */,
+				C4673D131E692759000C59F5 /* CatCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -328,7 +328,7 @@
 				TargetAttributes = {
 					C4673CCE1E68EE1D000C59F5 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 49E6AM57U3;
+						DevelopmentTeam = TWPE6ND5AF;
 						ProvisioningStyle = Automatic;
 					};
 					C4DE958B1E53611400CA80B2 = {
@@ -554,7 +554,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 49E6AM57U3;
+				DEVELOPMENT_TEAM = TWPE6ND5AF;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -596,7 +596,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 49E6AM57U3;
+				DEVELOPMENT_TEAM = TWPE6ND5AF;
 				ENABLE_NS_ASSERTIONS = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
