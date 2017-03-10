@@ -178,7 +178,6 @@
 		C4D8B5A31E6BA1BF00A9E626 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				C4D8B5A91E6BA47800A9E626 /* DataManagers */,
 				C4B61A931E53715700DBEAD1 /* Reddit.swift */,
 			);
 			path = Model;
@@ -219,13 +218,6 @@
 			isa = PBXGroup;
 			children = (
 				C4D8B5941E6AE1CD00A9E626 /* Reddit.swift */,
-			);
-			path = DataManagers;
-			sourceTree = "<group>";
-		};
-		C4D8B5A91E6BA47800A9E626 /* DataManagers */ = {
-			isa = PBXGroup;
-			children = (
 			);
 			path = DataManagers;
 			sourceTree = "<group>";
@@ -566,7 +558,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = "CatsTV-iOS/Other/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.swarmnyc.CATSRightMeow;
@@ -603,7 +595,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = "CatsTV-iOS/Other/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.swarmnyc.CATSRightMeow;
