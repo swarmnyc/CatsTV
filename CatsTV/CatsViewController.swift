@@ -219,7 +219,7 @@ extension CatsViewController: CatInputProtocol {
     
     // Allow background audio for Apple Music
     do {
-      try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient)
+        try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.ambient)
       try AVAudioSession.sharedInstance().setActive(true)
     } catch {
       print(error)

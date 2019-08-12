@@ -34,7 +34,7 @@ class CatsView: UIView {
   lazy var upNextLabel: UILabel = {
     let label = UILabel()
     label.text = "Up next..."
-    label.font = UIFont.systemFont(ofSize: 32, weight: UIFontWeightBlack)
+    label.font = UIFont.systemFont(ofSize: 32, weight: UIFont.Weight.black)
     label.textColor = UIColor.white
     return label
   }()
@@ -92,17 +92,17 @@ class CatsView: UIView {
   
   // User interaction
   override func pressesBegan(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
-    if inputDelegate.isFullScreen, (presses.first?.type == UIPressType.menu || presses.first?.type == UIPressType.select) {
+    if inputDelegate.isFullScreen, (presses.first?.type == UIPress.PressType.menu || presses.first?.type == UIPress.PressType.select) {
       inputDelegate.toggleFullScreen()
     } else {
       super.pressesBegan(presses, with: event)
     }
   }
-  func swipedRight() {
+    @objc func swipedRight() {
     NotificationCenter.default.removeObserver(topCatVideoView.topCatPlayerLayer.player!.currentItem!)
     inputDelegate.nextCat()
   }
-  func swipedLeft() {
+    @objc func swipedLeft() {
     NotificationCenter.default.removeObserver(topCatVideoView.topCatPlayerLayer.player!.currentItem!)
     inputDelegate.previousCat()
   }

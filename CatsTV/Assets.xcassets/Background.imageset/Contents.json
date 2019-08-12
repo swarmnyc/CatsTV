@@ -4,6 +4,10 @@
       "idiom" : "tv",
       "filename" : "catgiftv background v2.png",
       "scale" : "1x"
+    },
+    {
+      "idiom" : "tv",
+      "scale" : "2x"
     }
   ],
   "info" : {
