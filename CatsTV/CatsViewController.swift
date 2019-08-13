@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 import AVKit
-
+import Crashlytics
 // Defines commands sent from presenter to view
 protocol CatsOutputProtocol: class {
   func store(cats: [Cat])
@@ -65,7 +65,18 @@ class CatsViewController: UIViewController {
     super.viewDidLoad()
     presenter.provideCats()
     configure()
+    let button = UIButton(type: .roundedRect)
+    button.frame = CGRect(x: 20, y: 50, width: 200, height: 100)
+    button.setTitle("Crash", for: [])
+    button.addTarget(self, action: #selector(self.crashButtonTapped(_:)), for: .primaryActionTriggered)
+    view.addSubview(button)
   }
+    
+    @IBAction func crashButtonTapped(_ sender: AnyObject) {
+        Crashlytics.sharedInstance().crash()
+    }
+
+    
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
     rootView.makeAdjustmentsAfterInitialLayout()
