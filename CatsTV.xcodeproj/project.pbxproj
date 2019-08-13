@@ -213,7 +213,7 @@
 				TargetAttributes = {
 					C4DE958B1E53611400CA80B2 = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = 49E6AM57U3;
+						DevelopmentTeam = 3UF8N45744;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -405,6 +405,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 49E6AM57U3;
+				"DEVELOPMENT_TEAM[sdk=*]" = 3UF8N45744;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -464,6 +465,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 49E6AM57U3;
+				"DEVELOPMENT_TEAM[sdk=*]" = 3UF8N45744;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
