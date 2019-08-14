@@ -59,6 +59,7 @@ class CatsCollectionView: UICollectionView {
     
     guard let visibleCells = visibleCells as? [CatCollectionViewCell] else { return }
     for cell in visibleCells {
+        print("Attempt to hide loading message")
       cell.hideLoadingMessage()
     }
   }
