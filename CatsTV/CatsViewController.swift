@@ -88,7 +88,6 @@ extension CatsViewController: CatsOutputProtocol {
     print("🐈 got \(cats.count) cat urls from reddit 🐈")
     rootView.catsCollectionView.update(with: cats)
     if isLaunch {
-      isLaunch = false
       setVideoPlayersOnLaunch()
       userDidInteract()
     }
@@ -104,6 +103,7 @@ extension CatsViewController: CatsOutputProtocol {
     rootView.topCatVideoView.setPlayers(previous: nil, current: current, next: next)
     rootView.catsCollectionView.reloadData()
     rootView.isUserInteractionEnabled = true
+    isLaunch = false
   }
 }
 
