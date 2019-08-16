@@ -26,7 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     window = UIWindow(frame: UIScreen.main.bounds)
     window!.rootViewController = view
     window!.makeKeyAndVisible()
-        
+    
+    //Crashlytics Setup (standard metric as of now)
     Fabric.with([Crashlytics.self])
     
     return true

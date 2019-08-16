@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		23322FDC230751B600EA80B1 /* Icon-60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 23322FD7230751B500EA80B1 /* Icon-60@3x.png */; };
+		23322FDD230751B600EA80B1 /* Icon-83.5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 23322FD8230751B500EA80B1 /* Icon-83.5@2x.png */; };
+		23322FDE230751B600EA80B1 /* Icon-76.png in Resources */ = {isa = PBXBuildFile; fileRef = 23322FD9230751B600EA80B1 /* Icon-76.png */; };
+		23322FDF230751B600EA80B1 /* Icon-76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 23322FDA230751B600EA80B1 /* Icon-76@2x.png */; };
+		23322FE0230751B600EA80B1 /* Icon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 23322FDB230751B600EA80B1 /* Icon-60@2x.png */; };
 		C41B642E1E65D33C00949040 /* MusicCatButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41B642D1E65D33C00949040 /* MusicCatButton.swift */; };
 		C41B64331E65F12100949040 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41B64321E65F12100949040 /* Colors.swift */; };
 		C43BBD801E63D889005F029E /* LoadingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43BBD7F1E63D889005F029E /* LoadingCollectionViewCell.swift */; };
@@ -25,6 +30,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		23322FD7230751B500EA80B1 /* Icon-60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-60@3x.png"; path = "../../CatsTVdev/CatsTV/CatsTV/Other/Assets.xcassets/AppIcon.appiconset/Icon-60@3x.png"; sourceTree = "<group>"; };
+		23322FD8230751B500EA80B1 /* Icon-83.5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-83.5@2x.png"; path = "../../CatsTVdev/CatsTV/CatsTV/Other/Assets.xcassets/AppIcon.appiconset/Icon-83.5@2x.png"; sourceTree = "<group>"; };
+		23322FD9230751B600EA80B1 /* Icon-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-76.png"; path = "../../CatsTVdev/CatsTV/CatsTV/Other/Assets.xcassets/AppIcon.appiconset/Icon-76.png"; sourceTree = "<group>"; };
+		23322FDA230751B600EA80B1 /* Icon-76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-76@2x.png"; path = "../../CatsTVdev/CatsTV/CatsTV/Other/Assets.xcassets/AppIcon.appiconset/Icon-76@2x.png"; sourceTree = "<group>"; };
+		23322FDB230751B600EA80B1 /* Icon-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-60@2x.png"; path = "../../CatsTVdev/CatsTV/CatsTV/Other/Assets.xcassets/AppIcon.appiconset/Icon-60@2x.png"; sourceTree = "<group>"; };
 		2906A4EBDA0DC4885D0AEEF4 /* Pods_CatsTV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CatsTV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C022DEC322908946365CDCB /* Pods-CatsTV.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CatsTV.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CatsTV/Pods-CatsTV.debug.xcconfig"; sourceTree = "<group>"; };
 		6689ED6D1BFE0AF708EF0062 /* Pods-CatsTV.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CatsTV.release.xcconfig"; path = "Pods/Target Support Files/Pods-CatsTV/Pods-CatsTV.release.xcconfig"; sourceTree = "<group>"; };
@@ -147,6 +157,11 @@
 				C4B3CF7C1E551DC500D401E9 /* Other */,
 				C4DE95961E53611400CA80B2 /* Assets.xcassets */,
 				C4DE95981E53611400CA80B2 /* Info.plist */,
+				23322FDB230751B600EA80B1 /* Icon-60@2x.png */,
+				23322FD7230751B500EA80B1 /* Icon-60@3x.png */,
+				23322FD9230751B600EA80B1 /* Icon-76.png */,
+				23322FDA230751B600EA80B1 /* Icon-76@2x.png */,
+				23322FD8230751B500EA80B1 /* Icon-83.5@2x.png */,
 			);
 			path = CatsTV;
 			sourceTree = "<group>";
@@ -241,7 +256,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23322FDC230751B600EA80B1 /* Icon-60@3x.png in Resources */,
+				23322FDE230751B600EA80B1 /* Icon-76.png in Resources */,
 				C4DE95971E53611400CA80B2 /* Assets.xcassets in Resources */,
+				23322FDF230751B600EA80B1 /* Icon-76@2x.png in Resources */,
+				23322FDD230751B600EA80B1 /* Icon-83.5@2x.png in Resources */,
+				23322FE0230751B600EA80B1 /* Icon-60@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,7 +419,7 @@
 			baseConfigurationReference = 2C022DEC322908946365CDCB /* Pods-CatsTV.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -441,6 +461,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = CatsTV/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 2.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.swarmnyc.CATSRightMeow;
@@ -459,7 +480,7 @@
 			baseConfigurationReference = 6689ED6D1BFE0AF708EF0062 /* Pods-CatsTV.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -483,8 +504,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=*]" = 3UF8N45744;
+				DEVELOPMENT_TEAM = 49E6AM57U3;
+				"DEVELOPMENT_TEAM[sdk=*]" = 49E6AM57U3;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -497,6 +518,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = CatsTV/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 2.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.swarmnyc.CATSRightMeow;
 				PRODUCT_NAME = "$(TARGET_NAME)";

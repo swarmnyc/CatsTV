@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "tv",
-      "filename" : "icon3 sm.png",
+      "filename" : "catstv-1920x720.png",
       "scale" : "1x"
     },
     {
       "idiom" : "tv",
-      "filename" : "icon3 sm-1.png",
+      "filename" : "catstv-1920x720_2.png",
       "scale" : "2x"
     }
   ],

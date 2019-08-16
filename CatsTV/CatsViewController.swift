@@ -90,6 +90,7 @@ extension CatsViewController: CatsOutputProtocol {
     if isLaunch {
       setVideoPlayersOnLaunch()
       userDidInteract()
+        //isLaunch was previously here, but caused issues if first api call had 0 cats
     }
   }
   
