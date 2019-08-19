@@ -5,14 +5,7 @@
 	<key>CFBundleIcons</key>
 	<dict>
 		<key>CFBundlePrimaryIcon</key>
-		<dict>
-			<key>CFBundleIconFiles</key>
-			<array>
-				<string>Icon-60</string>
-			</array>
-			<key>UIPrerenderedIcon</key>
-			<false/>
-		</dict>
+        <string>AppIcon</string>
 		<key>UINewsstandIcon</key>
 		<dict>
 			<key>CFBundleIconFiles</key>
