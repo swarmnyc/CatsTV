@@ -21,7 +21,7 @@ class CatCollectionViewCell: UICollectionViewCell {
   }()
   lazy var catPlayerLayer: AVPlayerLayer = {
     let playerLayer = AVPlayerLayer()
-    playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+    playerLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
     playerLayer.needsDisplayOnBoundsChange = true
     playerLayer.isHidden = true
     return playerLayer
@@ -36,10 +36,10 @@ class CatCollectionViewCell: UICollectionViewCell {
     let label = UILabel()
     label.text = "Loading..."
     label.textAlignment = .center
-    label.font = UIFont.systemFont(ofSize: 28, weight: UIFontWeightBlack)
+    label.font = UIFont.systemFont(ofSize: 28, weight: UIFont.Weight.black)
     label.textColor = UIColor.white
     let effectView = UIVisualEffectView(effect: nil)
-    effectView.addSubview(label)
+    effectView.contentView.addSubview(label)
     label.snp.makeConstraints {
       $0.edges.equalToSuperview()
     }
@@ -67,7 +67,7 @@ class CatCollectionViewCell: UICollectionViewCell {
       super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
       return
     }
-    guard AVPlayerItemStatus(rawValue: change![.newKey] as! Int)! == .readyToPlay else { return }
+    guard AVPlayerItem.Status(rawValue: change![.newKey] as! Int)! == .readyToPlay else { return }
     catPlayerLayer.player!.currentItem!.removeObserver(self, forKeyPath: #keyPath(AVPlayerItem.status))
     playerObserverActive = false
     catPlayerLayer.player!.play()
@@ -115,7 +115,7 @@ class CatCollectionViewCell: UICollectionViewCell {
   }
   
   func startPlayer() {
-    catPlayerLayer.player?.seek(to: kCMTimeZero)
+    catPlayerLayer.player?.seek(to: CMTime.zero)
     catPlayerLayer.player?.play()
   }
   

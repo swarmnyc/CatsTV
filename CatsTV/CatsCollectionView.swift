@@ -85,7 +85,7 @@ class CatsCollectionView: UICollectionView {
     layout.minimumLineSpacing = spacing
     layout.scrollDirection = .horizontal
     clipsToBounds = false
-    decelerationRate = UIScrollViewDecelerationRateFast
+    decelerationRate = UIScrollView.DecelerationRate.fast
     remembersLastFocusedIndexPath = true
     delegate = self
     dataSource = self

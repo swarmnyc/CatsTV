@@ -9,7 +9,6 @@
 import UIKit
 import SnapKit
 import AVKit
-
 // Defines commands sent from presenter to view
 protocol CatsOutputProtocol: class {
   func store(cats: [Cat])
@@ -66,6 +65,9 @@ class CatsViewController: UIViewController {
     presenter.provideCats()
     configure()
   }
+    
+
+    
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
     rootView.makeAdjustmentsAfterInitialLayout()
@@ -85,21 +87,27 @@ extension CatsViewController: CatsOutputProtocol {
   func store(cats: [Cat]) {
     print("🐈 got \(cats.count) cat urls from reddit 🐈")
     rootView.catsCollectionView.update(with: cats)
-    if isLaunch {
-      isLaunch = false
+    if (isLaunch) {
       setVideoPlayersOnLaunch()
       userDidInteract()
+      isLaunch = false
     }
   }
   
   // Configure video players on app launch
   private func setVideoPlayersOnLaunch() {
-    guard cats.count > 1 else { return }
-    let current = AVPlayer(url: cats[0].url)
-    let next = AVPlayer(url: cats[1].url)
-    current.isMuted = true
-    next.isMuted = true
-    rootView.topCatVideoView.setPlayers(previous: nil, current: current, next: next)
+    if (cats.count > 1){
+        let current = AVPlayer(url: cats[0].url)
+        let next = AVPlayer(url: cats[1].url)
+        current.isMuted = true
+        next.isMuted = true
+        rootView.topCatVideoView.setPlayers(previous: nil, current: current, next: next)
+    }
+    if (cats.count == 1){
+        let current = AVPlayer(url: cats[0].url)
+        current.isMuted = true
+        rootView.topCatVideoView.setPlayers(previous: nil, current: current, next: nil)
+    }
     rootView.catsCollectionView.reloadData()
     rootView.isUserInteractionEnabled = true
   }
@@ -219,7 +227,7 @@ extension CatsViewController: CatInputProtocol {
     
     // Allow background audio for Apple Music
     do {
-      try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient)
+        try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.ambient)
       try AVAudioSession.sharedInstance().setActive(true)
     } catch {
       print(error)

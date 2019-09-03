@@ -1,4 +1,8 @@
+platform :tvos, '12.4'
+
 target 'CatsTV' do
   use_frameworks!
   pod 'SnapKit'
+  pod 'Fabric'
+  pod 'Crashlytics'
 end

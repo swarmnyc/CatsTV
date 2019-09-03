@@ -28,7 +28,7 @@ class TopCatVideoView: UIView {
   }()
   lazy var topCatPlayerLayer: AVPlayerLayer = {
     let playerLayer = AVPlayerLayer()
-    playerLayer.videoGravity = AVLayerVideoGravityResizeAspect
+    playerLayer.videoGravity = AVLayerVideoGravity.resizeAspect
     playerLayer.needsDisplayOnBoundsChange = true
     return playerLayer
   }()
@@ -63,7 +63,7 @@ class TopCatVideoView: UIView {
   override var canBecomeFocused: Bool {
     return true
   }
-  func screenTapped() {
+    @objc func screenTapped() {
     inputDelegate.toggleFullScreen()
   }
   
@@ -129,14 +129,14 @@ class TopCatVideoView: UIView {
     ) { _ in
       self.playCount -= 1
       if self.playCount > 0 {
-        self.topCatPlayerLayer.player!.seek(to: kCMTimeZero)
+        self.topCatPlayerLayer.player!.seek(to: CMTime.zero)
         self.topCatPlayerLayer.player!.play()
       } else {
         NotificationCenter.default.removeObserver(self.topCatPlayerLayer.player!.currentItem!)
         self.inputDelegate.nextCat()
       }
     }
-    topCatPlayerLayer.player!.seek(to: kCMTimeZero)
+    topCatPlayerLayer.player!.seek(to: CMTime.zero)
     topCatPlayerLayer.player!.play()
   }
   
@@ -164,14 +164,14 @@ class TopCatVideoView: UIView {
     ) { _ in
       self.playCount -= 1
       if self.playCount > 0 {
-        self.topCatPlayerLayer.player!.seek(to: kCMTimeZero)
+        self.topCatPlayerLayer.player!.seek(to: CMTime.zero)
         self.topCatPlayerLayer.player!.play()
       } else {
         NotificationCenter.default.removeObserver(self.topCatPlayerLayer.player!.currentItem!)
         self.inputDelegate.nextCat()
       }
     }
-    topCatPlayerLayer.player!.seek(to: kCMTimeZero)
+    topCatPlayerLayer.player!.seek(to: CMTime.zero)
     topCatPlayerLayer.player!.play()
   }
   

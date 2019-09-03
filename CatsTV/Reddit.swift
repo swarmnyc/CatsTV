@@ -15,7 +15,7 @@ class Reddit {
   // Retrieve cats data from Reddit
   static func getCatURLs(completion: @escaping ([Cat]) -> Void) {
     guard let after = after else { return }
-    let url = URL(string: "https://www.reddit.com/r/catgifs/hot.json?limit=10" + (after.isEmpty ? "" : "&after=" + after))!
+    let url = URL(string: "https://www.reddit.com/r/catgifs/new.json?limit=20" + (after.isEmpty ? "" : "&after=" + after))!
     let task = URLSession.shared.dataTask(with: url) { data, _, error in
       if let error = error {
         print("error retrieving cats from reddit: \(error.localizedDescription)")
@@ -25,12 +25,12 @@ class Reddit {
         print("error unwrapping cats data from reddit")
         return
       }
-      parse(data) { catURLs in
+      parse(data) { catURLs in      //thumbnail generator
         var cats: [Cat] = []
         for catURL in catURLs {
           let catImageGenerator = AVAssetImageGenerator(asset: AVAsset(url: catURL))
           do {
-            let catImage = UIImage(cgImage: try catImageGenerator.copyCGImage(at: kCMTimeZero, actualTime: nil))
+            let catImage = UIImage(cgImage: try catImageGenerator.copyCGImage(at: CMTime.zero, actualTime: nil))
             cats.append(Cat(url: catURL, image: catImage))
           } catch {
             continue
@@ -73,6 +73,8 @@ class Reddit {
           print("error unwrapping reddit cats json child data\njson child: \(jsonChild)")
           continue
         }
+        
+        //lots of videos are filtered here, which is why you see the same videos everytime
         guard childData["domain"] is String, (childData["domain"] as! String).hasSuffix("imgur.com") else {
           continue
         }
