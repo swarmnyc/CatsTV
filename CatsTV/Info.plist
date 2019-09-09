@@ -12,6 +12,8 @@
 	<dict>
 		<key>CFBundlePrimaryIcon</key>
 		<string>AppIcon</string>
+        <key>UINewsstandApp</key>
+        <true/>
 		<key>UINewsstandIcon</key>
 		<dict>
 			<key>CFBundleIconFiles</key>
