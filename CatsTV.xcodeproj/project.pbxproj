@@ -27,6 +27,7 @@
 /* Begin PBXFileReference section */
 		03E318D0C1E847409E3F6D05 /* Pods-CatsTV.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CatsTV.debug.xcconfig"; path = "Target Support Files/Pods-CatsTV/Pods-CatsTV.debug.xcconfig"; sourceTree = "<group>"; };
 		0D7E89ED32CC8F3CA0FAD021 /* Pods-CatsTV.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CatsTV.release.xcconfig"; path = "Target Support Files/Pods-CatsTV/Pods-CatsTV.release.xcconfig"; sourceTree = "<group>"; };
+		235AB8E4231EC9070001D2D8 /* CatsTVRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CatsTVRelease.entitlements; sourceTree = "<group>"; };
 		C41B642D1E65D33C00949040 /* MusicCatButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicCatButton.swift; sourceTree = "<group>"; };
 		C41B64321E65F12100949040 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		C43BBD7F1E63D889005F029E /* LoadingCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -140,6 +141,7 @@
 		C4DE958E1E53611400CA80B2 /* CatsTV */ = {
 			isa = PBXGroup;
 			children = (
+				235AB8E4231EC9070001D2D8 /* CatsTVRelease.entitlements */,
 				C4DE958F1E53611400CA80B2 /* AppDelegate.swift */,
 				C4DE959E1E53621E00CA80B2 /* Cats Module */,
 				C4B61A921E53712B00DBEAD1 /* Data Managers */,
@@ -424,7 +426,7 @@
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 49E6AM57U3;
 				"DEVELOPMENT_TEAM[sdk=*]" = 49E6AM57U3;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -484,11 +486,12 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = CatsTV/CatsTVRelease.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 49E6AM57U3;
 				"DEVELOPMENT_TEAM[sdk=*]" = 49E6AM57U3;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -506,7 +509,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.swarmnyc.CATSRightMeow;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "CATS TV QA";
+				PROVISIONING_PROFILE_SPECIFIER = "CATS TV Distribute";
 				SDKROOT = appletvos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
