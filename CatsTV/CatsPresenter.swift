@@ -23,13 +23,11 @@ class CatsPresenter: CatsPresenterProtocol {
   
   // Retrieve cats
   func provideCats(){
-    Reddit.getCatURLs { cats in
-      DispatchQueue.main.async {
+    Reddit.getCatURLs {
+      cats in DispatchQueue.main.async {
         self.view.store(cats: cats)
         guard self.appIsActive else { return }
-        DispatchQueue.global(qos: .background).async {
-          self.provideCats()
-        }
+        DispatchQueue.global(qos: .background).async { self.provideCats() }
       }
     }
   }

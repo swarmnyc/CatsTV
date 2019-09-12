@@ -88,6 +88,8 @@ class Reddit {
         switch urlExtension {
         case "gif", "gifv":
           url = URL(string: childURL.replacingOccurrences(of: ".\(urlExtension)", with: ".mp4"))!
+
+          
           catURLs.append(url)
         default:
           continue

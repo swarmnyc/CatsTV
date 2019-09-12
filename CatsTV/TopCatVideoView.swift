@@ -126,12 +126,15 @@ class TopCatVideoView: UIView {
       forName: Notification.Name.AVPlayerItemDidPlayToEndTime,
       object: topCatPlayerLayer.player!.currentItem,
       queue: OperationQueue.main
-    ) { _ in
+    )
+    {
+      _ in
       self.playCount -= 1
       if self.playCount > 0 {
         self.topCatPlayerLayer.player!.seek(to: CMTime.zero)
         self.topCatPlayerLayer.player!.play()
-      } else {
+      }
+      else {
         NotificationCenter.default.removeObserver(self.topCatPlayerLayer.player!.currentItem!)
         self.inputDelegate.nextCat()
       }
