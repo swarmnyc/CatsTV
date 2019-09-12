@@ -90,7 +90,11 @@ extension CatsViewController: CatsOutputProtocol {
     if (isLaunch) {
       setVideoPlayersOnLaunch()
       userDidInteract()
-      isLaunch = false
+    }
+    else if (rootView.topCatVideoView.nextPlayer == nil && cats.count > 0){
+        let temp = AVPlayer(url: cats[0].url)
+        temp.isMuted = true
+        rootView.topCatVideoView.nextPlayer = temp
     }
   }
   
@@ -102,11 +106,13 @@ extension CatsViewController: CatsOutputProtocol {
         current.isMuted = true
         next.isMuted = true
         rootView.topCatVideoView.setPlayers(previous: nil, current: current, next: next)
+        isLaunch = false
     }
     if (cats.count == 1){
         let current = AVPlayer(url: cats[0].url)
         current.isMuted = true
         rootView.topCatVideoView.setPlayers(previous: nil, current: current, next: nil)
+        isLaunch = false
     }
     rootView.catsCollectionView.reloadData()
     rootView.isUserInteractionEnabled = true
