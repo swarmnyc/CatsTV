@@ -19,6 +19,10 @@
       "idiom" : "tv",
       "filename" : "icon2 sm.png",
       "scale" : "1x"
+    },
+    {
+      "idiom" : "tv",
+      "scale" : "2x"
     }
   ],
   "info" : {
