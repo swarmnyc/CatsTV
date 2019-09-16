@@ -30,7 +30,7 @@ class Reddit {
                 for catURL in catURLs {
                     let catImageGenerator = AVAssetImageGenerator(asset: AVAsset(url: catURL))
                     do {
-                        let catImage = UIImage(cgImage: try catImageGenerator.copyCGImage(at: kCMTimeZero, actualTime: nil))
+                        let catImage = UIImage(cgImage: try catImageGenerator.copyCGImage(at: CMTime.zero, actualTime: nil))
                         cats.insert(Cat(url: catURL, image: catImage))
                     } catch {
                         continue

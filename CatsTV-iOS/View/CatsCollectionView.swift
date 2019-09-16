@@ -74,7 +74,7 @@ class CatsCollectionView: UICollectionView {
         backgroundColor = UIColor.clear
         isPagingEnabled = true
         showsHorizontalScrollIndicator = false
-        decelerationRate = UIScrollViewDecelerationRateFast
+        decelerationRate = UIScrollView.DecelerationRate.fast
         // Layout
         let layout = collectionViewLayout as! UICollectionViewFlowLayout
         layout.itemSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)

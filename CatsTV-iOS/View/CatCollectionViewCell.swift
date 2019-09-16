@@ -19,7 +19,7 @@ class CatCollectionViewCell: UICollectionViewCell {
     }()
     lazy var catPlayerLayer: AVPlayerLayer = {
         let playerLayer = AVPlayerLayer()
-        playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+        playerLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
         playerLayer.needsDisplayOnBoundsChange = true
         playerLayer.cornerRadius = 6
         playerLayer.masksToBounds = true
@@ -68,7 +68,7 @@ class CatCollectionViewCell: UICollectionViewCell {
             object: catPlayerLayer.player!.currentItem,
             queue: OperationQueue.main
         ) { _ in
-            self.catPlayerLayer.player?.seek(to: kCMTimeZero)
+            self.catPlayerLayer.player?.seek(to: CMTime.zero)
             self.catPlayerLayer.player?.play()
         }
     }
@@ -82,7 +82,7 @@ class CatCollectionViewCell: UICollectionViewCell {
     }
     // Set player to original starting point
     func rewindPlayer() {
-        catPlayerLayer.player?.seek(to: kCMTimeZero)
+        catPlayerLayer.player?.seek(to: CMTime.zero)
     }
     
     // Brief white flash on screen when touched
@@ -109,7 +109,7 @@ class CatCollectionViewCell: UICollectionViewCell {
         catPlayerLayer.player = nil
     }
     
-    func longPress(_ gestureRecognizer: UILongPressGestureRecognizer) {
+    @objc func longPress(_ gestureRecognizer: UILongPressGestureRecognizer) {
         switch gestureRecognizer.state {
         case .began:
             catPlayerLayer.player?.rate = 0.35
@@ -135,10 +135,10 @@ private extension CatCollectionViewCell {
         contentView.addSubview(whiteView)
         // Constrain
         catThumbnailImageView.snp.makeConstraints {
-            $0.edges.equalTo(UIEdgeInsetsMake(3, 3, 3, 3))
+            $0.edges.equalTo(UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3))
         }
         whiteView.snp.makeConstraints {
-            $0.edges.equalTo(UIEdgeInsetsMake(3, 3, 3, 3))
+            $0.edges.equalTo(UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3))
         }
     }
 }

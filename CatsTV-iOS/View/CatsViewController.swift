@@ -87,9 +87,10 @@ extension CatsViewController: CatsOutputProtocol {
                 self.catBucket = []
             })
         }
-        if catIndex <= self.cats.count - 20 || viewModel.isLaunch {
+        if catIndex > self.cats.count - 20 {
             viewModel.retrieveCats()
-        } else {
+        }
+        else {
             viewModel.stopRetrievingCats()
         }
         if viewModel.isLaunch {
@@ -163,7 +164,7 @@ private extension CatsViewController {
         rootView.addDelegates(self)
         // Allow background audio for Apple Music
         do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient)
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.ambient)
             try AVAudioSession.sharedInstance().setActive(true)
         } catch {
             print(error)

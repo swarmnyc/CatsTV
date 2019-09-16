@@ -28,8 +28,8 @@ class CatsViewModel: CatsViewModelProtocol {
     // Retrieve cats and store in cat bucket
     func retrieveCats(){
         isRetrievingCats = true
-        Reddit.getCatURLs { cats in
-            DispatchQueue.main.async {
+        Reddit.getCatURLs {
+            cats in DispatchQueue.main.async {
                 self.view.store(cats: cats)
             }
         }
