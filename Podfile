@@ -6,7 +6,7 @@
 # Pods for all targets
 def universal_pods
   use_frameworks!
-  pod 'SnapKit'
+  pod 'SnapKit', '~> 5.0.0'
   pod 'Fabric'
   pod 'Crashlytics'
 end
